@@ -1,0 +1,37 @@
+parser: '@typescript-eslint/parser'
+plugins:
+  - '@typescript-eslint'
+  - unicorn
+extends:
+  - plugin:@typescript-eslint/recommended
+  - eslint:recommended
+  - prettier/@typescript-eslint
+  - plugin:prettier/recommended
+  - plugin:unicorn/recommended
+env:
+  browser: true
+  node: true
+  es6: true
+globals:
+  globalThis: readonly
+rules:
+  '@typescript-eslint/ban-ts-ignore': off
+  '@typescript-eslint/explicit-function-return-type': off
+  '@typescript-eslint/no-explicit-any': off
+  '@typescript-eslint/no-namespace': off
+  '@typescript-eslint/no-non-null-assertion': off
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: '^_'
+  '@typescript-eslint/no-var-requires': off
+  no-dupe-class-members: off
+  no-unused-vars: off
+  unicorn/filename-case:
+    - error
+    - cases:
+        kebabCase: true
+  unicorn/prefer-string-slice: off
+  unicorn/prevent-abbreviations:
+    - error
+    - whitelist:
+        args: true

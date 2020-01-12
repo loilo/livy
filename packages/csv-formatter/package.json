@@ -1,0 +1,53 @@
+{
+  "name": "@livy/csv-formatter",
+  "version": "1.0.0",
+  "description": "Formats Livy log records as CSV lines",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter",
+    "csv"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/csv-formatter#readme",
+  "license": "MIT",
+  "main": "lib/csv-formatter.js",
+  "sideEffects": false,
+  "module": "lib/csv-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/csv-formatter.js",
+      "default": "./lib/csv-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/csv-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

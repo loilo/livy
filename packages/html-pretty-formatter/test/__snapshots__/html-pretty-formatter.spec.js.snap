@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@livy/html-pretty-formatter should format records correctly 1`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #9195a244; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #9195a211\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">debug</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 2`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1edaa; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #08a1ed11\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">info</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 3`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1ed; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #08a1ed11\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">notice</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 4`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #ce9c00bb; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #ce9c0011\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">warning</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 5`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #ff5c55aa; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #ff5c5511\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">error</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 6`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #ff5c55; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #ff5c5511\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">critical</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 7`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #ff5c55; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #ff5c5511\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">alert</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should format records correctly 8`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #ff5c55; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #ff5c5511\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">emergency</span>
+        </span>
+      </div>
+    </div>"
+`;
+
+exports[`@livy/html-pretty-formatter should join batched formats with the empty string 1`] = `
+"
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1edaa; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #08a1ed11\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">info</span>
+        </span>
+      </div>
+    </div>
+    <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1edaa; margin-bottom: 0.75em\\">
+      <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
+
+      <span style=\\"position: relative\\">
+        <span>Test HtmlPrettyFormatter</span>
+        <span aria-hidden=\\"true\\" style=\\"position: absolute; left: 0; right: 0; bottom: -1px; height: 8px; background: #08a1ed11\\"></span>
+      </span>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">context</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">foo:</span> <span style=\\"color: #ff5c55\\">1</span>
+</span></code>
+        </output>
+      </div>
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 1.25em 0 1em\\">
+      <div style=\\"margin-left: 0.25em\\">
+        <span style=\\"color: #9195a2; text-transform: uppercase; font-size: 0.6em; font-weight: 500; display: block; margin-bottom: 0.75em; margin-top: -1.2em\\">extra</span>
+        <output>
+          <code style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; font-size: 0.9em; white-space: pre\\"><span style=\\"color: #9195a2\\"><span style=\\"color: #11658F\\">bar:</span> <span style=\\"color: #ff5c55\\">2</span>
+</span></code>
+        </output>
+      </div>
+
+      <hr style=\\"background-color: #9195a255; border: none; height: 1px; margin: 0.6em 0 1.25em\\">
+
+      <div role=\\"list\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-top: 1.25em\\">
+        <span role=\\"listitem\\">
+          <span role=\\"label\\" style=\\"display: inline-block; font-weight: inherit\\">channel:</span>
+          <span style=\\"display: inline-block\\">logs</span></span>
+          <span role=\\"separator\\" style=\\"color: #9195a255\\"> | </span>
+          <span role=\\"listitem\\">
+          <span style=\\"display: inline-block; font-weight: inherit\\">level:</span>
+          <span style=\\"display: inline-block\\">info</span>
+        </span>
+      </div>
+    </div>"
+`;

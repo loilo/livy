@@ -1,0 +1,56 @@
+{
+  "name": "@livy/group-handler",
+  "version": "1.0.0",
+  "description": "Forwards Livy log records to multiple handlers",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "group",
+    "wrapper",
+    "multiple",
+    "parallel"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/group-handler#readme",
+  "license": "MIT",
+  "main": "lib/group-handler.js",
+  "sideEffects": false,
+  "module": "lib/group-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/group-handler.js",
+      "default": "./lib/group-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/group-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@livy/restrain-handler",
+  "version": "1.0.0",
+  "description": "Buffers all Livy log records until an activation condition is reached",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "fingers-crossed",
+    "restrain",
+    "buffer"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/restrain-handler#readme",
+  "license": "MIT",
+  "main": "lib/restrain-handler.js",
+  "sideEffects": false,
+  "module": "lib/restrain-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/restrain-handler.js",
+      "default": "./lib/restrain-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/restrain-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/filter-handler": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

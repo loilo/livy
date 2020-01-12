@@ -1,0 +1,53 @@
+{
+  "name": "@livy/logger",
+  "version": "1.0.0",
+  "description": "A Monolog-inspired logging library for Node.js",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy#readme",
+  "license": "MIT",
+  "main": "lib/logger-factory.js",
+  "sideEffects": false,
+  "module": "lib/logger-factory.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/logger-factory.js",
+      "default": "./lib/logger-factory.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/logger",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "luxon": "^1.21.3",
+    "@livy/util": "^1.0.0",
+    "@livy/contracts": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^1.21.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@livy/memory-usage-processor",
+  "version": "1.0.0",
+  "description": "Injects memory usage into a Livy log record",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "processor",
+    "memory"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/memory-usage-processor#readme",
+  "license": "MIT",
+  "main": "lib/memory-usage-processor.js",
+  "sideEffects": false,
+  "module": "lib/memory-usage-processor.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/memory-usage-processor.js",
+      "default": "./lib/memory-usage-processor.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/memory-usage-processor",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

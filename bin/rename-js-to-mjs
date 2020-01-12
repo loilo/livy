@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+const fs = require('fs')
+const { promisify } = require('util')
+const { extname, basename, join } = require('path')
+
+/**
+ * Recursively rename .js files to .mjs inside a directory
+ *
+ * @param {string} path The folder to scan for .js files
+ */
+async function renameJsToMjs(path) {
+  console.log(`🔦 Scan ${join(process.cwd(), path)}`)
+
+  const fileNames = await promisify(fs.readdir)(path)
+  const stat = promisify(fs.stat)
+  const files = (
+    await Promise.all(fileNames.map(name => stat(join(path, name))))
+  ).map((stats, index) => {
+    stats.name = fileNames[index]
+    return stats
+  })
+
+  const renamedFiles = []
+
+  for (const file of files) {
+    const extension = extname(file.name)
+    if (file.isDirectory()) {
+      renamedFiles.push(renameJsToMjs(join(path, file.name)))
+    } else if (file.isFile() && extension === '.js') {
+      const mjsName = basename(file.name, extension) + '.mjs'
+
+      renamedFiles.push(
+        fs.promises
+          .rename(join(path, file.name), join(path, mjsName))
+          .then(() => {
+            console.log(`✏️  ${file.name} → ${mjsName}`)
+          })
+      )
+    }
+  }
+
+  await Promise.all(renamedFiles)
+}
+
+renameJsToMjs(join('.', process.argv[2] || '.')).catch(console.error)

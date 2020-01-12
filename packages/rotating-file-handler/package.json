@@ -1,0 +1,60 @@
+{
+  "name": "@livy/rotating-file-handler",
+  "version": "1.0.0",
+  "description": "Stores Livy log records in rotating files",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "size",
+    "date",
+    "filesize",
+    "rotate"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/rotating-file-handler#readme",
+  "license": "MIT",
+  "main": "lib/rotating-file-handler.js",
+  "sideEffects": false,
+  "module": "lib/rotating-file-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/rotating-file-handler.js",
+      "default": "./lib/rotating-file-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/rotating-file-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "luxon": "^1.21.3",
+    "@livy/contracts": "^1.0.0",
+    "@livy/file-handler": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "filesize-parser": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^1.21.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

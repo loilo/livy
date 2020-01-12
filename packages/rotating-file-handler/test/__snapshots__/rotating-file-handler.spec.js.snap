@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@livy/rotating-file-handler should do max-size rotation 1`] = `
+Object {
+  "/logfile.1.txt": "2015-08-15 14:30:00 NOTICE Test RotatingFileHandler {}
+2015-08-15 14:30:00 WARNING Test RotatingFileHandler {}
+",
+  "/logfile.2.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile.txt": "2015-08-15 14:30:00 ERROR Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should perform max-age rotation daily 1`] = `
+Object {
+  "/logfile-2015-08-15.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16.txt": "2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+2015-08-16 05:12:59 ERROR Test RotatingFileHandler {}
+2015-08-16 05:12:59 CRITICAL Test RotatingFileHandler {}
+2015-08-16 13:13:13 ALERT Test RotatingFileHandler {}
+2015-08-16 13:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should perform max-age rotation hourly 1`] = `
+Object {
+  "/logfile-2015-08-15_14.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16_05.txt": "2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+2015-08-16 05:12:59 ERROR Test RotatingFileHandler {}
+2015-08-16 05:12:59 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16_13.txt": "2015-08-16 13:13:13 ALERT Test RotatingFileHandler {}
+2015-08-16 13:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should perform max-age rotation minutely 1`] = `
+Object {
+  "/logfile-2015-08-15_14-30.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16_05-12.txt": "2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+2015-08-16 05:12:59 ERROR Test RotatingFileHandler {}
+2015-08-16 05:12:59 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16_13-13.txt": "2015-08-16 13:13:13 ALERT Test RotatingFileHandler {}
+2015-08-16 13:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should perform max-age rotation monthly 1`] = `
+Object {
+  "/logfile-2015-08.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+",
+  "/logfile-2015-09.txt": "2015-09-02 05:12:59 ERROR Test RotatingFileHandler {}
+2015-09-02 05:12:59 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2016-01.txt": "2016-01-16 12:13:13 ALERT Test RotatingFileHandler {}
+2016-01-16 12:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should perform max-age rotation yearly 1`] = `
+Object {
+  "/logfile-2015.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+",
+  "/logfile-2016.txt": "2016-09-02 05:12:59 ERROR Test RotatingFileHandler {}
+2016-09-02 05:12:59 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2017.txt": "2017-01-16 12:13:13 ALERT Test RotatingFileHandler {}
+2017-01-16 12:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should respect the "level" option 1`] = `
+Object {
+  "/logfile-2015-08-15.txt": "2015-08-15 14:30:00 NOTICE  {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should use daily rotation with default settings (async) 1`] = `
+Object {
+  "/logfile-2015-08-15.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16.txt": "2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+2015-08-16 13:13:13 ERROR Test RotatingFileHandler {}
+2015-08-16 13:13:13 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-17.txt": "2015-08-17 13:13:13 ALERT Test RotatingFileHandler {}
+2015-08-17 13:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;
+
+exports[`@livy/rotating-file-handler should use daily rotation with default settings 1`] = `
+Object {
+  "/logfile-2015-08-15.txt": "2015-08-15 14:30:00 DEBUG Test RotatingFileHandler {}
+2015-08-15 14:30:00 INFO Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-16.txt": "2015-08-16 05:12:21 NOTICE Test RotatingFileHandler {}
+2015-08-16 05:12:21 WARNING Test RotatingFileHandler {}
+2015-08-16 13:13:13 ERROR Test RotatingFileHandler {}
+2015-08-16 13:13:13 CRITICAL Test RotatingFileHandler {}
+",
+  "/logfile-2015-08-17.txt": "2015-08-17 13:13:13 ALERT Test RotatingFileHandler {}
+2015-08-17 13:13:13 EMERGENCY Test RotatingFileHandler {}
+",
+}
+`;

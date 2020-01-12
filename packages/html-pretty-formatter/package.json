@@ -1,0 +1,60 @@
+{
+  "name": "@livy/html-pretty-formatter",
+  "version": "1.0.0",
+  "description": "Description of html-pretty-formatter",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter",
+    "html"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/html-pretty-formatter#readme",
+  "license": "MIT",
+  "main": "lib/html-pretty-formatter.js",
+  "sideEffects": false,
+  "module": "lib/html-pretty-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/html-pretty-formatter.js",
+      "default": "./lib/html-pretty-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/html-pretty-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "hast-util-to-html": "^6.0.2",
+    "highlight.js": "^9.16.2",
+    "js-yaml": "^3.13.1",
+    "lowlight": "^1.13.0",
+    "unist-util-map": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.1",
+    "@types/lowlight": "0.0.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

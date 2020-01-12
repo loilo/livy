@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 1`] = `"[2m2015-08-15 14:30:00 [22mlogs [34m[2mDEBUG [22m[39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 2`] = `"[2m2015-08-15 14:30:00 [22mlogs [34mINFO [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 3`] = `"[2m2015-08-15 14:30:00 [22mlogs [34mNOTICE [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 4`] = `"[2m2015-08-15 14:30:00 [22mlogs [33mWARNING [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 5`] = `"[2m2015-08-15 14:30:00 [22mlogs [31mERROR [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 6`] = `"[2m2015-08-15 14:30:00 [22mlogs [31mCRITICAL [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 7`] = `"[2m2015-08-15 14:30:00 [22mlogs [31mALERT [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should decorate records correctly 8`] = `"[2m2015-08-15 14:30:00 [22mlogs [31mEMERGENCY [39mTest LineFormatter {[33m\\"foo\\"[39m:[36m1[39m} {[33m\\"bar\\"[39m:[36m2[39m}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 1`] = `"2015-08-15 14:30:00 logs DEBUG Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 2`] = `"2015-08-15 14:30:00 logs INFO Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 3`] = `"2015-08-15 14:30:00 logs NOTICE Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 4`] = `"2015-08-15 14:30:00 logs WARNING Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 5`] = `"2015-08-15 14:30:00 logs ERROR Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 6`] = `"2015-08-15 14:30:00 logs CRITICAL Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 7`] = `"2015-08-15 14:30:00 logs ALERT Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;
+
+exports[`@livy/ansi-line-formatter should format records correctly without decoration 8`] = `"2015-08-15 14:30:00 logs EMERGENCY Test AnsiLineFormatter {\\"foo\\":1} {\\"bar\\":2}"`;

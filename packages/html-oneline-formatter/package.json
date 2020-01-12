@@ -1,0 +1,60 @@
+{
+  "name": "@livy/html-oneline-formatter",
+  "version": "1.0.0",
+  "description": "Formats Livy log records as single-line HTML",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter",
+    "html"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/html-oneline-formatter#readme",
+  "license": "MIT",
+  "main": "lib/html-oneline-formatter.js",
+  "sideEffects": false,
+  "module": "lib/html-oneline-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/html-oneline-formatter.js",
+      "default": "./lib/html-oneline-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/html-oneline-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "hast-util-to-html": "^6.0.2",
+    "highlight.js": "^9.16.2",
+    "lowlight": "^1.13.0",
+    "luxon": "^1.21.3",
+    "unist-util-map": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/lowlight": "0.0.0",
+    "@types/luxon": "^1.21.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

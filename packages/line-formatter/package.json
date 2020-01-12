@@ -1,0 +1,51 @@
+{
+  "name": "@livy/line-formatter",
+  "version": "1.0.0",
+  "description": "Formats Livy log records as single lines",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/line-formatter#readme",
+  "license": "MIT",
+  "main": "lib/line-formatter.js",
+  "sideEffects": false,
+  "module": "lib/line-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/line-formatter.js",
+      "default": "./lib/line-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/line-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

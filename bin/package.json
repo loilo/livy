@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@livy/bin",
+  "description": "Build and test related commands to be used in Livy",
+  "version": "0.0.0",
+  "bin": {
+    "run-root": "./run-root",
+    "rename-js-to-mjs": "./rename-js-to-mjs",
+    "fix-extensionless-imports": "./fix-extensionless-imports",
+    "check-dependencies": "./check-dependencies"
+  },
+  "dependencies": {
+    "find-up": "^4.1.0",
+    "yufka": "^1.0.2"
+  }
+}

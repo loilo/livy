@@ -1,0 +1,60 @@
+{
+  "name": "@livy/ansi-line-formatter",
+  "version": "1.0.0",
+  "description": "Formats Livy log records as single lines with terminal highlighting",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter",
+    "ansi"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/ansi-line-formatter#readme",
+  "license": "MIT",
+  "main": "lib/ansi-line-formatter.js",
+  "sideEffects": false,
+  "module": "lib/ansi-line-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/ansi-line-formatter.js",
+      "default": "./lib/ansi-line-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/ansi-line-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/line-formatter": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "chalk": "^3.0.0",
+    "emphasize": "^2.1.0",
+    "js-yaml": "^3.13.1",
+    "luxon": "^1.21.3"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.1",
+    "@types/luxon": "^1.21.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

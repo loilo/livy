@@ -1,0 +1,53 @@
+{
+  "name": "@livy/hostname-processor",
+  "version": "1.0.0",
+  "description": "Injects the running machine's hostname into a Livy log record",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "processor",
+    "host",
+    "hostname"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/hostname-processor#readme",
+  "license": "MIT",
+  "main": "lib/hostname-processor.js",
+  "sideEffects": false,
+  "module": "lib/hostname-processor.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/hostname-processor.js",
+      "default": "./lib/hostname-processor.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/hostname-processor",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@livy/dom-handler",
+  "version": "1.0.0",
+  "description": "Writes Livy log records to the browser DOM",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "browser",
+    "html",
+    "dom"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/dom-handler#readme",
+  "license": "MIT",
+  "main": "lib/dom-handler.js",
+  "sideEffects": false,
+  "module": "lib/dom-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/dom-handler.js",
+      "default": "./lib/dom-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/dom-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/html-pretty-formatter": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

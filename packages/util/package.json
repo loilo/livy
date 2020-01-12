@@ -1,0 +1,44 @@
+{
+  "name": "@livy/util",
+  "version": "1.0.0",
+  "description": "Common utilities for the Livy logger",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "util"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy#readme",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/util",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "luxon": "^1.21.3"
+  },
+  "devDependencies": {
+    "@types/luxon": "^1.21.0",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@livy/websocket-handler",
+  "version": "1.0.0",
+  "description": "Sends Livy log records to a WebSocket server",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "websocket",
+    "ws"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/websocket-handler#readme",
+  "license": "MIT",
+  "main": "lib/websocket-handler.js",
+  "sideEffects": false,
+  "module": "lib/websocket-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/websocket-handler.js",
+      "default": "./lib/websocket-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/websocket-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/json-formatter": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "engine.io-client": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/engine.io-client": "^3.1.2",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

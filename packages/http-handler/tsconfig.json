@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    // We need to manually opt out of TypeScript's "dom" lib and manually
+    // installed @types since they conflict with the "got" package
+    "lib": ["es2018"],
+    "types": []
+  },
+  "include": ["./src"]
+}

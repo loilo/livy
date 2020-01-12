@@ -1,0 +1,53 @@
+{
+  "name": "@livy/filter-handler",
+  "version": "1.0.0",
+  "description": "Simple handler wrapper that filters records based on a test callback",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "tools",
+    "monolog",
+    "handler",
+    "filter",
+    "wrapper"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/filter-handler#readme",
+  "license": "MIT",
+  "main": "lib/filter-handler.js",
+  "sideEffects": false,
+  "module": "lib/filter-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/filter-handler.js",
+      "default": "./lib/filter-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/filter-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "name": "@livy/console-formatter",
+  "version": "1.0.0",
+  "description": "Description of console-formatter",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "formatter",
+    "console",
+    "terminal",
+    "ansi"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/console-formatter#readme",
+  "license": "MIT",
+  "main": "lib/console-formatter.js",
+  "sideEffects": false,
+  "module": "lib/console-formatter.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/console-formatter.js",
+      "default": "./lib/console-formatter.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/console-formatter",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/ansi-line-formatter": "^1.0.0",
+    "@livy/util": "^1.0.0",
+    "chalk": "^3.0.0",
+    "emphasize": "^2.1.0",
+    "js-yaml": "^3.13.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "@livy/process-id-processor",
+  "version": "1.0.0",
+  "description": "Injects the current process ID into a Livy log record",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "processor",
+    "process",
+    "id",
+    "pid"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/process-id-processor#readme",
+  "license": "MIT",
+  "main": "lib/process-id-processor.js",
+  "sideEffects": false,
+  "module": "lib/process-id-processor.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/process-id-processor.js",
+      "default": "./lib/process-id-processor.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/process-id-processor",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/contracts": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

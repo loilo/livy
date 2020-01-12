@@ -1,0 +1,55 @@
+{
+  "name": "@livy/console-handler",
+  "version": "1.0.0",
+  "description": "Writes Livy log records to the terminal",
+  "keywords": [
+    "logging",
+    "logger",
+    "logs",
+    "log",
+    "loglevel",
+    "tools",
+    "monolog",
+    "handler",
+    "console",
+    "terminal"
+  ],
+  "author": "loilo <florian.reuschel@gmx.de>",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/console-handler#readme",
+  "license": "MIT",
+  "main": "lib/console-handler.js",
+  "sideEffects": false,
+  "module": "lib/console-handler.mjs",
+  "exports": {
+    ".": {
+      "require": "./lib/console-handler.js",
+      "default": "./lib/console-handler.mjs"
+    }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": "https://github.com/loilo/livy/tree/master/packages/console-handler",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/loilo/livy/issues"
+  },
+  "dependencies": {
+    "@livy/console-formatter": "^1.0.0",
+    "@livy/contracts": "^1.0.0",
+    "@livy/util": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "typescript": "^3.7.3"
+  }
+}

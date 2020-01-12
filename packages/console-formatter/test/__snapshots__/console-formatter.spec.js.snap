@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@livy/console-formatter should format records correctly 1`] = `
+"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 2`] = `
+"[2m2015-08-15 14:30:00 [22m[34mINFO [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 3`] = `
+"[2m2015-08-15 14:30:00 [22m[34mNOTICE [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 4`] = `
+"[2m2015-08-15 14:30:00 [22m[33mWARNING [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 5`] = `
+"[2m2015-08-15 14:30:00 [22m[31mERROR [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 6`] = `
+"[2m2015-08-15 14:30:00 [22m[31mCRITICAL [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 7`] = `
+"[2m2015-08-15 14:30:00 [22m[31mALERT [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should format records correctly 8`] = `
+"[2m2015-08-15 14:30:00 [22m[31mEMERGENCY [39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33mfoo:[39m [36m1[39m
+  
+  [2mExtra:[22m
+  [33mbar:[39m [36m2[39m
+  "
+`;
+
+exports[`@livy/console-formatter should respect the provided color support 1`] = `"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter"`;
+
+exports[`@livy/console-formatter should respect the provided color support 2`] = `"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter"`;
