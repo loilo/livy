@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.svg" alt="Livy logo: The &quot;Livy&quot; lettering next to a scroll" width="360" height="80">
+  <img src="logo.svg" alt="Livy logo: The &quot;Livy&quot; lettering next to a scroll" width="360" height="120">
   <br><br><br>
 </div>
 
