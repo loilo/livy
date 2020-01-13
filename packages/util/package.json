@@ -1,6 +1,6 @@
 {
   "name": "@livy/util",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common utilities for the Livy logger",
   "keywords": [
     "logging",
@@ -13,7 +13,7 @@
     "util"
   ],
   "author": "loilo <florian.reuschel@gmx.de>",
-  "homepage": "https://github.com/loilo/livy#readme",
+  "homepage": "https://github.com/loilo/livy/packages/util#readme",
   "license": "MIT",
   "directories": {
     "lib": "lib",

@@ -1,6 +1,6 @@
 {
   "name": "@livy/contracts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Conceptual types and structures for the Livy logger",
   "keywords": [
     "logging",
@@ -14,7 +14,7 @@
     "types"
   ],
   "author": "loilo <florian.reuschel@gmx.de>",
-  "homepage": "https://github.com/loilo/livy#readme",
+  "homepage": "https://github.com/loilo/livy/packages/contracts#readme",
   "license": "MIT",
   "directories": {
     "lib": "lib",
