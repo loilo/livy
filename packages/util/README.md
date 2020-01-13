@@ -57,7 +57,7 @@ Environment.isBrowser // `true` or `false`
 Environment.EOL // os.EOL in Node.js, '\n' otherwise
 ```
 
-### [`ValidatableSet`](src/gated-set.ts)
+### [`ValidatableSet`](src/validatable-set.ts)
 
 An extended [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) with the array methods [`some`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some) and [`every`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) on top:
 
