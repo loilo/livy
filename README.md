@@ -302,6 +302,8 @@ Many Livy components work in the browser. Some are even [explicitely created](#b
 
 However, please take notice that these components still use a Node.js-style module format which is not natively supported by browsers. You'll need a bundler like [Parcel](https://parceljs.org/), [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or [Browserify](http://browserify.org/) to make them browser-ready.
 
+Alternatively, you can use a CDN like [Pika](https://www.pika.dev/search?q=%40livy) to try out Livy without using npm.
+
 ## Components
 
 These are the components (handlers, formatters, processors) officially maintained by the Livy team. They are not "included" in Livy because each component we provide each resides in a separate package. This makes them a little more cumbersome to install, but it helps us properly decoupling our code and keeps your `node_modules` folder a whole lot cleaner.
