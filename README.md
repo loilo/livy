@@ -3,6 +3,9 @@
   <br><br><br>
 </div>
 
+[![Test status on Travis](https://badgen.net/travis/loilo/livy)](https://travis-ci.org/loilo/vuelivy)
+[![Test coverage on CodeCov](https://badgen.net/codecov/c/github/loilo/livy)](https://codecov.io/gh/loilo/livy)
+
 _Livy_ is a flexible JavaScript logger heavily inspired by [Monolog](https://github.com/seldaek/monolog).
 
 ## Motivation
