@@ -1,6 +1,6 @@
 {
   "name": "@livy/stream-handler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Writes Livy log records to a Node.js stream",
   "keywords": [
     "logging",
@@ -43,9 +43,9 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
-    "@livy/line-formatter": "^1.0.0",
-    "@livy/util": "^1.0.0"
+    "@livy/contracts": "^1.0.2",
+    "@livy/line-formatter": "^1.0.1",
+    "@livy/util": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.14",

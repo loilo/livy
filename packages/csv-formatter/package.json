@@ -1,6 +1,6 @@
 {
   "name": "@livy/csv-formatter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Formats Livy log records as CSV lines",
   "keywords": [
     "logging",
@@ -43,8 +43,8 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
-    "@livy/util": "^1.0.0"
+    "@livy/contracts": "^1.0.2",
+    "@livy/util": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.14",

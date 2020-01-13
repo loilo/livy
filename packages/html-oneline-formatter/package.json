@@ -1,6 +1,6 @@
 {
   "name": "@livy/html-oneline-formatter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Formats Livy log records as single-line HTML",
   "keywords": [
     "logging",
@@ -43,8 +43,8 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
-    "@livy/util": "^1.0.0",
+    "@livy/contracts": "^1.0.2",
+    "@livy/util": "^1.0.2",
     "hast-util-to-html": "^6.0.2",
     "highlight.js": "^9.16.2",
     "lowlight": "^1.13.0",

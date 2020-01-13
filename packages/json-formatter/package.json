@@ -1,6 +1,6 @@
 {
   "name": "@livy/json-formatter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serializes Livy log records as JSON",
   "keywords": [
     "logging",
@@ -43,8 +43,8 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
-    "@livy/util": "^1.0.0"
+    "@livy/contracts": "^1.0.2",
+    "@livy/util": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.14",

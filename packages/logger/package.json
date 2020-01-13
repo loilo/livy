@@ -1,6 +1,6 @@
 {
   "name": "@livy/logger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Monolog-inspired logging library for Node.js",
   "keywords": [
     "logging",
@@ -41,9 +41,9 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "luxon": "^1.21.3",
-    "@livy/util": "^1.0.0",
-    "@livy/contracts": "^1.0.0"
+    "@livy/contracts": "^1.0.2",
+    "@livy/util": "^1.0.2",
+    "luxon": "^1.21.3"
   },
   "devDependencies": {
     "@types/luxon": "^1.21.0",

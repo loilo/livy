@@ -1,6 +1,6 @@
 {
   "name": "@livy/dom-handler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Writes Livy log records to the browser DOM",
   "keywords": [
     "logging",
@@ -45,9 +45,9 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
-    "@livy/html-pretty-formatter": "^1.0.0",
-    "@livy/util": "^1.0.0"
+    "@livy/contracts": "^1.0.2",
+    "@livy/html-pretty-formatter": "^1.0.1",
+    "@livy/util": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.14",

@@ -1,6 +1,6 @@
 {
   "name": "@livy/console-formatter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Description of console-formatter",
   "keywords": [
     "logging",
@@ -45,8 +45,8 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/ansi-line-formatter": "^1.0.0",
-    "@livy/util": "^1.0.0",
+    "@livy/ansi-line-formatter": "^1.0.1",
+    "@livy/util": "^1.0.2",
     "chalk": "^3.0.0",
     "emphasize": "^2.1.0",
     "js-yaml": "^3.13.1"

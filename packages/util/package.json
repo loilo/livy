@@ -1,6 +1,6 @@
 {
   "name": "@livy/util",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common utilities for the Livy logger",
   "keywords": [
     "logging",
@@ -33,7 +33,7 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.0",
+    "@livy/contracts": "^1.0.2",
     "luxon": "^1.21.3"
   },
   "devDependencies": {
