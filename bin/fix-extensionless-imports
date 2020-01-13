@@ -3,6 +3,9 @@ const fs = require('fs')
 const { promisify } = require('util')
 const yufka = require('yufka')
 const { extname, join } = require('path')
+const { packageDir, argv } = require('./_helpers')
+
+const verbose = argv.verbose || argv.v
 
 /**
  * Recursively add an .mjs extension to imports
@@ -10,7 +13,9 @@ const { extname, join } = require('path')
  * @param {string} path The folder inside the package to scan for .mjs files
  */
 async function fixExtensionlessImports(path) {
-  console.log(`🔦 Scan ${join(process.cwd(), path)}`)
+  if (verbose) {
+    console.log(`🔦 Scan ${join(process.cwd(), path)}`)
+  }
 
   const fileNames = await promisify(fs.readdir)(path)
   const stat = promisify(fs.stat)
@@ -32,7 +37,9 @@ async function fixExtensionlessImports(path) {
     } else if (file.isFile() && extension === '.mjs') {
       handledFiles.push(
         fs.promises.readFile(filePath, 'utf8').then(source => {
-          console.log(`✏️  ${file.name}`)
+          if (verbose) {
+            console.log(`✏️  ${file.name}`)
+          }
 
           return fs.promises.writeFile(
             filePath,
@@ -68,4 +75,4 @@ async function fixExtensionlessImports(path) {
   await Promise.all(handledFiles)
 }
 
-fixExtensionlessImports(join('.', process.argv[2] || '.')).catch(console.error)
+fixExtensionlessImports(join(packageDir, argv._[0] || '.')).catch(console.error)

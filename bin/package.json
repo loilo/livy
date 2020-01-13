@@ -7,7 +7,9 @@
     "run-root": "./run-root",
     "rename-js-to-mjs": "./rename-js-to-mjs",
     "fix-extensionless-imports": "./fix-extensionless-imports",
-    "check-dependencies": "./check-dependencies"
+    "check-dependencies": "./check-dependencies",
+    "resolve-markdown-links": "./resolve-markdown-links",
+    "restore-markdown-links": "./restore-markdown-links"
   },
   "dependencies": {
     "find-up": "^4.1.0",

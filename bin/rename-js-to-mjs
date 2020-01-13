@@ -2,6 +2,9 @@
 const fs = require('fs')
 const { promisify } = require('util')
 const { extname, basename, join } = require('path')
+const { packageDir, argv } = require('./_helpers')
+
+const verbose = argv.verbose || argv.v
 
 /**
  * Recursively rename .js files to .mjs inside a directory
@@ -9,7 +12,9 @@ const { extname, basename, join } = require('path')
  * @param {string} path The folder to scan for .js files
  */
 async function renameJsToMjs(path) {
-  console.log(`🔦 Scan ${join(process.cwd(), path)}`)
+  if (verbose) {
+    console.log(`🔦 Scan ${join(process.cwd(), path)}`)
+  }
 
   const fileNames = await promisify(fs.readdir)(path)
   const stat = promisify(fs.stat)
@@ -33,7 +38,9 @@ async function renameJsToMjs(path) {
         fs.promises
           .rename(join(path, file.name), join(path, mjsName))
           .then(() => {
-            console.log(`✏️  ${file.name} → ${mjsName}`)
+            if (verbose) {
+              console.log(`✏️  ${file.name} → ${mjsName}`)
+            }
           })
       )
     }
@@ -42,4 +49,4 @@ async function renameJsToMjs(path) {
   await Promise.all(renamedFiles)
 }
 
-renameJsToMjs(join('.', process.argv[2] || '.')).catch(console.error)
+renameJsToMjs(join(packageDir, argv._[0] || '.')).catch(console.error)

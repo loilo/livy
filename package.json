@@ -18,6 +18,8 @@
     "build:clear": "run-s build:clear:modules build:clear:build build:clear:base",
     "build:typescript": "lerna exec -- run-root single:build:typescript",
     "build:reset": "yarn build:clear && yarn install && yarn build:typescript",
+    "prepack": "lerna exec --parallel -- resolve-markdown-links",
+    "postpack": "lerna exec --parallel --no-bail -- restore-markdown-links",
     "single:build:typescript": "tsc --declaration --module esnext && rename-js-to-mjs lib && concurrently \"fix-extensionless-imports lib\" \"tsc --module commonjs\""
   },
   "devDependencies": {

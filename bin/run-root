@@ -1,27 +1,23 @@
 #!/usr/bin/env node
-const { join, relative, delimiter, dirname } = require('path')
-const findUp = require('find-up')
-const projectRoot = dirname(
-  findUp.sync('package.json', {
-    cwd: dirname(__dirname)
-  })
-)
+const { join, relative, delimiter } = require('path')
+const { root, argv } = require('./_helpers')
 
-const execa = require('execa')
-const [script] = process.argv.slice(2)
+const script = argv._[0]
 
 if (!script) {
   console.error('No script provided')
   process.exit(1)
 }
 
-const bin = join(projectRoot, 'node_modules', '.bin')
-const cwd = relative(projectRoot, process.cwd())
-const pkg = require(join(projectRoot, 'package.json'))
+const bin = join(root, 'node_modules', '.bin')
+const cwd = relative(root, process.cwd())
+const pkg = require(join(root, 'package.json'))
 
 const { spawn } = require('child_process')
 
-// console.log('Run from root:', JSON.stringify(pkg.scripts[script]))
+if (argv.verbose || argv.v) {
+  console.log(`run-root ${script}: ${JSON.stringify(pkg.scripts[script])}`)
+}
 
 spawn(pkg.scripts[script], [], {
   shell: true,

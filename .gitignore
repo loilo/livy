@@ -211,3 +211,4 @@ $RECYCLE.BIN/
 package-lock.json
 /packages/*/lib
 .cache
+.BACKUP.README.md
