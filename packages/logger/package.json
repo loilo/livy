@@ -12,7 +12,7 @@
     "monolog"
   ],
   "author": "loilo <florian.reuschel@gmx.de>",
-  "homepage": "https://github.com/loilo/livy/packages/logger#readme",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/logger#readme",
   "license": "MIT",
   "main": "lib/logger-factory.js",
   "sideEffects": false,

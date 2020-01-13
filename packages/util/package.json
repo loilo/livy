@@ -13,7 +13,7 @@
     "util"
   ],
   "author": "loilo <florian.reuschel@gmx.de>",
-  "homepage": "https://github.com/loilo/livy/packages/util#readme",
+  "homepage": "https://github.com/loilo/livy/tree/master/packages/util#readme",
   "license": "MIT",
   "directories": {
     "lib": "lib",
