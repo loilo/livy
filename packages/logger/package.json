@@ -1,6 +1,6 @@
 {
   "name": "@livy/logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Monolog-inspired logging library for Node.js",
   "keywords": [
     "logging",

@@ -1,6 +1,6 @@
 {
   "name": "@livy/contracts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Conceptual types and structures for the Livy logger",
   "keywords": [
     "logging",
