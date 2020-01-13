@@ -42,6 +42,13 @@ logger.info("I'm going to the log file.")
 logger.emergency("I'm going to the log file and to the slack channel!")
 ```
 
+## Features
+
+- **🎾 Flexible:** The basic logging infrastructure and the log-writing mechanisms are completely [decoupled and extensible](#concepts).
+- **🌌 Universal:** Livy was created for Node.js, but most components work [in the browser](#usage-in-browsers) just as well.
+- **⌨️ Great IDE support:** Livy is written in TypeScript for great auto completion and easier bug spotting.
+- **⚓️ Stable:** Livy has a [comprehensive test suite](https://codecov.io/gh/loilo/livy).
+
 ---
 
 <details>
