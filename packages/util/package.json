@@ -1,6 +1,6 @@
 {
   "name": "@livy/util",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Common utilities for the Livy logger",
   "keywords": [
     "logging",

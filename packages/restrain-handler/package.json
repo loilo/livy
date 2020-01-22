@@ -1,6 +1,6 @@
 {
   "name": "@livy/restrain-handler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Buffers all Livy log records until an activation condition is reached",
   "keywords": [
     "logging",

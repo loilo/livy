@@ -1,6 +1,6 @@
 {
   "name": "@livy/process-id-processor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Injects the current process ID into a Livy log record",
   "keywords": [
     "logging",

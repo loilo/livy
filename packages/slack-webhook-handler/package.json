@@ -1,6 +1,6 @@
 {
   "name": "@livy/slack-webhook-handler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Sends Livy log records to Slack through notifications",
   "keywords": [
     "logging",

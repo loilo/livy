@@ -1,6 +1,6 @@
 {
   "name": "@livy/ansi-line-formatter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Formats Livy log records as single lines with terminal highlighting",
   "keywords": [
     "logging",

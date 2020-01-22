@@ -1,6 +1,6 @@
 {
   "name": "@livy/filter-handler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple handler wrapper that filters records based on a test callback",
   "keywords": [
     "logging",

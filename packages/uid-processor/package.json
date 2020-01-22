@@ -1,6 +1,6 @@
 {
   "name": "@livy/uid-processor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Adds a unique identifier to Livy log records",
   "keywords": [
     "logging",

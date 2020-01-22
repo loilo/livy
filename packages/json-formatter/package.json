@@ -1,6 +1,6 @@
 {
   "name": "@livy/json-formatter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Serializes Livy log records as JSON",
   "keywords": [
     "logging",

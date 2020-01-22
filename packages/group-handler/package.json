@@ -1,6 +1,6 @@
 {
   "name": "@livy/group-handler",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Forwards Livy log records to multiple handlers",
   "keywords": [
     "logging",
