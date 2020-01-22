@@ -20,12 +20,6 @@
   "main": "lib/array-handler.js",
   "sideEffects": false,
   "module": "lib/array-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/array-handler.js",
-      "default": "./lib/array-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

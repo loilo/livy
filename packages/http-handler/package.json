@@ -19,12 +19,6 @@
   "main": "lib/http-handler.js",
   "sideEffects": false,
   "module": "lib/http-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/http-handler.js",
-      "default": "./lib/http-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

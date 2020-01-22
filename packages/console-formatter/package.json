@@ -21,12 +21,6 @@
   "main": "lib/console-formatter.js",
   "sideEffects": false,
   "module": "lib/console-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/console-formatter.js",
-      "default": "./lib/console-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

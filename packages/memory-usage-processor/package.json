@@ -19,12 +19,6 @@
   "main": "lib/memory-usage-processor.js",
   "sideEffects": false,
   "module": "lib/memory-usage-processor.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/memory-usage-processor.js",
-      "default": "./lib/memory-usage-processor.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

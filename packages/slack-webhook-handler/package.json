@@ -20,12 +20,6 @@
   "main": "lib/slack-webhook-handler.js",
   "sideEffects": false,
   "module": "lib/slack-webhook-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/slack-webhook-handler.js",
-      "default": "./lib/slack-webhook-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

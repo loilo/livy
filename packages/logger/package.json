@@ -17,12 +17,6 @@
   "main": "lib/logger-factory.js",
   "sideEffects": false,
   "module": "lib/logger-factory.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/logger-factory.js",
-      "default": "./lib/logger-factory.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

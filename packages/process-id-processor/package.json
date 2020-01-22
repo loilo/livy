@@ -21,12 +21,6 @@
   "main": "lib/process-id-processor.js",
   "sideEffects": false,
   "module": "lib/process-id-processor.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/process-id-processor.js",
-      "default": "./lib/process-id-processor.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

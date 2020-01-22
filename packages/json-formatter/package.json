@@ -19,12 +19,6 @@
   "main": "lib/json-formatter.js",
   "sideEffects": false,
   "module": "lib/json-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/json-formatter.js",
-      "default": "./lib/json-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

@@ -19,12 +19,6 @@
   "main": "lib/ansi-line-formatter.js",
   "sideEffects": false,
   "module": "lib/ansi-line-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/ansi-line-formatter.js",
-      "default": "./lib/ansi-line-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

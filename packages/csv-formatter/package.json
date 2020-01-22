@@ -19,12 +19,6 @@
   "main": "lib/csv-formatter.js",
   "sideEffects": false,
   "module": "lib/csv-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/csv-formatter.js",
-      "default": "./lib/csv-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

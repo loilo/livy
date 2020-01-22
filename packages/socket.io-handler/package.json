@@ -19,12 +19,6 @@
   "main": "lib/socket.io-handler.js",
   "sideEffects": false,
   "module": "lib/socket.io-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/socket.io-handler.js",
-      "default": "./lib/socket.io-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

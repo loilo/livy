@@ -19,12 +19,6 @@
   "main": "lib/html-pretty-formatter.js",
   "sideEffects": false,
   "module": "lib/html-pretty-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/html-pretty-formatter.js",
-      "default": "./lib/html-pretty-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

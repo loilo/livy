@@ -19,12 +19,6 @@
   "main": "lib/filter-handler.js",
   "sideEffects": false,
   "module": "lib/filter-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/filter-handler.js",
-      "default": "./lib/filter-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

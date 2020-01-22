@@ -22,12 +22,6 @@
   "main": "lib/group-handler.js",
   "sideEffects": false,
   "module": "lib/group-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/group-handler.js",
-      "default": "./lib/group-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

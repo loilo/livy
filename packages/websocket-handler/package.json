@@ -20,12 +20,6 @@
   "main": "lib/websocket-handler.js",
   "sideEffects": false,
   "module": "lib/websocket-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/websocket-handler.js",
-      "default": "./lib/websocket-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

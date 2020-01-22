@@ -20,12 +20,6 @@
   "main": "lib/hostname-processor.js",
   "sideEffects": false,
   "module": "lib/hostname-processor.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/hostname-processor.js",
-      "default": "./lib/hostname-processor.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

@@ -23,12 +23,6 @@
   "main": "lib/mail-handler.js",
   "sideEffects": false,
   "module": "lib/mail-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/mail-handler.js",
-      "default": "./lib/mail-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

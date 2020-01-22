@@ -20,12 +20,6 @@
   "main": "lib/level-filter-handler.js",
   "sideEffects": false,
   "module": "lib/level-filter-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/level-filter-handler.js",
-      "default": "./lib/level-filter-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

@@ -19,12 +19,6 @@
   "main": "lib/noop-handler.js",
   "sideEffects": false,
   "module": "lib/noop-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/noop-handler.js",
-      "default": "./lib/noop-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

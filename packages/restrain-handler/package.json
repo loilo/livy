@@ -21,12 +21,6 @@
   "main": "lib/restrain-handler.js",
   "sideEffects": false,
   "module": "lib/restrain-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/restrain-handler.js",
-      "default": "./lib/restrain-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

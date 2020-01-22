@@ -21,12 +21,6 @@
   "main": "lib/dom-handler.js",
   "sideEffects": false,
   "module": "lib/dom-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/dom-handler.js",
-      "default": "./lib/dom-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

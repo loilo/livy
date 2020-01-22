@@ -19,12 +19,6 @@
   "main": "lib/stream-handler.js",
   "sideEffects": false,
   "module": "lib/stream-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/stream-handler.js",
-      "default": "./lib/stream-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

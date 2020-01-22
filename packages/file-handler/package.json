@@ -20,12 +20,6 @@
   "main": "lib/file-handler.js",
   "sideEffects": false,
   "module": "lib/file-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/file-handler.js",
-      "default": "./lib/file-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

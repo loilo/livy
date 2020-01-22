@@ -19,12 +19,6 @@
   "main": "lib/html-oneline-formatter.js",
   "sideEffects": false,
   "module": "lib/html-oneline-formatter.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/html-oneline-formatter.js",
-      "default": "./lib/html-oneline-formatter.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

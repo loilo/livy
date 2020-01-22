@@ -20,12 +20,6 @@
   "main": "lib/null-handler.js",
   "sideEffects": false,
   "module": "lib/null-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/null-handler.js",
-      "default": "./lib/null-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

@@ -22,12 +22,6 @@
   "main": "lib/rotating-file-handler.js",
   "sideEffects": false,
   "module": "lib/rotating-file-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/rotating-file-handler.js",
-      "default": "./lib/rotating-file-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

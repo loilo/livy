@@ -22,12 +22,6 @@
   "main": "lib/uid-processor.js",
   "sideEffects": false,
   "module": "lib/uid-processor.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/uid-processor.js",
-      "default": "./lib/uid-processor.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

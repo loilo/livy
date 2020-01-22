@@ -19,12 +19,6 @@
   "main": "lib/tags-processor.js",
   "sideEffects": false,
   "module": "lib/tags-processor.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/tags-processor.js",
-      "default": "./lib/tags-processor.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"

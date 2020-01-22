@@ -20,12 +20,6 @@
   "main": "lib/browser-console-handler.js",
   "sideEffects": false,
   "module": "lib/browser-console-handler.mjs",
-  "exports": {
-    ".": {
-      "require": "./lib/browser-console-handler.js",
-      "default": "./lib/browser-console-handler.mjs"
-    }
-  },
   "directories": {
     "lib": "lib",
     "test": "test"
