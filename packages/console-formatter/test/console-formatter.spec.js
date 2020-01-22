@@ -53,6 +53,32 @@ describe('@livy/console-formatter', () => {
     ).toMatchSnapshot()
   })
 
+  it('should preserve "null" and "undefined" values in context', () => {
+    const consoleFormatter = new ConsoleFormatter()
+    expect(
+      consoleFormatter.format(
+        record('debug', 'Test ConsoleFormatter', {
+          context: {
+            a: 1,
+            b: undefined,
+            c: null,
+            d: [null],
+            e: { f: undefined }
+          }
+        })
+      )
+    ).toMatchSnapshot()
+  })
+
+  it('should skip unserializable context data', () => {
+    const consoleFormatter = new ConsoleFormatter()
+    expect(
+      consoleFormatter.format(
+        record('debug', 'Test ConsoleFormatter', { context: { fn() {} } })
+      )
+    ).toMatchSnapshot()
+  })
+
   it('should respect the provided color support', () => {
     const decoratedConsoleFormatter = new ConsoleFormatter({ decorated: true })
     expect(

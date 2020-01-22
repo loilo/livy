@@ -80,6 +80,21 @@ exports[`@livy/console-formatter should format records correctly 8`] = `
   "
 `;
 
+exports[`@livy/console-formatter should preserve "null" and "undefined" values in context 1`] = `
+"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter
+  [2mContext:[22m
+  [33ma:[39m [36m1[39m
+  [33mb:[39m [36m[90mundefined[39m[39m
+  [33mc:[39m [36m[90mnull[39m[39m
+  [33md:[39m
+  [35m  -[39m [36m[90mnull[39m[39m
+  [33me:[39m
+  [33m  f:[39m [36m[90mundefined[39m[39m
+  "
+`;
+
 exports[`@livy/console-formatter should respect the provided color support 1`] = `"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter"`;
 
 exports[`@livy/console-formatter should respect the provided color support 2`] = `"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter"`;
+
+exports[`@livy/console-formatter should skip unserializable context data 1`] = `"[2m2015-08-15 14:30:00 [22m[34m[2mDEBUG [22m[39mTest ConsoleFormatter"`;
