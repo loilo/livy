@@ -16,6 +16,7 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/contracts#readme",
   "license": "MIT",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "test"

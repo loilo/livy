@@ -26,7 +26,7 @@ This module contains the available [log levels](../../README.md#log-levels) and 
 - `LogLevel` is a type representing any valid [RFC 5424 log level](https://tools.ietf.org/html/rfc5424#page-11) while `logLevels` is an array containing all those level strings, sorted from least (`debug`) to most serious (`emergency`):
 
   ```ts
-  import { LogLevel, logLevels } from '@livy/contracts/lib/log-level'
+  import { LogLevel, logLevels } from '@livy/contracts'
 
   function printLevel(level: LogLevel) {
     if (!logLevels.includes(level)) {
@@ -40,7 +40,7 @@ This module contains the available [log levels](../../README.md#log-levels) and 
 - The `SeverityLevel` type represents log level severity as an integer from `0` through `7`. The `SeverityMap` object maps log levels to their corresponding severity (`debug → 7, ..., emergency → 0`):
 
   ```ts
-  import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
+  import { LogLevel, SeverityMap } from '@livy/contracts'
 
   /**
    * Sort a list of log levels by severity ("debug" first, "emergency" last)
@@ -57,8 +57,8 @@ This module contains the available [log levels](../../README.md#log-levels) and 
 Exposes the `LogRecord` interface which describes the structure of a Livy log record. This is useful for writing, for example, a custom formatter in TypeScript:
 
 ```ts
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import { FormatterInterface } from '@livy/contracts'
+import { LogRecord } from '@livy/contracts'
 
 class QueryStringFormatter implements FormatterInterface {
   /*
@@ -96,7 +96,7 @@ import {
   LoggerInterface,
   AsyncLoggerInterface,
   SyncLoggerInterface
-} from '@livy/contracts/lib/logger-interface'
+} from '@livy/contracts'
 ```
 
 ## [`HandlerInterface`](src/handler-interface.ts)
@@ -104,10 +104,7 @@ import {
 Describes the minimum viable structure of a Livy [handler](../../README.md#handlers) as `HandlerInterface`. Additionally, a `SyncHandlerInterface` is provided which represents a handler that has synchronous logging methods in addition to the asynchronous ones.
 
 ```ts
-import {
-  HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
+import { HandlerInterface, SyncHandlerInterface } from '@livy/contracts'
 ```
 
 ## [`ResettableInterface`](src/resettable-interface.ts)
@@ -115,7 +112,7 @@ import {
 Describes the structure of a resettable handler or processor — a component able to reset its internal state (e.g. the [`ArrayHandler`](../array-handler/README.md#readme) which can clear its own buffer).
 
 ```ts
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
+import { ResettableInterface } from '@livy/contracts'
 ```
 
 ---
@@ -135,7 +132,7 @@ Calling this method on a handler should not only reset its own state but also th
 Describes the structure of a handler which has a configurable [formatter](../../README.md#formatters).
 
 ```ts
-import { FormattableHandlerInterface } from '@livy/contracts/lib/formattable-handler-interface'
+import { FormattableHandlerInterface } from '@livy/contracts'
 ```
 
 ## [`ProcessableHandlerInterface`](src/processable-handler-interface.ts)
@@ -143,7 +140,7 @@ import { FormattableHandlerInterface } from '@livy/contracts/lib/formattable-han
 Describes the structure of a handler with support for [processors](../../README.md#processors).
 
 ```ts
-import { ProcessableHandlerInterface } from '@livy/contracts/lib/processable-handler-interface'
+import { ProcessableHandlerInterface } from '@livy/contracts'
 ```
 
 ---
@@ -166,7 +163,7 @@ Describes the structure of a handler which wants to do cleanup tasks when the pr
 If you want to implement such a handler, please be aware that there is often no spare time left when the `close()` method is invoked (because it is triggered when the process exits/the web page is left), i.e. asynchronous cleanup actions usually won't work.
 
 ```ts
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
+import { ClosableHandlerInterface } from '@livy/contracts'
 ```
 
 ## [`FormatterInterface`](src/formatter-interface.ts)
@@ -174,7 +171,7 @@ import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-i
 Describes the structure of a [formatter](../../README.md#formatters).
 
 ```ts
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
+import { FormatterInterface } from '@livy/contracts'
 ```
 
 ## [`ProcessorInterface`/`ProcessorFunction`](src/processor-interface.ts)
@@ -182,7 +179,7 @@ import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
 Describes the structure of a [processor](../../README.md#processors).
 
 ```ts
-import { ProcessorInterfaceOrFunction } from '@livy/contracts/lib/processor-interface'
+import { ProcessorInterfaceOrFunction } from '@livy/contracts'
 ```
 
 A processor can either be stateless or stateful:
@@ -192,7 +189,7 @@ A processor can either be stateless or stateful:
 A stateless processor is just a bare function taking a log record and returning a log record.
 
 ```ts
-import { ProcessorFunction } from '@livy/contracts/lib/processor-interface'
+import { ProcessorFunction } from '@livy/contracts'
 ```
 
 **Stateful Processors**
@@ -200,7 +197,7 @@ import { ProcessorFunction } from '@livy/contracts/lib/processor-interface'
 A stateful processor is a class with a `process` method. That method then does the job of accepting and returning a log record.
 
 ```ts
-import { ProcessorInterface } from '@livy/contracts/lib/processor-interface'
+import { ProcessorInterface } from '@livy/contracts'
 ```
 
 Writing a processor in a stateful is usually done...
