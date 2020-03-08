@@ -22,20 +22,20 @@ const { createLogger } = require('@livy/logger')
 const { SlackWebhookHandler } = require('@livy/slack-webhook-handler')
 const { RotatingFileHandler } = require('@livy/rotating-file-handler')
 
-// Give your log channel a name and you're good to go
-const logger = createLogger('app-logger')
+const logger = createLogger('my-app-logger', {
+  handlers: [
+    // Write daily rotating, automatically deleted log files
+    new RotatingFileHandler('/var/log/livy-%date%.log', {
+      level: 'info',
+      maxFiles: 30
+    }),
 
-logger.handlers
-  // Write daily rotating, automatically deleted log files
-  .add(new RotatingFileHandler('/var/log/livy-%date%.log', {
-    level: 'info',
-    maxFiles: 30
-  }))
-
-  // Get instant notifications under critical conditions
-  .add(new SlackWebhookHandler('https://some-slack-webhook.url', {
-    level: 'critical'
-  }))
+    // Get instant notifications under critical conditions
+    new SlackWebhookHandler('https://some-slack-webhook.url', {
+      level: 'critical'
+    })
+  ]
+})
 
 logger.debug("I'm going nowhere. :(")
 logger.info("I'm going to the log file.")
