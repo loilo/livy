@@ -16,6 +16,8 @@ Livy aims to be the one logger used throughout your Node.js application. Therefo
 
 Want to see an example?
 
+> Impatient? Try Livy out [on repl.it](https://repl.it/@loilo/livy-example).
+
 <!-- prettier-ignore -->
 ```js
 const { createLogger } = require('@livy/logger')
