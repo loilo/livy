@@ -76,7 +76,7 @@ npm install @livy/logger
 
 ## Get Started
 
-Once you've installed the [`@livy/logger`](packages/logger/README.md#readme) package. This package only contains the overall structure of the logger but no concrete logging functionality — those are installed separately as _components_.
+You start by installing the [`@livy/logger`](packages/logger/README.md#readme) package. This package only contains the overall structure of the logger but no concrete logging functionality — those are installed separately as _components_.
 
 So now think about how your logging should go. Want to write errors to a log file? Install the [`@livy/file-handler`](packages/file-handler/README.md#readme) and set up your logger:
 
