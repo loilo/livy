@@ -99,13 +99,13 @@ And there you go!
 
 **Learn more:**
 
-- [Logger](packages/logger/README.md#readme): Learn more about how to config the logger factory.
+- [Logger](packages/logger/README.md#readme): Learn more about how to configure the logger factory.
 - [Handlers](#handlers-1): See what handlers are available besides writing to a file.
 - [Concepts](#concepts): Learn about the core concepts of Livy.
 
 ## Concepts
 
-Most of Livy's concepts (and, in fact, a lot of its source code as well) are borrowed from the Monolog library. There are some differences to make it fit nicely into the JavaScript world, but if you're coming from the PHP Monolog world, you're probably pretty familiar with how things work in Livy.
+Most of Livy's concepts (and, in fact, a lot of its source code as well) are borrowed from the Monolog library. There are some differences to make it fit nicely into the JavaScript world, but if you're coming from the PHP Monolog world, you'll probably be pretty familiar with how things work in Livy.
 
 Most importantly, Livy adheres to the log levels defined in [RFC 5424](https://tools.ietf.org/html/rfc5424) and offers a logger interface compatible with [PSR-3](https://www.php-fig.org/psr/psr-3/). This also means that you may use Livy to visualize PSR-3 compatible PHP logs in the browser. For this use case, take a look at the [BrowserConsoleHandler](packages/browser-console-handler/README.md#readme) and the [DomHandler](packages/dom-handler/README.md#readme).
 
