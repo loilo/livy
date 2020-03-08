@@ -84,7 +84,7 @@ So now think about how your logging should go. Want to write errors to a log fil
 const { createLogger } = require('@livy/logger')
 const { FileHandler } = require('@livy/file-handler')
 
-const logger = createLogger('app-logger', {
+const logger = createLogger('my-app-logger', {
   handlers: [new FileHandler('error.log', { level: 'error' })]
 })
 ```
@@ -180,7 +180,7 @@ The log record is an internal concept that you'll mostly only need to understand
 Explained by example: When having this logger...
 
 ```js
-const logger = require('@livy/logger').createLogger('app-logger')
+const logger = require('@livy/logger').createLogger('my-app-logger')
 ```
 
 ...then calling a log method like this...
@@ -198,7 +198,7 @@ logger.debug('Hello World!', { from: 'Germany' })
   message: 'Hello World!',
   context: { from: 'Germany' },
   extra: {}, // Any extra data, usually attached by processors
-  channel: 'app-logger'
+  channel: 'my-app-logger'
   datetime: {...} // A Luxon DateTime object of the current date and time
 }
 ```
@@ -214,7 +214,7 @@ const { createLogger } = require('@livy/logger')
 const { ConsoleHandler } = require('@livy/console-handler')
 const { LineFormatter } = require('@livy/line-formatter')
 
-const logger = createLogger('app-logger', {
+const logger = createLogger('my-app-logger', {
   handlers: [
     new ConsoleHandler({
       formatter: new LineFormatter({
@@ -258,7 +258,7 @@ You can create a sync mode logger by setting the factory's `mode` option to `"sy
 const { createLogger } = require('@livy/logger')
 const { SlackWebhookHandler } = require('@livy/slack-webhook-handler')
 
-const logger = createLogger('app-logger', {
+const logger = createLogger('my-app-logger', {
   mode: 'sync'
 })
 
@@ -277,7 +277,7 @@ You can create a fully async mode logger by setting the factory's `mode` option 
 ```js
 const { createLogger } = require('@livy/logger')
 
-const logger = createLogger('app-logger', {
+const logger = createLogger('my-app-logger', {
   mode: 'async'
 })
 ```
