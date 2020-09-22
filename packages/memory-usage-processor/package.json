@@ -1,6 +1,6 @@
 {
   "name": "@livy/memory-usage-processor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Injects memory usage into a Livy log record",
   "keywords": [
     "logging",
@@ -37,7 +37,7 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.0.2"
+    "@livy/contracts": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",

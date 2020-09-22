@@ -1,6 +1,6 @@
 {
   "name": "@livy/console-handler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Writes Livy log records to the terminal",
   "keywords": [
     "logging",
@@ -38,9 +38,9 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/console-formatter": "^1.0.1",
-    "@livy/contracts": "^1.0.2",
-    "@livy/util": "^1.0.2"
+    "@livy/console-formatter": "^1.0.3",
+    "@livy/contracts": "^1.1.1",
+    "@livy/util": "^1.0.5"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
