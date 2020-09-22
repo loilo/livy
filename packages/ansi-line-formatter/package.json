@@ -40,15 +40,15 @@
     "@livy/contracts": "^1.0.2",
     "@livy/line-formatter": "^1.0.1",
     "@livy/util": "^1.0.2",
-    "chalk": "^3.0.0",
-    "emphasize": "^2.1.0",
+    "chalk": "^4.1.0",
+    "emphasize": "^4.0.0",
     "js-yaml": "^3.13.1",
-    "luxon": "^1.21.3"
+    "luxon": "^1.25.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "^3.12.1",
-    "@types/luxon": "^1.21.0",
-    "@types/node": "^12.12.14",
-    "typescript": "^3.7.3"
+    "@types/js-yaml": "^3.12.5",
+    "@types/luxon": "^1.25.0",
+    "@types/node": "^14.11.2",
+    "typescript": "^4.0.3"
   }
 }

@@ -28,7 +28,8 @@ export interface FileHandlerOptions extends AbstractLevelBubbleHandlerOptions {
 /**
  * Writes log records to a file
  */
-export class FileHandler extends AbstractSyncFormattingProcessingHandler
+export class FileHandler
+  extends AbstractSyncFormattingProcessingHandler
   implements ClosableHandlerInterface {
   protected fileHandle?: number
   protected path: string

@@ -1,5 +1,4 @@
 // istanbul ignore file: Themes are a source of truth, not subject to testing
-/* eslint-disable @typescript-eslint/camelcase */
 
 /**
  * Theme for HtmlOnelineFormatter

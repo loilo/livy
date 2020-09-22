@@ -28,7 +28,8 @@ type FilterTest = (record: LogRecord) => boolean
 /**
  * Simple handler wrapper that filters records based test callback
  */
-export class FilterHandler extends ProcessableHandlerMixin(AbstractBatchHandler)
+export class FilterHandler
+  extends ProcessableHandlerMixin(AbstractBatchHandler)
   implements
     SyncHandlerInterface,
     ResettableInterface,

@@ -23,7 +23,8 @@ type DateFormatter = (datetime: DateTime) => string
  * Separates log files by the datetime attached to log records thus creates
  * a new file every year/month/day/hour/minute
  */
-export class MaxAgeStrategy extends BaseStrategy<MaxAgeStrategyOptions>
+export class MaxAgeStrategy
+  extends BaseStrategy<MaxAgeStrategyOptions>
   implements RotationStrategyInterface {
   private cachedFilename?: string
   private durationUnit: DurationUnit

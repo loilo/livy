@@ -21,7 +21,8 @@ export interface MaxSizeStrategyOptions {
  * Separates log files by the size of the latest log file and thus creates
  * a new file whenever the current file exceeds the size threshold
  */
-export class MaxSizeStrategy extends BaseStrategy<MaxSizeStrategyOptions>
+export class MaxSizeStrategy
+  extends BaseStrategy<MaxSizeStrategyOptions>
   implements RotationStrategyInterface {
   private maxSize: number
   private filenameWithoutAppendix: string

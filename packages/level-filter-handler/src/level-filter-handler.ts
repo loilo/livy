@@ -26,7 +26,8 @@ export interface LevelFilterHandlerOptions {
 /**
  * Simple handler wrapper that filters records based on a lower/upper level bound
  */
-export class LevelFilterHandler extends FilterHandler
+export class LevelFilterHandler
+  extends FilterHandler
   implements SyncHandlerInterface, ResettableInterface {
   /**
    * Filtered handler

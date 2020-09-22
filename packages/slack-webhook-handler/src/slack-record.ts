@@ -127,7 +127,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
         text: message,
         color: this.getAttachmentColor(clearedRecord.level),
         fields: [],
-        mrkdwn_in: ['fields'], // eslint-disable-line @typescript-eslint/camelcase
+        mrkdwn_in: ['fields'],
         ts: clearedRecord.datetime.toSeconds()
       }
 
@@ -167,10 +167,8 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
     if (this.userIcon) {
       try {
         new URL(this.userIcon)
-        // eslint-disable-next-line @typescript-eslint/camelcase
         data.icon_url = this.userIcon
       } catch {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         data.icon_emoji = `:${this.userIcon}:`
       }
     }
@@ -216,7 +214,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
   /**
    * @inheritdoc
    */
-  public get defaultFormatter() {
+  public getDefaultFormatter() {
     return new LineFormatter({
       include: {
         context: this.includeContextAndExtra,

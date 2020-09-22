@@ -10,7 +10,8 @@ import { RespectLevelMixin } from '@livy/util/lib/handlers/respect-level-mixin'
  * Any record it can handle will be thrown away. This can be used
  * to put on top of an existing stack to override it temporarily.
  */
-export class NullHandler extends RespectLevelMixin(AbstractBatchHandler)
+export class NullHandler
+  extends RespectLevelMixin(AbstractBatchHandler)
   implements SyncHandlerInterface {
   public constructor(level: LogLevel = 'debug') {
     super()

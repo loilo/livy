@@ -14,6 +14,10 @@ env:
   es6: true
 globals:
   globalThis: readonly
+
+  # Types
+  SocketIOClient: readonly
+  Console: readonly
 rules:
   '@typescript-eslint/ban-ts-ignore': off
   '@typescript-eslint/explicit-function-return-type': off
@@ -24,6 +28,8 @@ rules:
     - error
     - argsIgnorePattern: '^_'
   '@typescript-eslint/no-var-requires': off
+  '@typescript-eslint/explicit-module-boundary-types': off
+  '@typescript-eslint/ban-ts-comment': off
   no-dupe-class-members: off
   no-unused-vars: off
   unicorn/filename-case:
@@ -35,3 +41,5 @@ rules:
     - error
     - whitelist:
         args: true
+  unicorn/import-style: off
+  unicorn/no-null: off

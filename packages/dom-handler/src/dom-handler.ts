@@ -33,7 +33,8 @@ export interface DomHandlerOptions extends AbstractLevelBubbleHandlerOptions {
 /**
  * Writes log records to the browser DOM
  */
-export class DomHandler extends AbstractSyncFormattingProcessingHandler
+export class DomHandler
+  extends AbstractSyncFormattingProcessingHandler
   implements ResettableInterface, ClosableHandlerInterface {
   public reversed: boolean
   public autoScroll: AutoScroll
@@ -86,7 +87,7 @@ export class DomHandler extends AbstractSyncFormattingProcessingHandler
   /**
    * @inheritdoc
    */
-  public get defaultFormatter(): FormatterInterface {
+  public getDefaultFormatter(): FormatterInterface {
     return new HtmlPrettyFormatter()
   }
 

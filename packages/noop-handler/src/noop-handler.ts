@@ -8,7 +8,8 @@ import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-han
  * This can be used for testing, or to disable a handler when overriding a configuration without
  * influencing the rest of the stack.
  */
-export class NoopHandler extends AbstractBatchHandler
+export class NoopHandler
+  extends AbstractBatchHandler
   implements SyncHandlerInterface {
   /**
    * @inheritdoc

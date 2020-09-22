@@ -3,10 +3,12 @@ import { EOL } from '@livy/util/lib/environment'
 import { AbstractBatchFormatter } from '@livy/util/lib/formatters/abstract-batch-formatter'
 import { IncludedRecordProperties } from '@livy/util/lib/formatters/included-record-properties'
 
+/* eslint-disable no-redeclare */
 const BATCH_MODE_NEWLINES = Symbol('BATCH_MODE_NEWLINES')
 type BATCH_MODE_NEWLINES = typeof BATCH_MODE_NEWLINES
 const BATCH_MODE_JSON = Symbol('BATCH_MODE_JSON')
 type BATCH_MODE_JSON = typeof BATCH_MODE_JSON
+/* eslint-enable no-redeclare */
 
 type BatchMode = BATCH_MODE_NEWLINES | BATCH_MODE_JSON
 

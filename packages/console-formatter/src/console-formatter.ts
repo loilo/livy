@@ -100,12 +100,8 @@ export class ConsoleFormatter extends AnsiLineFormatter {
       // prevents proper replacement in the end)
       const generateRandomString = () =>
         'x' +
-        Math.random()
-          .toString(36)
-          .substring(2, 15) +
-        Math.random()
-          .toString(36)
-          .substring(2, 15)
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15)
 
       const undefinedReplacement = generateRandomString()
       const nullReplacement = generateRandomString()

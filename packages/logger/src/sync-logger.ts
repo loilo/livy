@@ -9,7 +9,8 @@ import { AbstractLogger, LoggerOptions } from './abstract-logger'
  * A synchrous logger implementation which throws
  * on any attempt to add asynchronous functionality
  */
-export class SyncLogger extends AbstractLogger<SyncHandlerInterface, void>
+export class SyncLogger
+  extends AbstractLogger<SyncHandlerInterface, void>
   implements SyncLoggerInterface {
   public constructor(
     name: string,

@@ -87,9 +87,9 @@ exports[`@livy/console-formatter should preserve "null" and "undefined" values i
   [33mb:[39m [36m[90mundefined[39m[39m
   [33mc:[39m [36m[90mnull[39m[39m
   [33md:[39m
-  [35m  -[39m [36m[90mnull[39m[39m
+    [35m-[39m [36m[90mnull[39m[39m
   [33me:[39m
-  [33m  f:[39m [36m[90mundefined[39m[39m
+    [33mf:[39m [36m[90mundefined[39m[39m
   "
 `;
 

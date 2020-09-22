@@ -95,7 +95,7 @@ export class WebSocketHandler
   /**
    * @inheritdoc
    */
-  public get defaultFormatter(): FormatterInterface {
+  public getDefaultFormatter(): FormatterInterface {
     return new JsonFormatter()
   }
 

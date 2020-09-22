@@ -31,7 +31,8 @@ export interface GroupHandlerOptions {
 /**
  * Forwards log records to multiple handlers
  */
-export class GroupHandler extends ProcessableHandlerMixin(AbstractBatchHandler)
+export class GroupHandler
+  extends ProcessableHandlerMixin(AbstractBatchHandler)
   implements
     ClosableHandlerInterface,
     SyncHandlerInterface,

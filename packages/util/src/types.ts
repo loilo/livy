@@ -49,27 +49,21 @@ export namespace Class {
     infer V
   >
     ? Any<V>
-    : T extends Abstract<infer V>
-    ? Any<V>
-    : never
+    : T extends Abstract<infer V> ? Any<V> : never
 
   /**
    * Create a constructable class type from a constructable or abstract class type
    */
   export type MakeConstructable<T extends Any> = T extends Constructable
     ? T
-    : T extends Abstract<infer V>
-    ? Constructable<V>
-    : never
+    : T extends Abstract<infer V> ? Constructable<V> : never
 
   /**
    * Like InstanceType<T>, but works on abstract classes as well
    */
   export type InstanceType<T extends Any> = T extends Constructable<infer U>
     ? U
-    : T extends Abstract<infer V>
-    ? V
-    : never
+    : T extends Abstract<infer V> ? V : never
 }
 
 /*
@@ -108,8 +102,8 @@ export type RequireAtLeastOne<
   ObjectType,
   KeysType extends keyof ObjectType = keyof ObjectType
 > = {
-  // For each Key in KeysType make a mapped type
-  [Key in KeysType]: // …by picking that Key's type and making it required
+  [// For each Key in KeysType make a mapped type
+  Key in KeysType]: // …by picking that Key's type and making it required
   Required<Pick<ObjectType, Key>>
 }[KeysType] &
   // …then, make intersection types by adding the remaining keys to each mapped type.
@@ -125,9 +119,6 @@ export type SetRequired<
   // Pick just the keys that are not required from the base type.
   Pick<BaseType, Exclude<keyof BaseType, Keys>> &
     // Pick the keys that should be required from the base type and make them required.
-    Required<
-      Pick<BaseType, Keys>
-    > extends // If `InferredType` extends the previous, then for each key, use the inferred type key.
-  infer InferredType
+    Required<Pick<BaseType, Keys>> extends infer InferredType // If `InferredType` extends the previous, then for each key, use the inferred type key.
     ? { [KeyType in keyof InferredType]: InferredType[KeyType] }
     : never

@@ -68,9 +68,8 @@ export class ConsoleHandler extends AbstractSyncFormattingProcessingHandler {
 
   /**
    * @inheritdoc
-   * @private
    */
-  public get defaultFormatter(): FormatterInterface {
+  public getDefaultFormatter(): FormatterInterface {
     return new ConsoleFormatter()
   }
 }

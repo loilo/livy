@@ -4,10 +4,7 @@ import {
   AbstractLevelBubbleHandlerOptions
 } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
 import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import got, {
-  Options as GotOptions,
-  URLOrOptions as GotURLOrOptions
-} from 'got'
+import got, { Options as GotOptions } from 'got'
 
 type MaybeArray<T> = T | T[]
 type Created<T, U extends any[] = []> = (...args: U) => T
@@ -36,11 +33,11 @@ interface HttpHandlerOptions<AllowBatchRequests extends boolean>
 }
 
 type HttpHandlerUrl<AllowBatchRequests extends boolean> = Creatable<
-  GotURLOrOptions,
+  'string' | GotOptions,
   AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
 >
 type HttpHandlerUrlGenerator<AllowBatchRequests extends boolean> = Created<
-  GotURLOrOptions,
+  'string' | GotOptions,
   AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
 >
 type HttpHandlerGotOptionsGenerator<

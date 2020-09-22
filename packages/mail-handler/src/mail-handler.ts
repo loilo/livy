@@ -292,10 +292,9 @@ export class MailHandler extends ProcessableHandlerMixin(
 
     const latestRecord = records[records.length - 1]
     const tokenReplacer = this.createTokenReplacer(latestRecord)
-    const subject = `${this.getSubject(
-      latestRecord,
-      tokenReplacer
-    )} + ${records.length - 1} other${records.length === 2 ? '' : 's'}`
+    const subject = `${this.getSubject(latestRecord, tokenReplacer)} + ${
+      records.length - 1
+    } other${records.length === 2 ? '' : 's'}`
 
     this.send(
       subject,

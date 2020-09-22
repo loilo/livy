@@ -7,7 +7,8 @@ import { Mixin } from '../mixin'
  * Adds basic formatter functionality
  */
 export const FormattableHandlerMixin = Mixin(BaseClass => {
-  return class FormattableHandlerMixin extends BaseClass
+  return class FormattableHandlerMixin
+    extends BaseClass
     implements FormattableHandlerInterface {
     /**
      * @protected This should not be public, but is forced to be due to microsoft/typescript#17744
@@ -16,23 +17,58 @@ export const FormattableHandlerMixin = Mixin(BaseClass => {
 
     /**
      * Get the default formatter
-     * @protected This should not be public, but is forced to be due to microsoft/typescript#17744
+     *
+     * This exists to be overridden, because getters/setters of mixins can not
+     * be properly overridden due to TS2611
+     *
+     * @protected This should also not be public, but is forced to be due to microsoft/typescript#17744
      */
-    public get defaultFormatter(): FormatterInterface {
+    public getDefaultFormatter(): FormatterInterface {
       return new LineFormatter()
     }
 
     /**
      * @inheritdoc
      */
+    public get defaultFormatter(): FormatterInterface {
+      return this.getDefaultFormatter()
+    }
+
+    /**
+     * @inheritdoc
+     */
     public set formatter(formatter: FormatterInterface) {
-      this.explicitFormatter = formatter
+      this.setFormatter(formatter)
     }
 
     /**
      * @inheritdoc
      */
     public get formatter() {
+      return this.getFormatter()
+    }
+
+    /**
+     * Get the formatter
+     *
+     * This exists to be overridden, because getters/setters of mixins can not
+     * be properly overridden due to TS2611
+     *
+     * @protected This should also not be public, but is forced to be due to microsoft/typescript#17744
+     */
+    public setFormatter(formatter: FormatterInterface) {
+      this.explicitFormatter = formatter
+    }
+
+    /**
+     * Set the formatter
+     *
+     * This exists to be overridden, because getters/setters of mixins can not
+     * be properly overridden due to TS2611
+     *
+     * @protected This should also not be public, but is forced to be due to microsoft/typescript#17744
+     */
+    public getFormatter() {
       // Default formatter is committed as the handler's formatter
       // as soon as the formatter is requested
       if (typeof this.explicitFormatter === 'undefined') {

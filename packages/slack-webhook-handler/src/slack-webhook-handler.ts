@@ -135,21 +135,21 @@ export class SlackWebhookHandler extends AbstractFormattingProcessingHandler {
   /**
    * @inheritdoc
    */
-  public get defaultFormatter() {
+  public getDefaultFormatter() {
     return this._slackRecord.defaultFormatter
   }
 
   /**
    * @inheritdoc
    */
-  public set formatter(formatter: FormatterInterface) {
+  public setFormatter(formatter: FormatterInterface) {
     this._slackRecord.formatter = formatter
   }
 
   /**
    * @inheritdoc
    */
-  public get formatter() {
+  public getFormatter() {
     return this._slackRecord.formatter
   }
 }

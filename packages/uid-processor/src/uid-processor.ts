@@ -58,9 +58,7 @@ export class UidProcessor implements ProcessorInterface, ResettableInterface {
       crypto.getRandomValues(bytes)
       return [...bytes].map(byte => byte.toString(16).padStart(2, '0')).join('')
     } else if (environment.isNodeJs) {
-      return require('crypto')
-        .randomBytes(length)
-        .toString('hex')
+      return require('crypto').randomBytes(length).toString('hex')
     } else {
       // istanbul ignore next: Not testing other environments
       throw new Error('Cannot create a UID in your environment')

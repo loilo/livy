@@ -84,7 +84,6 @@ export class MemoryUsageProcessor implements ProcessorInterface {
   public process(record: LogRecord) {
     const memoryUsage = process.memoryUsage().heapTotal
 
-    // eslint-disable-next-line @typescript-eslint/camelcase
     record.extra.memory_usage = this.humanReadable
       ? this.convertToHumanReadable(memoryUsage)
       : memoryUsage

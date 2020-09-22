@@ -82,7 +82,7 @@ This handler implements the [`ClosableHandlerInterface`](../contracts/README.md#
 
 > You usually don't want to call this method manually. It is done automatically when a Node.js process exits / a browser page is closed.
 
-### `defaultFormatter`
+### `defaultFormatter` (read-only)
 
 The formatter used by this handler if no [`formatter`](#formatter) option is set.
 

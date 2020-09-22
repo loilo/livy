@@ -46,7 +46,8 @@ export interface RestrainHandlerOptions {
  * Only incidents which actually trigger an error (or whatever your activation condition is) will be
  * in the logs, but they will contain all records, not only those above the level threshold.
  */
-export class RestrainHandler extends FilterHandler
+export class RestrainHandler
+  extends FilterHandler
   implements SyncHandlerInterface, ResettableInterface {
   protected buffering = true
   protected bufferSize: number

@@ -10,7 +10,8 @@ import { AbstractLogger } from './abstract-logger'
  * It executes asynchronous handlers but does not await their results nor does it
  * respect their bubbling behavior or handle their errors
  */
-export class MixedLogger extends AbstractLogger<HandlerInterface, void>
+export class MixedLogger
+  extends AbstractLogger<HandlerInterface, void>
   implements SyncLoggerInterface {
   /**
    * @inheritdoc
