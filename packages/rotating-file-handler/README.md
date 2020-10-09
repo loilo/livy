@@ -28,7 +28,7 @@ npm install @livy/rotating-file-handler
 
 ## Options
 
-The first argument to this handler's constructor is a file path to write to. It need to contain a token based on the configured [`strategy`](#strategy)
+The first argument to this handler's constructor is a file path to write to. It needs to contain a token based on the configured [`strategy`](#strategy).
 
 An object of options can be passed to the constructor as the second argument.
 
@@ -91,7 +91,7 @@ The value this option takes varies based on the [`strategy`](#strategy) option:
 
 **Description:** The duration unit that separates individual log files. Using `'day'` rotates the log files daily, using `'hour'` rotates them every hour etc.
 
-#### Strategy `max-age`
+#### Strategy `max-size`
 
 **Type:** `number | string`
 

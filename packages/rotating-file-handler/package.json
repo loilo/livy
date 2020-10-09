@@ -1,6 +1,6 @@
 {
   "name": "@livy/rotating-file-handler",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Stores Livy log records in rotating files",
   "keywords": [
     "logging",
