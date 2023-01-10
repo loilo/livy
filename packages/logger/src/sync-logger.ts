@@ -11,7 +11,8 @@ import { AbstractLogger, LoggerOptions } from './abstract-logger'
  */
 export class SyncLogger
   extends AbstractLogger<SyncHandlerInterface, void>
-  implements SyncLoggerInterface {
+  implements SyncLoggerInterface
+{
   public constructor(
     name: string,
     options?: Partial<LoggerOptions<SyncHandlerInterface>>

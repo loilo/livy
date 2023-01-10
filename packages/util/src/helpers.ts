@@ -29,9 +29,7 @@ export function sanitizeRegex(value: string) {
  */
 export function replaceTokens(template: string, values: AnyObject) {
   const patternRegex = new RegExp(
-    `%(${Object.keys(values)
-      .map(sanitizeRegex)
-      .join('|')})%`,
+    `%(${Object.keys(values).map(sanitizeRegex).join('|')})%`,
     'g'
   )
   return template.replace(patternRegex, (_, token) => values[token])

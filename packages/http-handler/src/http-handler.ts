@@ -40,12 +40,11 @@ type HttpHandlerUrlGenerator<AllowBatchRequests extends boolean> = Created<
   'string' | GotOptions,
   AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
 >
-type HttpHandlerGotOptionsGenerator<
-  AllowBatchRequests extends boolean
-> = Created<
-  GotOptions,
-  AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
->
+type HttpHandlerGotOptionsGenerator<AllowBatchRequests extends boolean> =
+  Created<
+    GotOptions,
+    AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
+  >
 
 /**
  * Sends log records to an HTTP endpoint

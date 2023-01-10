@@ -12,7 +12,8 @@ import { AbstractLogger } from './abstract-logger'
  */
 export class MixedLogger
   extends AbstractLogger<HandlerInterface, void>
-  implements SyncLoggerInterface {
+  implements SyncLoggerInterface
+{
   /**
    * @inheritdoc
    */

@@ -10,7 +10,8 @@ import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-han
  */
 export class NoopHandler
   extends AbstractBatchHandler
-  implements SyncHandlerInterface {
+  implements SyncHandlerInterface
+{
   /**
    * @inheritdoc
    */

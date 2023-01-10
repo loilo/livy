@@ -30,7 +30,8 @@ export class WebSocketHandler
   extends FormattableHandlerMixin(
     ProcessableHandlerMixin(AbstractLevelBubbleHandler)
   )
-  implements ClosableHandlerInterface {
+  implements ClosableHandlerInterface
+{
   protected connection: Promise<eio.Socket> | undefined
   protected url: string
   protected connectionOptions: eio.SocketOptions

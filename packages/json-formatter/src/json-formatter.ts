@@ -31,7 +31,8 @@ export class JsonFormatter extends AbstractBatchFormatter {
   /**
    * Use newline characters to delimit multiple lines when batch-formatting
    */
-  public static readonly BATCH_MODE_NEWLINES: BATCH_MODE_NEWLINES = BATCH_MODE_NEWLINES
+  public static readonly BATCH_MODE_NEWLINES: BATCH_MODE_NEWLINES =
+    BATCH_MODE_NEWLINES
 
   /**
    * Batch-format records as a JSON array

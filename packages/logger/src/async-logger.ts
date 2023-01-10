@@ -8,7 +8,8 @@ import { AbstractLogger } from './abstract-logger'
  */
 export class AsyncLogger
   extends AbstractLogger<HandlerInterface, Promise<void>>
-  implements AsyncLoggerInterface {
+  implements AsyncLoggerInterface
+{
   /**
    * @inheritdoc
    */

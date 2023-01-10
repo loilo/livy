@@ -48,7 +48,8 @@ export interface RestrainHandlerOptions {
  */
 export class RestrainHandler
   extends FilterHandler
-  implements SyncHandlerInterface, ResettableInterface {
+  implements SyncHandlerInterface, ResettableInterface
+{
   protected buffering = true
   protected bufferSize: number
   protected stopBuffering: boolean

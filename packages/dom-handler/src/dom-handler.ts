@@ -35,7 +35,8 @@ export interface DomHandlerOptions extends AbstractLevelBubbleHandlerOptions {
  */
 export class DomHandler
   extends AbstractSyncFormattingProcessingHandler
-  implements ResettableInterface, ClosableHandlerInterface {
+  implements ResettableInterface, ClosableHandlerInterface
+{
   public reversed: boolean
   public autoScroll: AutoScroll
   private readyHandler?: () => void

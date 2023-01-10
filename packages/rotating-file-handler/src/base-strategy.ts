@@ -9,7 +9,8 @@ import { RotationStrategyInterface } from './rotation-strategy'
  */
 export abstract class BaseStrategy<
   T extends MaxAgeStrategyOptions | MaxSizeStrategyOptions
-> implements RotationStrategyInterface {
+> implements RotationStrategyInterface
+{
   constructor(
     protected directory: string,
     protected filenameTemplate: string,

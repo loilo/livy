@@ -31,9 +31,9 @@ export const SeverityMap = {
 /**
  * Severity level
  */
-export type SeverityLevel = typeof SeverityMap[keyof typeof SeverityMap]
+export type SeverityLevel = (typeof SeverityMap)[keyof typeof SeverityMap]
 
 /**
  * Log level
  */
-export type LogLevel = typeof logLevels[number]
+export type LogLevel = (typeof logLevels)[number]

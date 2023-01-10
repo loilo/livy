@@ -25,7 +25,8 @@ type DateFormatter = (datetime: DateTime) => string
  */
 export class MaxAgeStrategy
   extends BaseStrategy<MaxAgeStrategyOptions>
-  implements RotationStrategyInterface {
+  implements RotationStrategyInterface
+{
   private cachedFilename?: string
   private durationUnit: DurationUnit
   private dateFormatter: DateFormatter

@@ -23,7 +23,8 @@ export interface MaxSizeStrategyOptions {
  */
 export class MaxSizeStrategy
   extends BaseStrategy<MaxSizeStrategyOptions>
-  implements RotationStrategyInterface {
+  implements RotationStrategyInterface
+{
   private maxSize: number
   private filenameWithoutAppendix: string
 

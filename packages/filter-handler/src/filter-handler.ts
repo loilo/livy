@@ -33,7 +33,8 @@ export class FilterHandler
   implements
     SyncHandlerInterface,
     ResettableInterface,
-    ClosableHandlerInterface {
+    ClosableHandlerInterface
+{
   protected handler: HandlerInterface
   protected test: FilterTest
   protected acceptedLevels: LogLevel[] = []

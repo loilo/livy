@@ -28,7 +28,8 @@ export interface LevelFilterHandlerOptions {
  */
 export class LevelFilterHandler
   extends FilterHandler
-  implements SyncHandlerInterface, ResettableInterface {
+  implements SyncHandlerInterface, ResettableInterface
+{
   /**
    * Filtered handler
    */

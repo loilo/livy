@@ -49,21 +49,27 @@ export namespace Class {
     infer V
   >
     ? Any<V>
-    : T extends Abstract<infer V> ? Any<V> : never
+    : T extends Abstract<infer V>
+    ? Any<V>
+    : never
 
   /**
    * Create a constructable class type from a constructable or abstract class type
    */
   export type MakeConstructable<T extends Any> = T extends Constructable
     ? T
-    : T extends Abstract<infer V> ? Constructable<V> : never
+    : T extends Abstract<infer V>
+    ? Constructable<V>
+    : never
 
   /**
    * Like InstanceType<T>, but works on abstract classes as well
    */
   export type InstanceType<T extends Any> = T extends Constructable<infer U>
     ? U
-    : T extends Abstract<infer V> ? V : never
+    : T extends Abstract<infer V>
+    ? V
+    : never
 }
 
 /*
@@ -102,9 +108,8 @@ export type RequireAtLeastOne<
   ObjectType,
   KeysType extends keyof ObjectType = keyof ObjectType
 > = {
-  [// For each Key in KeysType make a mapped type
-  Key in KeysType]: // …by picking that Key's type and making it required
-  Required<Pick<ObjectType, Key>>
+  // For each Key in KeysType make a mapped type
+  [Key in KeysType]: Required<Pick<ObjectType, Key>> // …by picking that Key's type and making it required
 }[KeysType] &
   // …then, make intersection types by adding the remaining keys to each mapped type.
   Except<ObjectType, KeysType>

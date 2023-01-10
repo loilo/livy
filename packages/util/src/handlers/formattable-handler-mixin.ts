@@ -9,7 +9,8 @@ import { Mixin } from '../mixin'
 export const FormattableHandlerMixin = Mixin(BaseClass => {
   return class FormattableHandlerMixin
     extends BaseClass
-    implements FormattableHandlerInterface {
+    implements FormattableHandlerInterface
+  {
     /**
      * @protected This should not be public, but is forced to be due to microsoft/typescript#17744
      */

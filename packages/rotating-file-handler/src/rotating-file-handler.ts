@@ -36,7 +36,8 @@ export type RotatingFileHandlerOptions = BaseRotatingFileHandlerOptions &
  */
 export class RotatingFileHandler
   extends FormattableHandlerMixin(AbstractSyncFormattingProcessingHandler)
-  implements ClosableHandlerInterface {
+  implements ClosableHandlerInterface
+{
   private fileHandler!: FileHandler
   private directory: string
   private maxFiles: number

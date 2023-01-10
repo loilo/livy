@@ -36,7 +36,8 @@ export class GroupHandler
   implements
     ClosableHandlerInterface,
     SyncHandlerInterface,
-    ResettableInterface {
+    ResettableInterface
+{
   public bubble: boolean
   public sequential: boolean
   protected handlers: ValidatableSet<HandlerInterface>

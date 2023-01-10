@@ -12,7 +12,8 @@ export class ArrayHandler
   extends MirrorSyncHandlerMixin(
     ProcessableHandlerMixin(AbstractLevelBubbleHandler)
   )
-  implements SyncHandlerInterface, ResettableInterface {
+  implements SyncHandlerInterface, ResettableInterface
+{
   private _records: LogRecord[] = []
 
   /**

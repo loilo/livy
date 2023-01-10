@@ -22,7 +22,7 @@ export const MirrorSyncHandlerMixin = Mixin(BaseClass => {
      */
     public handle(record: LogRecord) {
       return Promise.resolve(
-        ((this as unknown) as SyncHandlerInterface).handleSync(record)
+        (this as unknown as SyncHandlerInterface).handleSync(record)
       )
     }
 
@@ -31,7 +31,7 @@ export const MirrorSyncHandlerMixin = Mixin(BaseClass => {
      */
     public handleBatch(records: LogRecord[]) {
       return Promise.resolve(
-        ((this as unknown) as SyncHandlerInterface).handleBatchSync(records)
+        (this as unknown as SyncHandlerInterface).handleBatchSync(records)
       )
     }
   }

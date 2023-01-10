@@ -11,7 +11,8 @@ import { Mixin } from '../mixin'
 const ProcessableHandlerMixin = Mixin(BaseClass => {
   return class ProcessableHandlerMixin
     extends BaseClass
-    implements ProcessableHandlerInterface, ResettableInterface {
+    implements ProcessableHandlerInterface, ResettableInterface
+  {
     /**
      * @protected This should not be public, but is forced to be due to microsoft/typescript#17744
      */

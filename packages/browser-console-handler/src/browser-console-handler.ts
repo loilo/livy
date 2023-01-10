@@ -36,7 +36,8 @@ export class BrowserConsoleHandler
   extends MirrorSyncHandlerMixin(
     ProcessableHandlerMixin(AbstractLevelBubbleHandler)
   )
-  implements SyncHandlerInterface {
+  implements SyncHandlerInterface
+{
   private useNativeDebug: boolean
   private timestamps: boolean
   private console: Console

@@ -22,7 +22,8 @@ export interface SocketIoHandlerOptions
  */
 export class SocketIoHandler
   extends ProcessableHandlerMixin(AbstractLevelBubbleHandler)
-  implements ClosableHandlerInterface {
+  implements ClosableHandlerInterface
+{
   protected connection: Promise<SocketIOClient.Socket> | undefined
   protected url: string
   protected connectionOptions: SocketIOClient.ConnectOpts

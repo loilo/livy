@@ -12,7 +12,8 @@ import { RespectLevelMixin } from '@livy/util/lib/handlers/respect-level-mixin'
  */
 export class NullHandler
   extends RespectLevelMixin(AbstractBatchHandler)
-  implements SyncHandlerInterface {
+  implements SyncHandlerInterface
+{
   public constructor(level: LogLevel = 'debug') {
     super()
     this.level = level
