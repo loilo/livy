@@ -1,6 +1,6 @@
 {
   "name": "@livy/browser-console-handler",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Writes Livy log records to a browser console",
   "keywords": [
     "logging",
@@ -38,8 +38,8 @@
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
-    "@livy/contracts": "^1.1.1",
-    "@livy/util": "^1.0.5"
+    "@livy/contracts": "^1.1.2",
+    "@livy/util": "^1.0.6"
   },
   "devDependencies": {
     "@types/luxon": "^1.25.0",
