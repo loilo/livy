@@ -1,34 +1,16 @@
 // Don't warn that the fs.promises API is experimental as we're not using it
 process.env.MEMFS_DONT_WARN = '1'
 
-const { Volume } = require('memfs')
-const { join } = require('path')
+const { Volume, createFsFromVolume } = require('memfs')
 
-const fs = Volume.fromJSON({})
+const volume = new Volume()
 
-/**
- * Simple recursive directory delete to clear filesystem
- */
-function clearFs(path = '/') {
-  try {
-    fs.rmdirSync(path)
-  } catch (error) {
-    if (error.code === 'ENOTDIR') {
-      fs.unlinkSync(path)
-      return
-    }
+const fs = createFsFromVolume(volume)
 
-    if (error.code === 'ENOTEMPTY') {
-      for (const entry of fs.readdirSync(path)) {
-        clearFs(join(path, entry))
-      }
-      fs.rmdirSync(path)
-      return
-    }
-  }
+fs.__reset = () => {
+  volume.reset()
 }
-
-fs.__reset = clearFs
+fs.toJSON = () => volume.toJSON()
 
 module.exports = fs
 module.exports.__esModule = true
