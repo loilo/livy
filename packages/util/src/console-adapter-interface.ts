@@ -52,7 +52,9 @@ export interface ConsoleAdapterInterface {
   /**
    * @inheritdoc
    */
-  table: Console['table']
+  table:
+    | Console['table']
+    | ((tabularData?: any, properties?: string | string[]) => void)
 
   /**
    * @inheritdoc

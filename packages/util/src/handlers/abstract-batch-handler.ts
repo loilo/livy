@@ -45,5 +45,5 @@ export abstract class AbstractBatchHandler implements HandlerInterface {
   /**
    * @inheritdoc
    */
-  public abstract async handle(record: LogRecord): Promise<boolean | void>
+  public abstract handle(record: LogRecord): Promise<boolean | void>
 }

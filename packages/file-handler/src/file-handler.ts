@@ -30,7 +30,8 @@ export interface FileHandlerOptions extends AbstractLevelBubbleHandlerOptions {
  */
 export class FileHandler
   extends AbstractSyncFormattingProcessingHandler
-  implements ClosableHandlerInterface {
+  implements ClosableHandlerInterface
+{
   protected fileHandle?: number
   protected path: string
   protected append: boolean
@@ -58,7 +59,9 @@ export class FileHandler
     } catch (error) {
       // istanbul ignore next: Unfortunately, code coverage does not recognize this line as covered
       throw new Error(
-        `Provided log path directory "${directory}" does not exist: ${error.message}`
+        `Provided log path directory "${directory}" does not exist: ${
+          error instanceof Error ? error.message : error
+        }`
       )
     }
     if (!stat.isDirectory()) {
