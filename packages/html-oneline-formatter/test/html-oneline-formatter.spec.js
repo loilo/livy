@@ -1,4 +1,4 @@
-const { HtmlOnelineFormatter } = require('../src/html-oneline-formatter')
+import { HtmlOnelineFormatter } from '../src/html-oneline-formatter'
 
 describe('@livy/html-oneline-formatter', () => {
   it('should include all parts except channel by default', () => {

@@ -1,4 +1,4 @@
-const helpers = require('../src/helpers')
+import helpers from '../src/helpers'
 
 describe('@livy/util/lib/helpers', () => {
   afterEach(() => {
@@ -71,7 +71,7 @@ describe('@livy/util/lib/helpers', () => {
       expect(helpers.isPrimitive(BigInt('5'))).toBeTrue()
     }
 
-    expect(helpers.isPrimitive(function() {})).toBeFalse()
+    expect(helpers.isPrimitive(function () {})).toBeFalse()
     expect(helpers.isPrimitive({})).toBeFalse()
     expect(helpers.isPrimitive([])).toBeFalse()
   })

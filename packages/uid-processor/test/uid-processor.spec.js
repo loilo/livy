@@ -1,4 +1,4 @@
-const { UidProcessor } = require('../src/uid-processor')
+import { UidProcessor } from '../src/uid-processor'
 
 describe('@livy/uid-processor', () => {
   it('should add unique IDs to records (14-character by default)', () => {

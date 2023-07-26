@@ -1,4 +1,4 @@
-const { GatedSet } = require('../src/gated-set')
+import { GatedSet } from '../src/gated-set'
 
 describe('@livy/util/lib/gated-set', () => {
   it('should reject invalid test arguments', () => {
@@ -45,10 +45,7 @@ describe('@livy/util/lib/gated-set', () => {
   it('should validate item on add', () => {
     const test = jest.fn()
     const set = new GatedSet(test)
-    set
-      .add('a')
-      .add('b')
-      .add('c')
+    set.add('a').add('b').add('c')
 
     expect(test).toHaveBeenCalledTimes(3)
     expect(test).toHaveBeenNthCalledWith(1, 'a')

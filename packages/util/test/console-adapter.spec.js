@@ -1,4 +1,4 @@
-const { ConsoleAdapter } = require('../src/console-adapter')
+import { ConsoleAdapter } from '../src/console-adapter'
 
 let logger, console
 

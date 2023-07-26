@@ -1,4 +1,4 @@
-const { FilterHandler } = require('../src/filter-handler')
+import { FilterHandler } from '../src/filter-handler'
 
 describe('@livy/filter-handler', () => {
   it('should always return "true" for "isHandling"', () => {

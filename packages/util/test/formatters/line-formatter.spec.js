@@ -1,4 +1,4 @@
-const { LineFormatter } = require('../../src/formatters/line-formatter')
+import { LineFormatter } from '../../src/formatters/line-formatter'
 
 describe('@livy/line-formatter', () => {
   it('should include all parts except channel by default', () => {

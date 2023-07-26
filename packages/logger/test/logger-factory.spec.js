@@ -1,7 +1,7 @@
-const { SyncLogger } = require('../src/sync-logger')
-const { AsyncLogger } = require('../src/async-logger')
-const { MixedLogger } = require('../src/mixed-logger')
-const { createLogger } = require('../src/logger-factory')
+import { SyncLogger } from '../src/sync-logger'
+import { AsyncLogger } from '../src/async-logger'
+import { MixedLogger } from '../src/mixed-logger'
+import { createLogger } from '../src/logger-factory'
 
 describe('@livy/logger/lib/logger-factory', () => {
   it('should create a (mixed) logger with just a name', () => {

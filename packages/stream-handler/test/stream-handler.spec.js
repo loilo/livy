@@ -1,6 +1,6 @@
 jest.mock('os')
 
-const { StreamHandler } = require('../src/stream-handler')
+const { StreamHandler } = await import('../src/stream-handler')
 
 function createMockWriteStream({ writable = true } = {}) {
   return {

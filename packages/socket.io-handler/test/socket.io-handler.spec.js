@@ -1,5 +1,7 @@
-const io = require('socket.io-client')
-const { SocketIoHandler } = require('../src/socket.io-handler')
+jest.mock('socket.io-client')
+
+const { io } = await import('socket.io-client')
+const { SocketIoHandler } = await import('../src/socket.io-handler')
 
 describe('@livy/socket.io-handler', () => {
   afterEach(() => {

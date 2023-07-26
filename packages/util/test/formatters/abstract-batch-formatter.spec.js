@@ -1,8 +1,8 @@
 jest.mock('os')
 
-const {
-  AbstractBatchFormatter
-} = require('../../src/formatters/abstract-batch-formatter')
+const { AbstractBatchFormatter } = await import(
+  '../../src/formatters/abstract-batch-formatter'
+)
 
 describe('@livy/util/lib/formatters/abstract-batch-formatter', () => {
   it('correctly implements "formatBatch" with default newline delimiter', () => {

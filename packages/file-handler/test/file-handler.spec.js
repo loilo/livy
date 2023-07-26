@@ -1,9 +1,8 @@
 jest.mock('fs')
 jest.mock('os')
 
-const { FileHandler } = require('../src/file-handler')
-
-const fs = require('fs')
+const { FileHandler } = await import('../src/file-handler')
+const fs = await import('fs')
 
 describe('@livy/file-handler', () => {
   afterEach(() => {

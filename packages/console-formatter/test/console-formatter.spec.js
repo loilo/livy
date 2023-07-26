@@ -1,4 +1,4 @@
-const { ConsoleFormatter } = require('../src/console-formatter')
+import { ConsoleFormatter } from '../src/console-formatter'
 
 describe('@livy/console-formatter', () => {
   it('should format records correctly', () => {

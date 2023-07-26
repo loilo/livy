@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 
-const { BrowserConsoleHandler } = require('../src/browser-console-handler')
-const MockConsole = require('../../../test/__helpers__/mock-console')
+import { BrowserConsoleHandler } from '../src/browser-console-handler'
+import { MockConsole } from '../../../test/__helpers__/mock-console'
 
 describe('@livy/browser-console-handler', () => {
   it('should write highlighted logs to the configured console', () => {

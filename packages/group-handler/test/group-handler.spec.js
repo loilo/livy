@@ -1,4 +1,4 @@
-const { GroupHandler } = require('../src/group-handler')
+import { GroupHandler } from '../src/group-handler'
 
 describe('@livy/group-handler', () => {
   it('should pass records to all handlers', () => {

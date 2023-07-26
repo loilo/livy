@@ -1,4 +1,4 @@
-const { AbstractLogger } = require('../src/abstract-logger')
+import { AbstractLogger } from '../src/abstract-logger'
 
 class Logger extends AbstractLogger {
   constructor(options = {}) {

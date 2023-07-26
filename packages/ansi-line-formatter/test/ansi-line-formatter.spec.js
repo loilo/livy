@@ -1,5 +1,5 @@
-const chalk = require('chalk')
-const { AnsiLineFormatter } = require('../src/ansi-line-formatter')
+import chalk from 'chalk'
+import { AnsiLineFormatter } from '../src/ansi-line-formatter'
 
 describe('@livy/ansi-line-formatter', () => {
   beforeEach(() => {

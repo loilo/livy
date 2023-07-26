@@ -5,9 +5,7 @@
 jest.mock('fs')
 jest.mock('os')
 
-const { DomHandler } = require('../src/dom-handler')
-
-const fs = require('fs')
+const { DomHandler } = await import('../src/dom-handler')
 
 describe('@livy/dom-handler', () => {
   afterEach(() => {

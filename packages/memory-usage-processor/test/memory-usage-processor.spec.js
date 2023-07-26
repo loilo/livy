@@ -6,7 +6,7 @@ const mockMemoryUsage = jest
   }))
 
 jest.mock('os')
-const { MemoryUsageProcessor } = require('../src/memory-usage-processor')
+const { MemoryUsageProcessor } = await import('../src/memory-usage-processor')
 
 describe('@livy/memory-usage-processor', () => {
   beforeEach(() => {

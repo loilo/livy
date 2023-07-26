@@ -1,4 +1,4 @@
-const { RestrainHandler } = require('../src/restrain-handler')
+import { RestrainHandler } from '../src/restrain-handler'
 
 describe('@livy/restrain-handler', () => {
   it('should always handle records', () => {

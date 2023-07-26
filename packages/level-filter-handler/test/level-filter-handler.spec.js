@@ -1,4 +1,4 @@
-const { LevelFilterHandler } = require('../src/level-filter-handler')
+import { LevelFilterHandler } from '../src/level-filter-handler'
 
 describe('@livy/level-filter-handler', () => {
   it('should pass all records with no min/max level configured', () => {

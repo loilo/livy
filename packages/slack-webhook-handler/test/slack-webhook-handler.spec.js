@@ -1,7 +1,7 @@
-const got = require('got')
+import got from 'got'
 
-const { SlackWebhookHandler } = require('../src/slack-webhook-handler')
-const { SlackRecord } = require('../src/slack-record')
+import { SlackWebhookHandler } from '../src/slack-webhook-handler'
+import { SlackRecord } from '../src/slack-record'
 
 const timestamp = Date.parse(TEST_CONSTANTS.DATE_ISO)
 

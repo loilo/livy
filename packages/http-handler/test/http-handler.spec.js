@@ -1,5 +1,5 @@
-const got = require('got')
-const { HttpHandler } = require('../src/http-handler')
+import got from 'got'
+import { HttpHandler } from '../src/http-handler'
 
 describe('@livy/http-handler', () => {
   afterEach(() => {

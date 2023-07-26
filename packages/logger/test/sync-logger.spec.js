@@ -1,6 +1,6 @@
-const { AbstractLogger } = require('../src/abstract-logger')
-const { SyncLogger } = require('../src/sync-logger')
-const { DateTime } = require('luxon')
+import { AbstractLogger } from '../src/abstract-logger'
+import { SyncLogger } from '../src/sync-logger'
+import { DateTime } from 'luxon'
 
 describe('@livy/logger/lib/sync-logger', () => {
   afterEach(() => {

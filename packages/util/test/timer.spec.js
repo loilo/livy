@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const timer = require('../src/timer')
+import timer from '../src/timer'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 

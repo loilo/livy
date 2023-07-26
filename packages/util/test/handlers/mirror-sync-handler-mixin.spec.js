@@ -1,6 +1,4 @@
-const {
-  MirrorSyncHandlerMixin
-} = require('../../src/handlers/mirror-sync-handler-mixin')
+import { MirrorSyncHandlerMixin } from '../../src/handlers/mirror-sync-handler-mixin'
 
 describe('@livy/util/lib/handlers/mirror-sync-handler-mixin', () => {
   it('should correctly mix in async handle/handleBatch methods', async () => {

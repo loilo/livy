@@ -1,6 +1,6 @@
 jest.mock('os')
 
-const { JsonFormatter } = require('../src/json-formatter')
+const { JsonFormatter } = await import('../src/json-formatter')
 
 describe('@livy/json-formatter', () => {
   it('should include all parts by default', () => {

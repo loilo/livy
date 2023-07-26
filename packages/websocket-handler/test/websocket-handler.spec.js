@@ -1,6 +1,7 @@
-const eio = require('engine.io-client')
+jest.mock('engine.io-client')
 
-const { WebSocketHandler } = require('../src/websocket-handler')
+const eio = await import('engine.io-client')
+const { WebSocketHandler } = await import('../src/websocket-handler')
 
 describe('@livy/websocket-handler', () => {
   afterEach(() => {

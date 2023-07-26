@@ -1,5 +1,5 @@
-const { ArrayHandler } = require('../src/array-handler')
-const { DateTime } = require('luxon')
+import { ArrayHandler } from '../src/array-handler'
+import { DateTime } from 'luxon'
 
 describe('@livy/array-handler', () => {
   it('should append log entries of the correct shape to the handler', () => {

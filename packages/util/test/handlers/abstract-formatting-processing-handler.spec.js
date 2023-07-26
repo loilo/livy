@@ -1,7 +1,7 @@
-const {
+import {
   AbstractFormattingProcessingHandler,
   AbstractSyncFormattingProcessingHandler
-} = require('../../src/handlers/abstract-formatting-processing-handler')
+} from '../../src/handlers/abstract-formatting-processing-handler'
 
 describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () => {
   describe('AbstractFormattingProcessingHandler', () => {

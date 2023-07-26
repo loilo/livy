@@ -1,4 +1,4 @@
-const { NoopHandler } = require('../src/noop-handler')
+import { NoopHandler } from '../src/noop-handler'
 
 describe('@livy/noop-handler', () => {
   it('should report to handle all records', () => {

@@ -1,6 +1,4 @@
-const {
-  ProcessableHandlerMixin
-} = require('../../src/handlers/processable-handler-mixin')
+import { ProcessableHandlerMixin } from '../../src/handlers/processable-handler-mixin'
 
 class Handler extends ProcessableHandlerMixin(class {}) {}
 

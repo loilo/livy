@@ -1,6 +1,4 @@
-const {
-  AbstractBatchHandler
-} = require('../../src/handlers/abstract-batch-handler')
+import { AbstractBatchHandler } from '../../src/handlers/abstract-batch-handler'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 

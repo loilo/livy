@@ -1,5 +1,5 @@
-const { ConsoleHandler } = require('../src/console-handler')
-const MockConsole = require('../../../test/__helpers__/mock-console')
+import { ConsoleHandler } from '../src/console-handler'
+import { MockConsole } from '../../../test/__helpers__/mock-console'
 
 describe('@livy/console-handler', () => {
   it('should write logs to the configured console', () => {

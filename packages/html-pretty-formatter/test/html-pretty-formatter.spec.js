@@ -1,4 +1,4 @@
-const { HtmlPrettyFormatter } = require('../src/html-pretty-formatter')
+import { HtmlPrettyFormatter } from '../src/html-pretty-formatter'
 
 describe('@livy/html-pretty-formatter', () => {
   it('should format records correctly', () => {

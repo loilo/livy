@@ -1,6 +1,6 @@
 jest.mock('os')
 
-const environment = require('../src/environment')
+const environment = await import('../src/environment')
 
 describe('@livy/util/lib/environment', () => {
   test('isNodeJs', () => {

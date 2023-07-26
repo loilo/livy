@@ -1,4 +1,4 @@
-const { ProcessIdProcessor } = require('../src/process-id-processor')
+import { ProcessIdProcessor } from '../src/process-id-processor'
 
 describe('@livy/process-id-processor', () => {
   afterEach(() => {

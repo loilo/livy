@@ -1,4 +1,4 @@
-const { NullHandler } = require('../src/null-handler')
+import { NullHandler } from '../src/null-handler'
 
 describe('@livy/null-handler', () => {
   it('should discard all records with default settings', async () => {

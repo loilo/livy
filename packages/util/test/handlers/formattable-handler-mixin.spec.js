@@ -1,6 +1,4 @@
-const {
-  FormattableHandlerMixin
-} = require('../../src/handlers/formattable-handler-mixin')
+import { FormattableHandlerMixin } from '../../src/handlers/formattable-handler-mixin'
 
 class Handler extends FormattableHandlerMixin(class {}) {}
 

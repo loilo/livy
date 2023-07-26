@@ -1,4 +1,4 @@
-const { TagsProcessor } = require('../src/tags-processor')
+import { TagsProcessor } from '../src/tags-processor'
 
 describe('@livy/tags-processor', () => {
   it('should add tags to records (empty list default)', () => {

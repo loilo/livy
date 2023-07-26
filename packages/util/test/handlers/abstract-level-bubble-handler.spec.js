@@ -1,6 +1,4 @@
-const {
-  AbstractLevelBubbleHandler
-} = require('../../src/handlers/abstract-level-bubble-handler')
+import { AbstractLevelBubbleHandler } from '../../src/handlers/abstract-level-bubble-handler'
 
 class Handler extends AbstractLevelBubbleHandler {}
 

@@ -1,4 +1,4 @@
-const { CsvFormatter } = require('../src/csv-formatter')
+import { CsvFormatter } from '../src/csv-formatter'
 
 describe('@livy/csv-formatter', () => {
   it('should genarete a correct default row', () => {

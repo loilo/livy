@@ -1,4 +1,4 @@
-const { isResettableInterface } = require('../src/is-resettable-interface')
+import { isResettableInterface } from '../src/is-resettable-interface'
 
 describe('@livy/util/lib/is-resettable-interface', () => {
   it('should recognize resettable objects', () => {

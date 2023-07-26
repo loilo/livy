@@ -1,7 +1,7 @@
 jest.mock('fs')
 jest.mock('os')
 
-const { DateTime } = require('luxon')
+const { DateTime } = await import('luxon')
 
 // Fixate timezone for file names to the test constant
 jest.mock('../src/max-age-strategy', () => {
@@ -16,9 +16,8 @@ jest.mock('../src/max-age-strategy', () => {
   }
 })
 
-const { RotatingFileHandler } = require('../src/rotating-file-handler')
-
-const fs = require('fs')
+const { RotatingFileHandler } = await import('../src/rotating-file-handler')
+const fs = await import('fs')
 
 /**
  * Write a number of records to a handler at a fixated date

@@ -1,7 +1,7 @@
-require('../../../test/__matchers__/string-containing-times')
+import '../../../test/__matchers__/string-containing-times'
 
-const nodemailer = require('nodemailer')
-const { MailHandler } = require('../src/mail-handler')
+import nodemailer from 'nodemailer'
+import { MailHandler } from '../src/mail-handler'
 
 const handlerOptions = {
   subject: 'Subject',
