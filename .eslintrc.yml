@@ -34,6 +34,7 @@ rules:
   no-dupe-class-members: off
   no-unused-vars: off
   no-redeclare: off
+  '@typescript-eslint/no-redeclare': error
   unicorn/filename-case:
     - error
     - cases:

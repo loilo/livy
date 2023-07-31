@@ -26,6 +26,7 @@ const LowlightTokenMap = {
   number: 'data_value_number',
   literal: 'data_value_literal',
 } as const
+// eslint-disable-next-line @typescript-eslint/no-redeclare
 type LowlightTokenMap = typeof LowlightTokenMap
 
 export interface HtmlOnelineFormatterOptions {
