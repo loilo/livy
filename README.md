@@ -330,7 +330,7 @@ These are the components (handlers, formatters, processors) officially maintaine
 #### Network
 
 - [HttpHandler](packages/http-handler/README.md#readme): Send log records to an HTTP(S) endpoint.
-- [SendmailHandler](packages/sendmail-handler/README.md#readme): Dispenses log records via email.
+- [MailHandler](packages/mail-handler/README.md#readme): Dispenses log records via email.
 - [SlackWebhookHandler](packages/slack-webhook-handler/README.md#readme): Sends log records to Slack through notifications.
 - [SocketIOHandler](packages/socket.io-handler/README.md#readme): Sends log records to a Socket.IO server.
 - [WebSocketHandler](packages/websocket-handler/README.md#readme): Sends log records to a WebSocket. This allows for easy passing of log records from a browser to a backend.
