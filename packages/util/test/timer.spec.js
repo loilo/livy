@@ -1,8 +1,10 @@
+import { describe, expect, it } from 'vitest'
+
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
 
-import timer from '../src/timer'
+import * as timer from '../src/timer'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -20,9 +22,9 @@ describe('@livy/util/lib/timer', () => {
   it('should report whether timing is running', () => {
     const timerInstance = new timer.NodeTimer()
 
-    expect(timerInstance.running()).toBeFalse()
+    expect(timerInstance.running()).toBe(false)
     timerInstance.start()
-    expect(timerInstance.running()).toBeTrue()
+    expect(timerInstance.running()).toBe(true)
   })
 
   it('should return a higher number on get', async () => {
@@ -35,8 +37,8 @@ describe('@livy/util/lib/timer', () => {
     await delay(10)
     const time2 = timerInstance.get()
 
-    expect(time1).toBeNumber()
-    expect(time2).toBeNumber()
+    expect(typeof time1).toBe('number')
+    expect(typeof time2).toBe('number')
     expect(time1).toBeGreaterThan(0)
     expect(time2).toBeGreaterThan(time1)
   })
@@ -47,7 +49,7 @@ describe('@livy/util/lib/timer', () => {
 
     await delay(10)
 
-    expect(timerInstance.reset()).toBeNumber()
-    expect(timerInstance.running()).toBeFalse()
+    expect(typeof timerInstance.reset()).toBe('number')
+    expect(timerInstance.running()).toBe(false)
   })
 })

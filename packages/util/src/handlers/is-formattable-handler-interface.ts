@@ -1,11 +1,11 @@
-import { FormattableHandlerInterface } from '@livy/contracts/lib/formattable-handler-interface'
+import type { FormattableHandlerInterface } from '@livy/contracts'
 /**
  * Check whether a value implements the FormattableHandlerInterface
  *
  * @param value The value to check
  */
 export function isFormattableHandlerInterface(
-  value: any
+  value: any,
 ): value is FormattableHandlerInterface {
   if (typeof value !== 'object' || value === null) {
     return false

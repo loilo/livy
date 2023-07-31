@@ -1,9 +1,9 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { LogRecord } from '@livy/contracts'
 import {
   AbstractLevelBubbleHandler,
-  AbstractLevelBubbleHandlerOptions
-} from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
+  AbstractLevelBubbleHandlerOptions,
+} from '@livy/util/handlers/abstract-level-bubble-handler'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
 import got, { Options as GotOptions } from 'got'
 
 type MaybeArray<T> = T | T[]
@@ -20,9 +20,11 @@ interface HttpHandlerOptions<AllowBatchRequests extends boolean>
   /**
    * Options to pass to each `got` call
    */
-  requestOptions: Creatable<
-    GotOptions,
-    AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
+  requestOptions: Partial<
+    Creatable<
+      GotOptions,
+      AllowBatchRequests extends true ? [MaybeArray<LogRecord>] : [LogRecord]
+    >
   >
 
   /**
@@ -50,10 +52,12 @@ type HttpHandlerGotOptionsGenerator<AllowBatchRequests extends boolean> =
  * Sends log records to an HTTP endpoint
  */
 export class HttpHandler<
-  AllowBatchRequests extends boolean
+  AllowBatchRequests extends boolean,
 > extends ProcessableHandlerMixin(AbstractLevelBubbleHandler) {
   private url: HttpHandlerUrlGenerator<AllowBatchRequests>
-  private requestOptions: HttpHandlerGotOptionsGenerator<AllowBatchRequests>
+  private requestOptions: Partial<
+    HttpHandlerGotOptionsGenerator<AllowBatchRequests>
+  >
   private sequential: boolean
   private allowBatchRequests: AllowBatchRequests
 
@@ -69,7 +73,7 @@ export class HttpHandler<
       sequential = false,
       allowBatchRequests = false as AllowBatchRequests,
       ...options
-    }: Partial<HttpHandlerOptions<AllowBatchRequests>> = {}
+    }: Partial<HttpHandlerOptions<AllowBatchRequests>> = {},
   ) {
     super(options)
 
@@ -107,7 +111,7 @@ export class HttpHandler<
   public async handleBatch(records: LogRecord[]) {
     if (this.allowBatchRequests) {
       const filteredRecords = records.filter(record =>
-        this.isHandling(record.level)
+        this.isHandling(record.level),
       )
 
       // @ts-ignore

@@ -1,8 +1,7 @@
-import { SyncHandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-handler'
-import { RespectLevelMixin } from '@livy/util/lib/handlers/respect-level-mixin'
+import type { LogLevel, LogRecord, SyncHandlerInterface } from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
+import { AbstractBatchHandler } from '@livy/util/handlers/abstract-batch-handler'
+import { RespectLevelMixin } from '@livy/util/handlers/respect-level-mixin'
 
 /**
  * Blackhole

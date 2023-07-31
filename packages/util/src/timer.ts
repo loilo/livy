@@ -2,6 +2,8 @@
  * A tiny and simple performance measurement tool for Node.js and the browser, measuring elapsed time in milliseconds
  */
 
+import { isNodeJs } from './environment.js'
+
 /**
  * The common timer interface
  */
@@ -49,7 +51,7 @@ export class NodeTimer extends BaseTimer {
   }
 }
 
-// istanbul ignore next: The Performance API is not properly implemented in JSDOM
+/* c8 ignore start: The Performance API is not properly implemented in JSDOM */
 /**
  * A browser timer implementation (Performance API based)
  */
@@ -66,8 +68,9 @@ class BrowserTimer extends BaseTimer {
       : null
   }
 }
+/* c8 ignore stop */
 
 /**
  * Export the appropriate timer class
  */
-export const Timer = typeof process === 'object' ? NodeTimer : BrowserTimer
+export const Timer = isNodeJs ? NodeTimer : BrowserTimer

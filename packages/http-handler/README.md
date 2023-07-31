@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler sends log records to an HTTP endpoin
 ## Basic Example
 
 ```js
-const { HttpHandler } = require('@livy/http-handler')
+import { HttpHandler } from '@livy/http-handler'
 
 const handler = new HttpHandler('https://example.com/logs')
 ```

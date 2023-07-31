@@ -1,3 +1,3 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { LogRecord } from '@livy/contracts'
 
 export type IncludedRecordProperties = { [P in keyof LogRecord]: boolean }

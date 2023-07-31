@@ -1,4 +1,7 @@
+import { describe, expect, it } from 'vitest'
 import { ConsoleFormatter } from '../src/console-formatter'
+
+const { record } = livyTestGlobals
 
 describe('@livy/console-formatter', () => {
   it('should format records correctly', () => {
@@ -74,7 +77,9 @@ describe('@livy/console-formatter', () => {
     const consoleFormatter = new ConsoleFormatter()
     expect(
       consoleFormatter.format(
-        record('debug', 'Test ConsoleFormatter', { context: { fn() {} } })
+        record('debug', 'Test ConsoleFormatter', {
+          context: { fn() {} }
+        })
       )
     ).toMatchSnapshot()
   })

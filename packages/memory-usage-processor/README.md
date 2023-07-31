@@ -11,8 +11,8 @@ This [Livy](../../README.md#readme) processor injects current memory usage into 
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { MemoryUsageProcessor } = require('@livy/memory-usage-processor')
+import { createLogger } from '@livy/logger'
+import { MemoryUsageProcessor } from '@livy/memory-usage-processor'
 
 const logger = createLogger('app-logger', {
   processors: [new MemoryUsageProcessor()]

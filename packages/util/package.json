@@ -1,5 +1,6 @@
 {
   "name": "@livy/util",
+  "type": "module",
   "version": "1.0.6",
   "description": "Common utilities for the Livy logger",
   "keywords": [
@@ -15,6 +16,33 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/util#readme",
   "license": "MIT",
+  "exports": {
+    "./formatters/abstract-batch-formatter": "./lib/formatters/abstract-batch-formatter.js",
+    "./formatters/included-record-properties": "./lib/formatters/included-record-properties.js",
+    "./formatters/line-formatter": "./lib/formatters/line-formatter.js",
+    "./handlers/abstract-batch-handler": "./lib/handlers/abstract-batch-handler.js",
+    "./handlers/abstract-formatting-processing-handler": "./lib/handlers/abstract-formatting-processing-handler.js",
+    "./handlers/abstract-level-bubble-handler": "./lib/handlers/abstract-level-bubble-handler.js",
+    "./handlers/formattable-handler-mixin": "./lib/handlers/formattable-handler-mixin.js",
+    "./handlers/is-closable-handler-interface": "./lib/handlers/is-closable-handler-interface.js",
+    "./handlers/is-formattable-handler-interface": "./lib/handlers/is-formattable-handler-interface.js",
+    "./handlers/is-processable-handler-interface": "./lib/handlers/is-processable-handler-interface.js",
+    "./handlers/is-sync-handler-interface": "./lib/handlers/is-sync-handler-interface.js",
+    "./handlers/mirror-sync-handler-mixin": "./lib/handlers/mirror-sync-handler-mixin.js",
+    "./handlers/processable-handler-mixin": "./lib/handlers/processable-handler-mixin.js",
+    "./handlers/respect-level-mixin": "./lib/handlers/respect-level-mixin.js",
+    "./console-adapter-interface": "./lib/console-adapter-interface.js",
+    "./console-adapter": "./lib/console-adapter.js",
+    "./environment": "./lib/environment.js",
+    "./gated-set": "./lib/gated-set.js",
+    "./helpers": "./lib/helpers.js",
+    "./html": "./lib/html.js",
+    "./is-resettable-interface": "./lib/is-resettable-interface.js",
+    "./mixin": "./lib/mixin.js",
+    "./timer": "./lib/timer.js",
+    "./types": "./lib/types.js",
+    "./validatable-set": "./lib/validatable-set.js"
+  },
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -27,18 +55,25 @@
   },
   "repository": "https://github.com/loilo/livy/tree/master/packages/util",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "del lib && tsc --declaration",
+    "lint:readme": "remark --quiet --no-stdout -u validate-links README.md",
+    "lint:source": "eslint \"src/**/*.ts\"",
+    "test": "vitest run --coverage"
   },
   "bugs": {
     "url": "https://github.com/loilo/livy/issues"
   },
   "dependencies": {
     "@livy/contracts": "^1.1.2",
-    "luxon": "^1.25.0"
+    "@types/luxon": "^3.2.0",
+    "@types/node": "^18.11.18",
+    "luxon": "^3.2.0"
   },
   "devDependencies": {
-    "@types/luxon": "^1.25.0",
-    "@types/node": "^14.11.2",
-    "typescript": "^4.0.3"
-  }
+    "jsdom": "^22.1.0",
+    "typescript": "^5.1.0",
+    "@livy/bin": "file:../../bin",
+    "@livy/test-utils": "file:../../test-utils"
+  },
+  "gitHead": "bd96a3e4d1e5870873b0e0b9e538486aea6343a2"
 }

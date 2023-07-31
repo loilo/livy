@@ -1,4 +1,7 @@
+import { describe, expect, it } from 'vitest'
 import { UidProcessor } from '../src/uid-processor'
+
+const { record } = livyTestGlobals
 
 describe('@livy/uid-processor', () => {
   it('should add unique IDs to records (14-character by default)', () => {

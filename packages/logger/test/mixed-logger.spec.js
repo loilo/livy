@@ -1,6 +1,9 @@
+import { afterEach, describe, expect, it } from 'vitest'
+import { DateTime } from 'luxon'
 import { AbstractLogger } from '../src/abstract-logger'
 import { MixedLogger } from '../src/mixed-logger'
-import { DateTime } from 'luxon'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/logger/lib/mixed-logger', () => {
   afterEach(() => {
@@ -145,7 +148,9 @@ describe('@livy/logger/lib/mixed-logger', () => {
   })
 
   it('should close appropriate handlers on logger close', () => {
-    const nonClosableHandler = new MockHandler({ closable: false })
+    const nonClosableHandler = new MockHandler({
+      closable: false
+    })
     const closableHandler = new MockHandler({ closable: true })
 
     const logger = new MixedLogger('logs', {

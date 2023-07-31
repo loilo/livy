@@ -1,4 +1,7 @@
+import { describe, expect, it, vi } from 'vitest'
 import { GroupHandler } from '../src/group-handler'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/group-handler', () => {
   it('should pass records to all handlers', () => {
@@ -68,12 +71,16 @@ describe('@livy/group-handler', () => {
 
     expect(wrappedHandler1.handleBatchSync).toHaveBeenCalledTimes(1)
     expect(wrappedHandler1.handleBatchSync).toHaveBeenLastCalledWith([
-      record('warning', 'Test GroupHandler', { context: { processed: true } })
+      record('warning', 'Test GroupHandler', {
+        context: { processed: true }
+      })
     ])
 
     expect(wrappedHandler2.handleBatchSync).toHaveBeenCalledTimes(1)
     expect(wrappedHandler2.handleBatchSync).toHaveBeenLastCalledWith([
-      record('warning', 'Test GroupHandler', { context: { processed: true } })
+      record('warning', 'Test GroupHandler', {
+        context: { processed: true }
+      })
     ])
   })
 
@@ -92,12 +99,16 @@ describe('@livy/group-handler', () => {
 
     expect(wrappedHandler1.handleBatch).toHaveBeenCalledTimes(1)
     expect(wrappedHandler1.handleBatch).toHaveBeenLastCalledWith([
-      record('warning', 'Test GroupHandler', { context: { processed: true } })
+      record('warning', 'Test GroupHandler', {
+        context: { processed: true }
+      })
     ])
 
     expect(wrappedHandler2.handleBatch).toHaveBeenCalledTimes(1)
     expect(wrappedHandler2.handleBatch).toHaveBeenLastCalledWith([
-      record('warning', 'Test GroupHandler', { context: { processed: true } })
+      record('warning', 'Test GroupHandler', {
+        context: { processed: true }
+      })
     ])
   })
 
@@ -116,23 +127,23 @@ describe('@livy/group-handler', () => {
   })
 
   it("should tell whether it's handling based on wrapped handlers", () => {
-    expect(new GroupHandler([]).isHandling('debug')).toBeFalse()
-    expect(new GroupHandler([new MockHandler()]).isHandling('debug')).toBeTrue()
+    expect(new GroupHandler([]).isHandling('debug')).toBe(false)
+    expect(new GroupHandler([new MockHandler()]).isHandling('debug')).toBe(true)
     expect(
       new GroupHandler([new MockHandler({ handle: false })]).isHandling('debug')
-    ).toBeFalse()
+    ).toBe(false)
     expect(
       new GroupHandler([
         new MockHandler({ handle: true }),
         new MockHandler({ handle: false })
       ]).isHandling('debug')
-    ).toBeTrue()
+    ).toBe(true)
   })
 
   it('should reset processors on reset', () => {
     const processor = {
       process: x => x,
-      reset: jest.fn()
+      reset: vi.fn()
     }
 
     const handler = new GroupHandler([])
@@ -144,9 +155,15 @@ describe('@livy/group-handler', () => {
   })
 
   it('should invoke reset on wrapped handler when applicable', () => {
-    const wrappedHandler1 = new MockHandler({ resettable: true })
-    const wrappedHandler2 = new MockHandler({ resettable: true })
-    const wrappedHandler3 = new MockHandler({ resettable: false })
+    const wrappedHandler1 = new MockHandler({
+      resettable: true
+    })
+    const wrappedHandler2 = new MockHandler({
+      resettable: true
+    })
+    const wrappedHandler3 = new MockHandler({
+      resettable: false
+    })
     const handler = new GroupHandler([
       wrappedHandler1,
       wrappedHandler2,
@@ -176,9 +193,15 @@ describe('@livy/group-handler', () => {
   })
 
   it('should set formatters on wrapped handlers', () => {
-    const wrappedHandler1 = new MockHandler({ formattable: true })
-    const wrappedHandler2 = new MockHandler({ formattable: true })
-    const wrappedHandler3 = new MockHandler({ formattable: false })
+    const wrappedHandler1 = new MockHandler({
+      formattable: true
+    })
+    const wrappedHandler2 = new MockHandler({
+      formattable: true
+    })
+    const wrappedHandler3 = new MockHandler({
+      formattable: false
+    })
 
     const handler = new GroupHandler([
       wrappedHandler1,
@@ -186,8 +209,8 @@ describe('@livy/group-handler', () => {
       wrappedHandler3
     ])
     handler.formatter = {
-      format: jest.fn(),
-      formatBatch: jest.fn()
+      format: vi.fn(),
+      formatBatch: vi.fn()
     }
 
     expect(wrappedHandler1.__mock__.setFormatter).toHaveBeenCalledTimes(1)
@@ -284,7 +307,7 @@ describe('@livy/group-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

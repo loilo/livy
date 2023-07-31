@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler sends log records to a [WebSocket](h
 ## Basic Example
 
 ```js
-const { WebSocketHandler } = require('@livy/websocket-handler')
+import { WebSocketHandler } from '@livy/websocket-handler'
 
 const handler = new WebSocketHandler('wss://example.com/logs')
 ```

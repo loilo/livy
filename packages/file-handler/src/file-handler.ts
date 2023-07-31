@@ -1,11 +1,13 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { EOL } from '@livy/util/lib/environment'
-import { AbstractSyncFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import * as fs from 'fs'
-import { dirname } from 'path'
+import * as fs from 'node:fs'
+import { dirname } from 'node:path'
+import type {
+  ClosableHandlerInterface,
+  FormatterInterface,
+  LogRecord,
+} from '@livy/contracts'
+import { EOL } from '@livy/util/environment'
+import { AbstractSyncFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
 
 export interface FileHandlerOptions extends AbstractLevelBubbleHandlerOptions {
   /**
@@ -44,7 +46,7 @@ export class FileHandler
       prefix = [],
       append = true,
       ...options
-    }: Partial<FileHandlerOptions> = {}
+    }: Partial<FileHandlerOptions> = {},
   ) {
     super(options)
 
@@ -57,16 +59,16 @@ export class FileHandler
     try {
       stat = fs.statSync(directory)
     } catch (error) {
-      // istanbul ignore next: Unfortunately, code coverage does not recognize this line as covered
       throw new Error(
         `Provided log path directory "${directory}" does not exist: ${
+          /* c8 ignore next: Unfortunately, code coverage somehow does not recognize this line as covered */
           error instanceof Error ? error.message : error
-        }`
+        }`,
       )
     }
     if (!stat.isDirectory()) {
       throw new Error(
-        `Provided log path parent "${directory}" is not a directory`
+        `Provided log path parent "${directory}" is not a directory`,
       )
     }
 

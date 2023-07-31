@@ -1,5 +1,4 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ProcessorInterface } from '@livy/contracts/lib/processor-interface'
+import type { LogRecord, ProcessorInterface } from '@livy/contracts'
 
 /**
  * Injects memory usage into record.extra
@@ -40,8 +39,8 @@ export class MemoryUsageProcessor implements ProcessorInterface {
     if (typeof raw !== 'number' || !Number.isFinite(raw) || raw < 0) {
       throw new Error(
         `Unexpected argument: Finite, non-negative number expected, received ${JSON.stringify(
-          raw
-        )}`
+          raw,
+        )}`,
       )
     }
 
@@ -72,10 +71,11 @@ export class MemoryUsageProcessor implements ProcessorInterface {
       reduced /= 1024
     }
 
-    // istanbul ignore next: This should never happen with all safety checks put in before, but it is needed to appease TypeScript
+    /* c8 ignore start: This should never happen with all safety checks put in before, but it is needed to appease TypeScript */
     throw new Error(
-      'Unexpected error when converting memory usage to human readable format'
+      'Unexpected error when converting memory usage to human readable format',
     )
+    /* c8 ignore stop */
   }
 
   /**

@@ -1,4 +1,4 @@
-import { ProcessorInterfaceOrFunction } from './processor-interface'
+import { ProcessorInterfaceOrFunction } from './processor-interface.js'
 
 /**
  * Indicates that the handler may have processors attached

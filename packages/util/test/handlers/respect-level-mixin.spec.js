@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { RespectLevelMixin } from '../../src/handlers/respect-level-mixin'
 
 describe('@livy/util/lib/handlers/respect-level-mixin', () => {

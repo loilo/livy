@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler stores log records to files that are
 ## Basic Example
 
 ```js
-const { RotatingFileHandler } = require('@livy/rotating-file-handler')
+import { RotatingFileHandler } from '@livy/rotating-file-handler'
 
 const handler = new RotatingFileHandler('logs-%date%.txt')
 ```

@@ -6,25 +6,24 @@ on:
       - master
   pull_request:
     paths-ignore:
-      - "*.md"
+      - '*.md'
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        node-version: ['12', '14']
+        node-version: ['18', '20']
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn test
-      - uses: codecov/codecov-action@v1
+      - run: npm ci
+      - run: npm test
+      - uses: codecov/codecov-action@v3

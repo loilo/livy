@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { isSyncHandlerInterface } from '../../src/handlers/is-sync-handler-interface'
 
 describe('@livy/util/lib/handlers/is-sync-handler-interface', () => {

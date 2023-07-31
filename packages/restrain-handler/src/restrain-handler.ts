@@ -1,13 +1,14 @@
-import {
+import type {
   HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
+  LogLevel,
+  LogRecord,
+  ResettableInterface,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
 import { FilterHandler } from '@livy/filter-handler'
-import { isSyncHandlerInterface } from '@livy/util/lib/handlers/is-sync-handler-interface'
-import { isResettableInterface } from '@livy/util/lib/is-resettable-interface'
+import { isSyncHandlerInterface } from '@livy/util/handlers/is-sync-handler-interface'
+import { isResettableInterface } from '@livy/util/is-resettable-interface'
 
 /**
  * An activation strategy function
@@ -68,17 +69,17 @@ export class RestrainHandler
     handler: HandlerInterface,
     {
       activationStrategy = 'warning',
-      bufferSize = Infinity,
+      bufferSize = Number.POSITIVE_INFINITY,
       stopBuffering = false,
-      bubble = true
-    }: Partial<RestrainHandlerOptions> = {}
+      bubble = true,
+    }: Partial<RestrainHandlerOptions> = {},
   ) {
     super(
       handler,
       typeof activationStrategy === 'function'
         ? activationStrategy
         : (record: LogRecord) =>
-            record.severity <= SeverityMap[activationStrategy]
+            record.severity <= SeverityMap[activationStrategy],
     )
 
     this.bufferSize = bufferSize

@@ -1,10 +1,11 @@
-jest.mock('os')
+import { describe, expect, it, vi } from 'vitest'
+import { StreamHandler } from '../src/stream-handler'
 
-const { StreamHandler } = await import('../src/stream-handler')
+const { record, TEST_CONSTANTS, MockFormatter } = livyTestGlobals
 
 function createMockWriteStream({ writable = true } = {}) {
   return {
-    write: jest.fn((_, callback) => {
+    write: vi.fn((_, callback) => {
       setImmediate(() => {
         if (writable) {
           callback()
@@ -62,8 +63,8 @@ describe('@livy/stream-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'Test StreamHandler'))
     await handler.handle(record('notice', 'Test StreamHandler'))
 
@@ -82,7 +83,7 @@ describe('@livy/stream-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
   })
 })

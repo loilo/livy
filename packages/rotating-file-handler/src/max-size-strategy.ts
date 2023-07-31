@@ -1,9 +1,9 @@
-import { replaceTokens, sanitizeRegex } from '@livy/util/lib/helpers'
+import { renameSync, statSync } from 'node:fs'
+import { join } from 'node:path'
 import parseFilesize from 'filesize-parser'
-import { renameSync, statSync } from 'fs'
-import { join } from 'path'
-import { BaseStrategy } from './base-strategy'
-import { RotationStrategyInterface } from './rotation-strategy'
+import { replaceTokens, sanitizeRegex } from '@livy/util/helpers'
+import { BaseStrategy } from './base-strategy.js'
+import { RotationStrategyInterface } from './rotation-strategy.js'
 
 export interface MaxSizeStrategyOptions {
   /**
@@ -31,11 +31,11 @@ export class MaxSizeStrategy
   constructor(
     directory: string,
     filenameTemplate: string,
-    threshold: string | number
+    threshold: string | number,
   ) {
     if (!filenameTemplate.includes('%appendix%')) {
       throw new Error(
-        `Invalid filename template "${filenameTemplate}", must contain the %appendix% token.`
+        `Invalid filename template "${filenameTemplate}", must contain the %appendix% token.`,
       )
     }
 
@@ -51,8 +51,8 @@ export class MaxSizeStrategy
   protected getFilenameRegex() {
     return new RegExp(
       `^${replaceTokens(sanitizeRegex(this.filenameTemplate), {
-        appendix: '.*?'
-      })}$`
+        appendix: '.*?',
+      })}$`,
     )
   }
 
@@ -113,14 +113,14 @@ export class MaxSizeStrategy
     for (let i = previousHighestAppendix; i >= 1; i--) {
       renameSync(
         join(this.directory, this.generateFilename(`.${i}`)),
-        join(this.directory, this.generateFilename(`.${i + 1}`))
+        join(this.directory, this.generateFilename(`.${i + 1}`)),
       )
     }
 
     // Add appendix ".1" to current appendix-less file
     renameSync(
       join(this.directory, this.filenameWithoutAppendix),
-      join(this.directory, this.generateFilename('.1'))
+      join(this.directory, this.generateFilename('.1')),
     )
 
     this.deleteSurplusFiles(maxFiles)

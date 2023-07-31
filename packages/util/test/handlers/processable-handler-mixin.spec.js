@@ -1,4 +1,7 @@
+import { describe, expect, it, vi } from 'vitest'
 import { ProcessableHandlerMixin } from '../../src/handlers/processable-handler-mixin'
+
+const { record } = livyTestGlobals
 
 class Handler extends ProcessableHandlerMixin(class {}) {}
 
@@ -12,18 +15,18 @@ describe('@livy/util/lib/handlers/processable-handler-mixin', () => {
     const processors = handler.processors
 
     expect(handler.processors).toBe(processors)
-    handler.processors = new Set()
-    expect(handler.processors).toBe(processors)
+
+    expect(() => (handler.processors = new Set())).toThrow()
   })
 
   it('should iterate over all processors in order when calling "processRecord"', () => {
     const handler = new Handler()
 
     // Stateless processor
-    const processor1 = jest.fn(() => record('info'))
+    const processor1 = vi.fn(() => record('info'))
 
     // Stateful processor
-    const processor2 = { process: jest.fn() }
+    const processor2 = { process: vi.fn() }
 
     handler.processors.add(processor1)
     handler.processors.add(processor2)
@@ -40,11 +43,11 @@ describe('@livy/util/lib/handlers/processable-handler-mixin', () => {
     const handler = new Handler()
     const processor1 = {
       process() {},
-      reset: jest.fn()
+      reset: vi.fn()
     }
     const processor2 = {
       process() {},
-      reset: jest.fn()
+      reset: vi.fn()
     }
 
     handler.processors.add(processor1)

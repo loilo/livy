@@ -1,11 +1,7 @@
-/**
- * @jest-environment jsdom
- */
+import { describe, expect, afterEach, it } from 'vitest'
+import { DomHandler } from '../src/dom-handler'
 
-jest.mock('fs')
-jest.mock('os')
-
-const { DomHandler } = await import('../src/dom-handler')
+const { record } = livyTestGlobals
 
 describe('@livy/dom-handler', () => {
   afterEach(() => {
@@ -123,7 +119,7 @@ describe('@livy/dom-handler', () => {
     handler.handleSync(record('info', 'Test ArrayHandler'))
     handler.reset()
 
-    expect(container.innerHTML).toBeEmpty()
+    expect(container.innerHTML).toBe('')
   })
 
   it('should respect the "reversed" option', () => {
@@ -159,8 +155,8 @@ describe('@livy/dom-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
 
     handler.handleSync(record('info'))
     handler.handleSync(record('notice'))
@@ -174,7 +170,7 @@ describe('@livy/dom-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

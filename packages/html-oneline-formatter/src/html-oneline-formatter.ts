@@ -1,17 +1,21 @@
-import { LogLevel, SeverityLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractBatchFormatter } from '@livy/util/lib/formatters/abstract-batch-formatter'
-import { IncludedRecordProperties } from '@livy/util/lib/formatters/included-record-properties'
-import { isEmpty, omit } from '@livy/util/lib/helpers'
-import { HTML } from '@livy/util/lib/html'
-import { AnyObject, Stringified } from '@livy/util/lib/types'
-import lowlight from 'lowlight/lib/core'
+import type { LogLevel, LogRecord, SeverityLevel } from '@livy/contracts'
+import { AbstractBatchFormatter } from '@livy/util/formatters/abstract-batch-formatter'
+import { IncludedRecordProperties } from '@livy/util/formatters/included-record-properties'
+import { isEmpty, omit } from '@livy/util/helpers'
+import { HTML } from '@livy/util/html'
+import { Stringified } from '@livy/util/types'
+import { toHtml as stringifyHtml } from 'hast-util-to-html'
+import { lowlight } from 'lowlight'
+import { Span, Text } from 'lowlight/lib/core.js'
 import { DateTime } from 'luxon'
-import { HtmlFormatterThemeInterface } from './themes/html-formatter-theme-interface'
-const stringifyHtml = require('hast-util-to-html')
-const map = require('unist-util-map')
+import { u } from 'unist-builder'
+import { map } from 'unist-util-map'
+import { HtmlFormatterThemeInterface } from './themes/html-formatter-theme-interface.js'
 
-lowlight.registerLanguage('json', require('highlight.js/lib/languages/json'))
+lowlight.registerLanguage(
+  'json',
+  (await import('highlight.js/lib/languages/json')).default,
+)
 
 /**
  * Relevant tokens of the lowlight parser
@@ -20,7 +24,7 @@ const LowlightTokenMap = {
   attr: 'data_key',
   string: 'data_value_string',
   number: 'data_value_number',
-  literal: 'data_value_literal'
+  literal: 'data_value_literal',
 } as const
 type LowlightTokenMap = typeof LowlightTokenMap
 
@@ -68,7 +72,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
   public constructor({
     theme = {},
     wrap = false,
-    include = {}
+    include = {},
   }: Partial<HtmlOnelineFormatterOptions> = {}) {
     super()
 
@@ -82,7 +86,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
       message: true,
       context: true,
       extra: true,
-      ...include
+      ...include,
     }
   }
 
@@ -101,7 +105,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
       severity: this.formatSeverityMap(record.severity),
       message: this.formatMessage(message),
       context: this.formatContext(record.context, formattedExtra.length === 0),
-      extra: formattedExtra
+      extra: formattedExtra,
     })
   }
 
@@ -129,7 +133,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
     }
 
     const color = this.getColor(
-      `level_${level}` as keyof HtmlFormatterThemeInterface
+      `level_${level}` as keyof HtmlFormatterThemeInterface,
     )
     const text = level.toUpperCase()
 
@@ -199,7 +203,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
    * @param token The context token to handle
    */
   protected getContextTokenStyle(
-    token: keyof HtmlFormatterThemeInterface
+    token: keyof HtmlFormatterThemeInterface,
   ): string | undefined {
     const color = this.getColor(token)
 
@@ -221,7 +225,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
         "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
       whiteSpace: this.wrap ? 'pre-wrap' : 'nowrap',
       backgroundColor: this.getColor('background'),
-      color: this.getColor('text')
+      color: this.getColor('text'),
     }
 
     return Object.entries(style)
@@ -230,8 +234,8 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
         ([property, value]) =>
           `${property.replace(
             /([A-Z])/,
-            (_, letter) => `-${letter.toLowerCase()}`
-          )}: ${value}`
+            (_, letter) => `-${letter.toLowerCase()}`,
+          )}: ${value}`,
       )
       .join(';')
   }
@@ -248,7 +252,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
     severity,
     message,
     context,
-    extra
+    extra,
   }: Stringified<LogRecord>) {
     return `<pre style="${this.stringifyStyles()}">${datetime}${channel} ${level}${severity} ${message}${context}${extra}</pre>`
   }
@@ -279,7 +283,7 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
 
     if (punctuationColor !== 'inherit') {
       return HTML`<span style="color: ${this.getColor(
-        'punctuation'
+        'punctuation',
       )}">${formattedTime}</span>`.toString()
     } else {
       return formattedTime
@@ -346,39 +350,46 @@ export class HtmlOnelineFormatter extends AbstractBatchFormatter {
         return stringified
       }
 
-      const tree = lowlight.highlight('json', stringified).value
-
-      const highlightedContextTree = map(
-        { type: 'root', children: tree },
-        (node: AnyObject) => {
-          if (
-            node &&
-            node.type === 'element' &&
-            typeof node.properties === 'object' &&
-            Array.isArray(node.properties.className)
-          ) {
-            return {
-              ...node,
-              properties: {
-                ...omit(node.properties, 'className'),
-                style: node.properties.className
-                  .filter((className: string) => className.startsWith('hljs-'))
-                  .map((className: string) =>
-                    this.getContextTokenStyle(
-                      LowlightTokenMap[
-                        className.slice(5) as keyof LowlightTokenMap
-                      ]
-                    )
-                  )
-                  .filter(Boolean)
-                  .join('; ')
-              }
-            }
-          } else {
-            return node
-          }
+      type StyleSpan = Omit<Span, 'properties'> & {
+        properties: Omit<Span['properties'], 'className'> & {
+          style: string
         }
-      )
+      }
+
+      const tree = lowlight.highlight('json', stringified).children as (
+        | Text
+        | Span
+        | StyleSpan
+      )[]
+
+      const highlightedContextTree = map(u('root', tree), node => {
+        if (
+          node &&
+          node.type === 'element' &&
+          typeof node.properties === 'object' &&
+          'className' in node.properties
+        ) {
+          return {
+            ...node,
+            properties: {
+              ...omit(node.properties, 'className'),
+              style: node.properties.className
+                .filter((className: string) => className.startsWith('hljs-'))
+                .map((className: string) =>
+                  this.getContextTokenStyle(
+                    LowlightTokenMap[
+                      className.slice(5) as keyof LowlightTokenMap
+                    ],
+                  ),
+                )
+                .filter(Boolean)
+                .join('; '),
+            },
+          }
+        } else {
+          return node
+        }
+      })
 
       const formattedJson = stringifyHtml(highlightedContextTree).toString()
 

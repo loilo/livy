@@ -1,14 +1,13 @@
-import { SyncHandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { LogLevel, LogRecord, SyncHandlerInterface } from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
 import {
   AbstractLevelBubbleHandler,
-  AbstractLevelBubbleHandlerOptions
-} from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { MirrorSyncHandlerMixin } from '@livy/util/lib/handlers/mirror-sync-handler-mixin'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import { isEmpty } from '@livy/util/lib/helpers'
-import { DateTime } from 'luxon'
+  AbstractLevelBubbleHandlerOptions,
+} from '@livy/util/handlers/abstract-level-bubble-handler'
+import { MirrorSyncHandlerMixin } from '@livy/util/handlers/mirror-sync-handler-mixin'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { isEmpty } from '@livy/util/helpers'
+import type { DateTime } from 'luxon'
 
 export interface BrowserConsoleHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
@@ -34,7 +33,7 @@ export interface BrowserConsoleHandlerOptions
  */
 export class BrowserConsoleHandler
   extends MirrorSyncHandlerMixin(
-    ProcessableHandlerMixin(AbstractLevelBubbleHandler)
+    ProcessableHandlerMixin(AbstractLevelBubbleHandler),
   )
   implements SyncHandlerInterface
 {
@@ -128,9 +127,9 @@ export class BrowserConsoleHandler
     }
 
     const formattedTimestamp = this.timestamps
-      ? this.formatDatetime(record.datetime).concat(resetter)
+      ? [...this.formatDatetime(record.datetime), resetter]
       : []
-    const formattedLevel = this.formatLevel(record.level).concat(resetter)
+    const formattedLevel = [...this.formatLevel(record.level), resetter]
 
     let placeholders = ['%c%s']
     if (this.timestamps) {
@@ -144,21 +143,21 @@ export class BrowserConsoleHandler
         placeholders.join(' '),
         ...formattedTimestamp,
         ...formattedLevel,
-        ...parameters
+        ...parameters,
       )
     } else if (record.severity === SeverityMap.warning) {
       this.console.warn(
         placeholders.join(' '),
         ...formattedTimestamp,
         ...formattedLevel,
-        ...parameters
+        ...parameters,
       )
     } else if (record.severity <= SeverityMap.info) {
       this.console.info(
         placeholders.join(' '),
         ...formattedTimestamp,
         ...formattedLevel,
-        ...parameters
+        ...parameters,
       )
     } else {
       if (this.useNativeDebug) {
@@ -167,14 +166,14 @@ export class BrowserConsoleHandler
         this.console.debug(
           placeholders.join(' '),
           ...formattedTimestamp,
-          ...parameters
+          ...parameters,
         )
       } else {
         this.console.log(
           placeholders.join(' '),
           ...formattedTimestamp,
           ...formattedLevel,
-          ...parameters
+          ...parameters,
         )
       }
     }

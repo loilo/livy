@@ -1,15 +1,15 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { Promisable } from '../types'
-import { AbstractLevelBubbleHandler } from './abstract-level-bubble-handler'
-import { FormattableHandlerMixin } from './formattable-handler-mixin'
-import { ProcessableHandlerMixin } from './processable-handler-mixin'
+import type { LogRecord } from '@livy/contracts'
+import { Promisable } from '../types.js'
+import { AbstractLevelBubbleHandler } from './abstract-level-bubble-handler.js'
+import { FormattableHandlerMixin } from './formattable-handler-mixin.js'
+import { ProcessableHandlerMixin } from './processable-handler-mixin.js'
 
 /**
  * Base Handler class providing the Handler structure, including processors and formatters
  * Classes extending it should (in most cases) only implement `write`
  */
 export abstract class AbstractFormattingProcessingHandler extends FormattableHandlerMixin(
-  ProcessableHandlerMixin(AbstractLevelBubbleHandler)
+  ProcessableHandlerMixin(AbstractLevelBubbleHandler),
 ) {
   /**
    * @inheritdoc
@@ -36,7 +36,7 @@ export abstract class AbstractFormattingProcessingHandler extends FormattableHan
    */
   protected abstract write(
     record: LogRecord,
-    formatted: string
+    formatted: string,
   ): Promisable<void>
 }
 
@@ -45,7 +45,7 @@ export abstract class AbstractFormattingProcessingHandler extends FormattableHan
  * Classes extending it should (in most cases) only implement `writeSync` and possibly `write`
  */
 export abstract class AbstractSyncFormattingProcessingHandler extends FormattableHandlerMixin(
-  ProcessableHandlerMixin(AbstractLevelBubbleHandler)
+  ProcessableHandlerMixin(AbstractLevelBubbleHandler),
 ) {
   private doHandle(record: LogRecord, mode: 'sync'): boolean
   private doHandle(record: LogRecord, mode: 'async'): Promise<boolean>

@@ -11,8 +11,8 @@ This [Livy](../../README.md#readme) processor injects the current process ID int
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { ProcessIdProcessor } = require('@livy/process-id-processor')
+import { createLogger } from '@livy/logger'
+import { ProcessIdProcessor } from '@livy/process-id-processor'
 
 const logger = createLogger('app-logger', {
   processors: [ProcessIdProcessor]

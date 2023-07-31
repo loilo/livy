@@ -15,8 +15,8 @@ Combine this with a [group handler](../group-handler/README.md#readme) to build 
 ## Basic Example
 
 ```js
-const { FilterHandler } = require('@livy/filter-handler')
-const { FileHandler } = require('@livy/file-handler')
+import { FilterHandler } from '@livy/filter-handler'
+import { FileHandler } from '@livy/file-handler'
 
 // Write logs appearing between 0am and 6am to a special file
 const handler = new FilterHandler(

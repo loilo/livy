@@ -1,4 +1,7 @@
+import { describe, expect, it } from 'vitest'
 import { LineFormatter } from '../../src/formatters/line-formatter'
+
+const { record, TEST_CONSTANTS } = livyTestGlobals
 
 describe('@livy/line-formatter', () => {
   it('should include all parts except channel by default', () => {
@@ -56,7 +59,9 @@ describe('@livy/line-formatter', () => {
 
     expect(
       lineFormatter.format(
-        record('info', 'Test LineFormatter', { extra: { bar: 2 } })
+        record('info', 'Test LineFormatter', {
+          extra: { bar: 2 }
+        })
       )
     ).toBe(`${TEST_CONSTANTS.DATE_HUMAN} INFO Test LineFormatter {} {"bar":2}`)
   })

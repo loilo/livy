@@ -5,8 +5,8 @@ This [Livy](../../README.md#readme) formatter formats log records as CSV lines.
 ## Basic Example
 
 ```js
-const { FileHandler } = require('@livy/file-handler')
-const { CsvFormatter } = require('@livy/csv-formatter')
+import { FileHandler } from '@livy/file-handler'
+import { CsvFormatter } from '@livy/csv-formatter'
 
 const handler = new FileHandler('logs.csv', {
   formatter: new CsvFormatter()

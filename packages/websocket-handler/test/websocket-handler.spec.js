@@ -1,7 +1,13 @@
-jest.mock('engine.io-client')
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import * as eio from 'engine.io-client'
+import { WebSocketHandler } from '../src/websocket-handler'
 
-const eio = await import('engine.io-client')
-const { WebSocketHandler } = await import('../src/websocket-handler')
+const { record, tick, MockFormatter } = livyTestGlobals
+
+vi.mock(
+  'engine.io-client',
+  livyTestGlobals.getMockedModule(import('./mocks/engine.io-client.js'))
+)
 
 describe('@livy/websocket-handler', () => {
   afterEach(() => {
@@ -11,7 +17,7 @@ describe('@livy/websocket-handler', () => {
   it('should not attempt to create an engine.io connection on handler creation', () => {
     new WebSocketHandler('wss://example.com')
 
-    expect(eio).not.toHaveBeenCalled()
+    expect(eio.Socket).not.toHaveBeenCalled()
   })
 
   it('should attempt to create an engine.io connection on first log', async () => {
@@ -19,8 +25,8 @@ describe('@livy/websocket-handler', () => {
 
     await handler.handle(record('debug', 'Test WebSocketHandler'))
 
-    expect(eio).toHaveBeenCalledTimes(1)
-    expect(eio).toHaveBeenLastCalledWith('wss://example.com', {
+    expect(eio.Socket).toHaveBeenCalledTimes(1)
+    expect(eio.Socket).toHaveBeenLastCalledWith('wss://example.com', {
       transports: ['websocket']
     })
   })
@@ -30,8 +36,8 @@ describe('@livy/websocket-handler', () => {
 
     await handler.connect()
 
-    expect(eio).toHaveBeenCalledTimes(1)
-    expect(eio).toHaveBeenLastCalledWith('wss://example.com', {
+    expect(eio.Socket).toHaveBeenCalledTimes(1)
+    expect(eio.Socket).toHaveBeenLastCalledWith('wss://example.com', {
       transports: ['websocket']
     })
   })
@@ -42,8 +48,8 @@ describe('@livy/websocket-handler', () => {
     await handler.connect()
     await handler.connect()
 
-    expect(eio).toHaveBeenCalledTimes(1)
-    expect(eio).toHaveBeenLastCalledWith('wss://example.com', {
+    expect(eio.Socket).toHaveBeenCalledTimes(1)
+    expect(eio.Socket).toHaveBeenLastCalledWith('wss://example.com', {
       transports: ['websocket']
     })
   })
@@ -55,11 +61,11 @@ describe('@livy/websocket-handler', () => {
     eio.__mock__.close()
     await handler.connect()
 
-    expect(eio).toHaveBeenCalledTimes(2)
-    expect(eio).toHaveBeenNthCalledWith(1, 'wss://example.com', {
+    expect(eio.Socket).toHaveBeenCalledTimes(2)
+    expect(eio.Socket).toHaveBeenNthCalledWith(1, 'wss://example.com', {
       transports: ['websocket']
     })
-    expect(eio).toHaveBeenNthCalledWith(2, 'wss://example.com', {
+    expect(eio.Socket).toHaveBeenNthCalledWith(2, 'wss://example.com', {
       transports: ['websocket']
     })
   })
@@ -85,8 +91,8 @@ describe('@livy/websocket-handler', () => {
 
     await handler.handle(record('debug', 'Test WebSocketHandler'))
 
-    expect(eio).toHaveBeenCalledTimes(1)
-    expect(eio).toHaveBeenLastCalledWith('wss://example.com', {
+    expect(eio.Socket).toHaveBeenCalledTimes(1)
+    expect(eio.Socket).toHaveBeenLastCalledWith('wss://example.com', {
       foo: 1,
       bar: 2,
       transports: ['websocket']
@@ -103,7 +109,9 @@ describe('@livy/websocket-handler', () => {
       })
     )
     await handler.handle(
-      record('info', 'Test WebSocketHandler', { extra: { extra: true } })
+      record('info', 'Test WebSocketHandler', {
+        extra: { extra: true }
+      })
     )
 
     expect(eio.__mock__.send).toHaveBeenCalledTimes(2)
@@ -190,8 +198,8 @@ describe('@livy/websocket-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'Test WebSocketHandler'))
     await handler.handle(record('notice', 'Test WebSocketHandler'))
 
@@ -209,7 +217,7 @@ describe('@livy/websocket-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
   })
 })

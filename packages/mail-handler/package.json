@@ -1,5 +1,6 @@
 {
   "name": "@livy/mail-handler",
+  "type": "module",
   "version": "1.0.4",
   "description": "Dispenses Livy log records via email",
   "keywords": [
@@ -20,9 +21,11 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/mail-handler#readme",
   "license": "MIT",
-  "main": "lib/mail-handler.js",
+  "exports": {
+    "types": "./lib/mail-handler.d.ts",
+    "default": "./lib/mail-handler.js"
+  },
   "sideEffects": false,
-  "module": "lib/mail-handler.mjs",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -35,7 +38,10 @@
   },
   "repository": "https://github.com/loilo/livy/tree/master/packages/mail-handler",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "del lib && tsc --declaration",
+    "lint:readme": "remark --quiet --no-stdout -u validate-links README.md",
+    "lint:source": "eslint \"src/**/*.ts\"",
+    "test": "vitest run --coverage"
   },
   "bugs": {
     "url": "https://github.com/loilo/livy/issues"
@@ -45,11 +51,14 @@
     "@livy/html-pretty-formatter": "^1.0.4",
     "@livy/line-formatter": "^1.0.4",
     "@livy/util": "^1.0.6",
+    "@types/node": "^18.11.18",
+    "@types/nodemailer": "^6.2.2",
     "nodemailer": "^6.4.11"
   },
   "devDependencies": {
-    "@types/node": "^14.11.2",
-    "@types/nodemailer": "^6.2.2",
-    "typescript": "^4.0.3"
-  }
+    "typescript": "^5.1.0",
+    "@livy/bin": "file:../../bin",
+    "@livy/test-utils": "file:../../test-utils"
+  },
+  "gitHead": "bd96a3e4d1e5870873b0e0b9e538486aea6343a2"
 }

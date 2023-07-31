@@ -1,19 +1,19 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import {
+import type {
+  ClosableHandlerInterface,
+  FormatterInterface,
   HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LogLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
-import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-handler'
-import { isClosableHandlerInterface } from '@livy/util/lib/handlers/is-closable-handler-interface'
-import { isFormattableHandlerInterface } from '@livy/util/lib/handlers/is-formattable-handler-interface'
-import { isSyncHandlerInterface } from '@livy/util/lib/handlers/is-sync-handler-interface'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import { isResettableInterface } from '@livy/util/lib/is-resettable-interface'
-import { ValidatableSet } from '@livy/util/lib/validatable-set'
+  LogLevel,
+  LogRecord,
+  ResettableInterface,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { AbstractBatchHandler } from '@livy/util/handlers/abstract-batch-handler'
+import { isClosableHandlerInterface } from '@livy/util/handlers/is-closable-handler-interface'
+import { isFormattableHandlerInterface } from '@livy/util/handlers/is-formattable-handler-interface'
+import { isSyncHandlerInterface } from '@livy/util/handlers/is-sync-handler-interface'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { isResettableInterface } from '@livy/util/is-resettable-interface'
+import { ValidatableSet } from '@livy/util/validatable-set'
 
 export interface GroupHandlerOptions {
   /**
@@ -48,7 +48,7 @@ export class GroupHandler
    */
   public constructor(
     handlers: Iterable<HandlerInterface>,
-    { bubble = true, sequential = false }: Partial<GroupHandlerOptions> = {}
+    { bubble = true, sequential = false }: Partial<GroupHandlerOptions> = {},
   ) {
     super()
 
@@ -77,7 +77,7 @@ export class GroupHandler
     } else {
       await Promise.all(
         // eslint-disable-next-line unicorn/prefer-spread
-        Array.from(this.handlers, handler => handler.handle(record))
+        Array.from(this.handlers, handler => handler.handle(record)),
       )
     }
 
@@ -116,7 +116,7 @@ export class GroupHandler
     } else {
       await Promise.all(
         // eslint-disable-next-line unicorn/prefer-spread
-        Array.from(this.handlers, handler => handler.handleBatch(records))
+        Array.from(this.handlers, handler => handler.handleBatch(records)),
       )
     }
   }

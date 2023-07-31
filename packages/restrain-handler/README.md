@@ -15,8 +15,8 @@ The advantage of this approach is that you don't get any clutter in your log fil
 ## Basic Example
 
 ```js
-const { RestrainHandler } = require('@livy/restrain-handler')
-const { FileHandler } = require('@livy/file-handler')
+import { RestrainHandler } from '@livy/restrain-handler'
+import { FileHandler } from '@livy/file-handler'
 
 const handler = new RestrainHandler(new FileHandler('logs.txt'), {
   activationStrategy: 'error'

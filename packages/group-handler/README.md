@@ -15,9 +15,9 @@ Combine this with a [filter handler](../filter-handler/README.md#readme) to buil
 ## Basic Example
 
 ```js
-const { GroupHandler } = require('@livy/group-handler')
-const { FileHandler } = require('@livy/file-handler')
-const { ConsoleHandler } = require('@livy/console-handler')
+import { GroupHandler } from '@livy/group-handler'
+import { FileHandler } from '@livy/file-handler'
+import { ConsoleHandler } from '@livy/console-handler'
 
 // Create a compound handler which logs to a file and to the terminal
 const handler = new GroupHandler([

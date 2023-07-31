@@ -1,5 +1,5 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { hostname } from 'os'
+import { hostname } from 'node:os'
+import type { LogRecord } from '@livy/contracts'
 
 /**
  * Injects the running machine's hostname into record.extra

@@ -1,7 +1,10 @@
+import { describe, expect, it, vi } from 'vitest'
 import {
   AbstractFormattingProcessingHandler,
   AbstractSyncFormattingProcessingHandler
 } from '../../src/handlers/abstract-formatting-processing-handler'
+
+const { record } = livyTestGlobals
 
 describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () => {
   describe('AbstractFormattingProcessingHandler', () => {
@@ -9,7 +12,7 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
       constructor(...args) {
         super(...args)
 
-        this.write = jest.fn(() => !this.bubble)
+        this.write = vi.fn(() => !this.bubble)
       }
     }
 
@@ -34,7 +37,7 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
         level: 'notice'
       })
 
-      expect(await handler.handle(record('debug'))).toBeFalse()
+      expect(await handler.handle(record('debug'))).toBe(false)
       expect(handler.write).not.toHaveBeenCalled()
     })
 
@@ -44,8 +47,8 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
         bubble: false
       })
 
-      expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-      expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+      expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+      expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
     })
   })
 
@@ -54,7 +57,7 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
       constructor(...args) {
         super(...args)
 
-        this.writeSync = jest.fn(() => !this.bubble)
+        this.writeSync = vi.fn(() => !this.bubble)
       }
     }
 
@@ -95,7 +98,7 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
         level: 'notice'
       })
 
-      expect(handler.handleSync(record('debug'))).toBeFalse()
+      expect(handler.handleSync(record('debug'))).toBe(false)
       expect(handler.writeSync).not.toHaveBeenCalled()
     })
 
@@ -105,8 +108,8 @@ describe('@livy/util/lib/handlers/abstract-formatting-processing-handler', () =>
         bubble: false
       })
 
-      expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-      expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+      expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+      expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
     })
   })
 })

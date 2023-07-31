@@ -1,4 +1,4 @@
-import { LogRecord } from './log-record'
+import { LogRecord } from './log-record.js'
 
 /**
  * A processor object with a `process` method

@@ -1,36 +1,36 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@livy/file-handler should append to existing log file 1`] = `
+exports[`@livy/file-handler > should append to existing log file 1`] = `
 "pre-existing content
 2015-08-15 14:30:00 DEBUG Test FileHandler {}
 "
 `;
 
-exports[`@livy/file-handler should respect the "level" option 1`] = `
+exports[`@livy/file-handler > should respect the "level" option 1`] = `
 "2015-08-15 14:30:00 NOTICE  {}
 "
 `;
 
-exports[`@livy/file-handler should respect the "prefix" option (async) 1`] = `
+exports[`@livy/file-handler > should respect the "prefix" option (async) 1`] = `
 "first line
 2015-08-15 14:30:00 INFO  {}
 2015-08-15 14:30:00 NOTICE  {}
 "
 `;
 
-exports[`@livy/file-handler should respect the "prefix" option 1`] = `
+exports[`@livy/file-handler > should respect the "prefix" option 1`] = `
 "first line
 2015-08-15 14:30:00 INFO  {}
 2015-08-15 14:30:00 NOTICE  {}
 "
 `;
 
-exports[`@livy/file-handler should rewrite file if the "append" option is set to false 1`] = `
+exports[`@livy/file-handler > should rewrite file if the "append" option is set to false 1`] = `
 "2015-08-15 14:30:00 DEBUG Test FileHandler {}
 "
 `;
 
-exports[`@livy/file-handler should write logs to the configured file (async) 1`] = `
+exports[`@livy/file-handler > should write logs to the configured file (async) 1`] = `
 "2015-08-15 14:30:00 DEBUG Test FileHandler {}
 2015-08-15 14:30:00 INFO Test FileHandler {}
 2015-08-15 14:30:00 NOTICE Test FileHandler {}
@@ -42,7 +42,7 @@ exports[`@livy/file-handler should write logs to the configured file (async) 1`]
 "
 `;
 
-exports[`@livy/file-handler should write logs to the configured file 1`] = `
+exports[`@livy/file-handler > should write logs to the configured file 1`] = `
 "2015-08-15 14:30:00 DEBUG Test FileHandler {}
 2015-08-15 14:30:00 INFO Test FileHandler {}
 2015-08-15 14:30:00 NOTICE Test FileHandler {}

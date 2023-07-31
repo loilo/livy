@@ -1,9 +1,10 @@
-import {
+import type {
   HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
+  LogLevel,
+  ResettableInterface,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
 import { FilterHandler } from '@livy/filter-handler'
 
 export interface LevelFilterHandlerOptions {
@@ -46,7 +47,7 @@ export class LevelFilterHandler
       minLevel = 'debug',
       maxLevel = 'emergency',
       ...options
-    }: Partial<LevelFilterHandlerOptions> = {}
+    }: Partial<LevelFilterHandlerOptions> = {},
   ) {
     super(handler, record => this.isHandling(record.level), options)
 
@@ -67,12 +68,13 @@ export class LevelFilterHandler
    */
   public setAcceptedLevels(
     minLevel: LogLevel = 'debug',
-    maxLevel: LogLevel = 'emergency'
+    maxLevel: LogLevel = 'emergency',
   ) {
     this.acceptedLevels = Object.entries(SeverityMap)
       .filter(
         ([, severity]) =>
-          severity <= SeverityMap[minLevel] && severity >= SeverityMap[maxLevel]
+          severity <= SeverityMap[minLevel] &&
+          severity >= SeverityMap[maxLevel],
       )
       .map(([level]) => level as LogLevel)
   }

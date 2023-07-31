@@ -1,7 +1,9 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ProcessorInterface } from '@livy/contracts/lib/processor-interface'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
-import * as environment from '@livy/util/lib/environment'
+import type {
+  LogRecord,
+  ProcessorInterface,
+  ResettableInterface,
+} from '@livy/contracts'
+import { crypto } from './crypto.js'
 
 /**
  * Adds a unique identifier to record.extra
@@ -16,8 +18,8 @@ export class UidProcessor implements ProcessorInterface, ResettableInterface {
     if (!Number.isInteger(length) || length < 1) {
       throw new Error(
         `Invalid UID length ${JSON.stringify(
-          length
-        )}: must be a positive integer`
+          length,
+        )}: must be a positive integer`,
       )
     }
 
@@ -52,15 +54,13 @@ export class UidProcessor implements ProcessorInterface, ResettableInterface {
    * @param length The length of the UID (in bytes)
    */
   private generateUid(length: number): string {
-    // istanbul ignore if: JSDOM does not include fallbacks for crypto
-    if (environment.isBrowser) {
+    if (typeof crypto === 'object') {
       const bytes = new Uint8Array(length)
       crypto.getRandomValues(bytes)
       return [...bytes].map(byte => byte.toString(16).padStart(2, '0')).join('')
-    } else if (environment.isNodeJs) {
-      return require('crypto').randomBytes(length).toString('hex')
     } else {
-      // istanbul ignore next: Not testing other environments
+      /* c8 ignore next 2: Not testing other environments */
+      // eslint-disable-next-line unicorn/prefer-type-error
       throw new Error('Cannot create a UID in your environment')
     }
   }

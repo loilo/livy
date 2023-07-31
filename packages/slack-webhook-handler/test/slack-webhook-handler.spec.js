@@ -1,13 +1,16 @@
-import got from 'got'
+import { describe, expect, it, afterEach } from 'vitest'
+import got, { __resetGot } from 'got'
 
 import { SlackWebhookHandler } from '../src/slack-webhook-handler'
 import { SlackRecord } from '../src/slack-record'
+
+const { record, TEST_CONSTANTS, MockFormatter } = livyTestGlobals
 
 const timestamp = Date.parse(TEST_CONSTANTS.DATE_ISO)
 
 describe('@livy/slack-webhook-handler', () => {
   afterEach(() => {
-    got.__reset()
+    __resetGot()
   })
 
   it('should send notifications with correct data and respect default level', async () => {
@@ -361,8 +364,8 @@ describe('@livy/slack-webhook-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'Test SlackWebhookHandler'))
     await handler.handle(record('notice', 'Test SlackWebhookHandler'))
 
@@ -400,7 +403,7 @@ describe('@livy/slack-webhook-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('critical'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('critical'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('critical'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('critical'))).toBe(true)
   })
 })

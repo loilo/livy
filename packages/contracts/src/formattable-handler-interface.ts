@@ -1,4 +1,4 @@
-import { FormatterInterface } from './formatter-interface'
+import { FormatterInterface } from './formatter-interface.js'
 
 /**
  * Indicates that the handler has a formatter attached

@@ -1,8 +1,10 @@
-import { HandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { SyncLoggerInterface } from '@livy/contracts/lib/logger-interface'
-import { isSyncHandlerInterface } from '@livy/util/lib/handlers/is-sync-handler-interface'
-import { AbstractLogger } from './abstract-logger'
+import type {
+  HandlerInterface,
+  LogRecord,
+  SyncLoggerInterface,
+} from '@livy/contracts'
+import { isSyncHandlerInterface } from '@livy/util/handlers/is-sync-handler-interface'
+import { AbstractLogger } from './abstract-logger.js'
 
 /**
  * A mixed sync/async logger implementation
@@ -21,7 +23,7 @@ export class MixedLogger
     return new MixedLogger(name, {
       handlers: this._handlers,
       processors: this._processors,
-      timezone: this._timezone
+      timezone: this._timezone,
     })
   }
 

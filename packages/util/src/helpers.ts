@@ -1,4 +1,4 @@
-import { AnyObject, Primitive } from './types'
+import { AnyObject, Primitive } from './types.js'
 
 /**
  * Sanitize function, removes special regex characters from a string.
@@ -9,7 +9,7 @@ import { AnyObject, Primitive } from './types'
  * new RegExp(sanitizeRegex(anyString))
  */
 export function sanitizeRegex(value: string) {
-  return value.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
+  return value.replaceAll(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }
 
 /**
@@ -30,9 +30,9 @@ export function sanitizeRegex(value: string) {
 export function replaceTokens(template: string, values: AnyObject) {
   const patternRegex = new RegExp(
     `%(${Object.keys(values).map(sanitizeRegex).join('|')})%`,
-    'g'
+    'g',
   )
-  return template.replace(patternRegex, (_, token) => values[token])
+  return template.replaceAll(patternRegex, (_, token) => values[token])
 }
 
 /**
@@ -44,7 +44,7 @@ export function replaceTokens(template: string, values: AnyObject) {
  * stripTags('Hello <strong>World</strong>!') // 'Hello World!'
  */
 export function stripTags(value: string) {
-  return value.replace(/(<([^>]+)>)/gi, '')
+  return value.replaceAll(/(<([^>]+)>)/gi, '')
 }
 
 /**
@@ -57,10 +57,10 @@ export function stripTags(value: string) {
  */
 export function escapeHtmlEntities(value: string) {
   return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
 }
 
 /**
@@ -149,7 +149,7 @@ export function isPrimitive(value: unknown): value is Primitive {
   return (
     value === null ||
     ['undefined', 'string', 'number', 'boolean', 'symbol', 'bigint'].includes(
-      typeof value
+      typeof value,
     )
   )
 }
@@ -185,26 +185,4 @@ export function isPromiseLike(value: unknown): value is PromiseLike<any> {
  */
 export function isPromise(value: unknown): value is Promise<any> {
   return isPromiseLike(value) && typeof (value as any).catch === 'function'
-}
-
-/**
- * Returns an object created by key-value entries for properties and methods
- * @param entries An iterable object that contains key-value entries for properties and methods.
- *
- * @example
- * fromEntries([['a', 1], ['b' 2]])
- * // { a: 1, b: 2 }
- */
-export function fromEntries<T = any>(
-  entries: Iterable<readonly [PropertyKey, T]>
-): { [k in PropertyKey]: T }
-export function fromEntries(entries: Iterable<readonly any[]>): any
-export function fromEntries(entries: Iterable<readonly any[]>): any {
-  return [...entries].reduce(
-    (object, [key, value]) => ({
-      ...object,
-      [key]: value
-    }),
-    {}
-  )
 }

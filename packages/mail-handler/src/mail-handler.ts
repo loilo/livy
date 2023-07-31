@@ -1,18 +1,17 @@
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { FormatterInterface, LogRecord } from '@livy/contracts'
 import { HtmlPrettyFormatter } from '@livy/html-pretty-formatter'
 import { LineFormatter } from '@livy/line-formatter'
 import {
   AbstractLevelBubbleHandler,
-  AbstractLevelBubbleHandlerOptions
-} from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import { replaceTokens, stripTags } from '@livy/util/lib/helpers'
-import { AnyObject, RequireAtLeastOne, SetRequired } from '@livy/util/lib/types'
+  AbstractLevelBubbleHandlerOptions,
+} from '@livy/util/handlers/abstract-level-bubble-handler'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { replaceTokens, stripTags } from '@livy/util/helpers'
+import { AnyObject, RequireAtLeastOne, SetRequired } from '@livy/util/types'
 import {
-  createTransport,
+  Transporter as Nodemailer,
   Transport as NodemailerTransport,
-  Transporter as Nodemailer
+  createTransport,
 } from 'nodemailer'
 import JSONTransport from 'nodemailer/lib/json-transport'
 import SendmailTransport from 'nodemailer/lib/sendmail-transport'
@@ -83,7 +82,7 @@ type PartialMailHandlerOptions = SetRequired<
  * Dispenses log records via email
  */
 export class MailHandler extends ProcessableHandlerMixin(
-  AbstractLevelBubbleHandler
+  AbstractLevelBubbleHandler,
 ) {
   protected mailer: Nodemailer
   protected subject: string
@@ -103,7 +102,7 @@ export class MailHandler extends ProcessableHandlerMixin(
     plainTextFormatter,
     template = { html: '%logs%', text: '%logs%' },
     transport = {
-      sendmail: true
+      sendmail: true,
     },
     ...options
   }: PartialMailHandlerOptions) {
@@ -132,7 +131,7 @@ export class MailHandler extends ProcessableHandlerMixin(
       typeof (template as AnyObject).text !== 'string'
     ) {
       throw new TypeError(
-        'Either a HTML or a plain text template must be provided'
+        'Either a HTML or a plain text template must be provided',
       )
     }
 
@@ -146,11 +145,11 @@ export class MailHandler extends ProcessableHandlerMixin(
    * @param templates The templates as provided by the user
    */
   protected supplementTemplates(
-    templates: RequireAtLeastOne<MailTemplate>
+    templates: RequireAtLeastOne<MailTemplate>,
   ): MailTemplate {
     return {
       text: 'text' in templates ? templates.text : stripTags(templates.html),
-      html: 'html' in templates ? templates.html : templates.text
+      html: 'html' in templates ? templates.html : templates.text,
     }
   }
 
@@ -165,7 +164,7 @@ export class MailHandler extends ProcessableHandlerMixin(
    * Get the formatter for the HTML part of mails
    */
   public get htmlFormatter() {
-    if (typeof this._htmlFormatter === 'undefined') {
+    if (this._htmlFormatter === undefined) {
       this._htmlFormatter = this.defaultHtmlFormatter
     }
 
@@ -192,7 +191,7 @@ export class MailHandler extends ProcessableHandlerMixin(
    * Get the formatter for the plain text part of mails
    */
   public get plainTextFormatter() {
-    if (typeof this._plainTextFormatter === 'undefined') {
+    if (this._plainTextFormatter === undefined) {
       this._plainTextFormatter = this.defaultPlainTextFormatter
     }
 
@@ -227,13 +226,13 @@ export class MailHandler extends ProcessableHandlerMixin(
    */
   protected send(subject: string, textLogs: string, htmlLogs?: string) {
     const text = this.createTokenReplacer({
-      logs: textLogs
+      logs: textLogs,
     })(this.template.text)
 
     // Only use HTML template if HTML logs are present
     const html = this.template.html
       ? this.createTokenReplacer({
-          logs: htmlLogs
+          logs: htmlLogs,
         })(this.template.html)
       : undefined
 
@@ -244,7 +243,7 @@ export class MailHandler extends ProcessableHandlerMixin(
           to: this.to,
           subject,
           html,
-          text
+          text,
         },
         error => {
           if (error) {
@@ -252,7 +251,7 @@ export class MailHandler extends ProcessableHandlerMixin(
           } else {
             resolve()
           }
-        }
+        },
       )
     })
   }
@@ -271,7 +270,7 @@ export class MailHandler extends ProcessableHandlerMixin(
     await this.send(
       subject,
       this.plainTextFormatter.format(record),
-      this.template.html ? this.htmlFormatter.format(record) : undefined
+      this.template.html ? this.htmlFormatter.format(record) : undefined,
     )
 
     return !this.bubble
@@ -299,7 +298,7 @@ export class MailHandler extends ProcessableHandlerMixin(
     this.send(
       subject,
       this.plainTextFormatter.formatBatch(records),
-      this.template.html ? this.htmlFormatter.formatBatch(records) : undefined
+      this.template.html ? this.htmlFormatter.formatBatch(records) : undefined,
     )
   }
 

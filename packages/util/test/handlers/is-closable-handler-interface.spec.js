@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { isClosableHandlerInterface } from '../../src/handlers/is-closable-handler-interface'
 
 describe('@livy/util/lib/handlers/is-closable-handler-interface', () => {

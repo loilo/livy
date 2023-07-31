@@ -1,4 +1,4 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { LogRecord } from '@livy/contracts'
 
 /**
  * Injects the current process ID into record.extra

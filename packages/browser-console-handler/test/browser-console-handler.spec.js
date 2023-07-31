@@ -1,9 +1,8 @@
-/**
- * @jest-environment jsdom
- */
-
+import { describe, expect, it } from 'vitest'
+import { MockConsole } from '@livy/test-utils/mocks/mock-console.js'
 import { BrowserConsoleHandler } from '../src/browser-console-handler'
-import { MockConsole } from '../../../test/__helpers__/mock-console'
+
+const { record } = livyTestGlobals
 
 describe('@livy/browser-console-handler', () => {
   it('should write highlighted logs to the configured console', () => {
@@ -153,11 +152,11 @@ describe('@livy/browser-console-handler', () => {
       console: mockConsole
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
 
     handler.handleSync(record('info'))
-    expect(mockConsole.__hasBeenCalled()).toBeFalse()
+    expect(mockConsole.__hasBeenCalled()).toBe(false)
   })
 
   it('should respect the "bubble" option', () => {
@@ -172,7 +171,7 @@ describe('@livy/browser-console-handler', () => {
       console: mockConsole
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

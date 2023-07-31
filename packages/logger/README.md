@@ -5,7 +5,7 @@ The [Livy](../../README.md#readme) logger factory is at the heart of every logge
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
+import { createLogger } from '@livy/logger'
 
 const logger = createLogger('app-logger')
 ```

@@ -1,4 +1,4 @@
-// istanbul ignore file: The contracts ARE the source of truth, testing them would basically be code duplication
+/* c8 ignore start: The contracts ARE the source of truth, testing them would basically be code duplication */
 
 /**
  * Log levels as defined by RFC 5424
@@ -11,7 +11,7 @@ export const logLevels = [
   'error',
   'critical',
   'alert',
-  'emergency'
+  'emergency',
 ] as const
 
 /**
@@ -25,7 +25,7 @@ export const SeverityMap = {
   error: 3,
   critical: 2,
   alert: 1,
-  emergency: 0
+  emergency: 0,
 } as const
 
 /**

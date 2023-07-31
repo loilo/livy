@@ -50,7 +50,7 @@ For TypeScript users, there are also some handy types to be found in this file.
 Determines whether the runtime is Node.js or a browser and derives related environment-specific data.
 
 ```js
-const Environment = require('@livy/util/lib/environment')
+import * as Environment from '@livy/util/environment'
 
 Environment.isNodeJs // `true` or `false`
 Environment.isBrowser // `true` or `false`
@@ -63,7 +63,7 @@ An extended [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 
 <!-- prettier-ignore -->
 ```js
-const { ValidatableSet } = require('@livy/util/lib/validatable-set')
+import { ValidatableSet } from '@livy/util/validatable-set'
 
 const set = new ValidatableSet([1, 2, 3])
 
@@ -82,7 +82,7 @@ An extended [`ValidatableSet`](#validatableset) that allows to validate and reje
 
 <!-- prettier-ignore -->
 ```js
-const { GatedSet } = require('@livy/util/lib/gated-set')
+import { GatedSet } from '@livy/util/gated-set'
 
 const integers = new GatedSet(value => {
   if (typeof value !== 'number' || !Number.isInteger(value)) {
@@ -102,7 +102,7 @@ integers.add('foo') // Throws TypeError
 A function/template tag that allows you to easily construct HTML strings without having to worry about escaping:
 
 ```js
-const { HTML } = require('@livy/util/lib/html')
+import { HTML } from '@livy/util/html'
 
 const snippet = '<em>awesome</em>'
 
@@ -147,7 +147,10 @@ class User {
 }
 
 class PrivilegedUser extends WriteAccess(User) {
-  constructor(name: string, protected role: 'editor' | 'admin') {
+  constructor(
+    name: string,
+    protected role: 'editor' | 'admin'
+  ) {
     super(name) // <- type-hinted!
   }
 
@@ -162,7 +165,7 @@ class PrivilegedUser extends WriteAccess(User) {
 A cross-runtime performance timer implementation:
 
 ```js
-const { Timer } = require('@livy/util/lib/timer')
+import { Timer } from '@livy/util/timer'
 
 const timer = new Timer()
 
@@ -196,7 +199,7 @@ This can be useful as type of a formatter's option that determines which parts o
 A base class for formatters to extend which implements `formatBatch` as a series of `format` calls, joined by a delimiter (which by default is the `EOL` determined by the [environment](#Environment), can be changed by overriding the `batchDelimiter` property):
 
 ```js
-const { AbstractBatchFormatter } = require('@livy/util/lib/abstract-batch-formatter')
+import { AbstractBatchFormatter } from '@livy/util/formatters/abstract-batch-formatter'
 
 class QuestionableFormatter extends AbstractBatchFormatter {
   format(record) {
@@ -243,10 +246,8 @@ Implements the mandatory asynchronous handler methods `handle` and `handleBatch`
 
 <!-- prettier-ignore -->
 ```js
-const SomeBaseClass = require('SomeBaseClass')
-const {
-  MirrorSyncHandlerMixin
-} = require('@livy/util/lib/handlers/mirror-sync-handler-mixin')
+import SomeBaseClass from 'SomeBaseClass'
+import { MirrorSyncHandlerMixin } from '@livy/util/handlers/mirror-sync-handler-mixin'
 
 class Handler extends MirrorSyncHandlerMixin(SomeBaseClass) {
   handleSync(record) {
@@ -288,11 +289,9 @@ implementation based on that level.
 Adds a `formatter` property to the applied-to class with support for an implicit default formatter:
 
 ```js
-const SomeBaseClass = require('SomeBaseClass')
-const SomeFormatter = require('SomeFormatter')
-const {
-  FormattableHandlerMixin
-} = require('@livy/util/lib/handlers/formattable-handler-mixin')
+import SomeBaseClass from 'SomeBaseClass'
+import SomeFormatter from 'SomeFormatter'
+import { FormattableHandlerMixin } from '@livy/util/handlers/formattable-handler-mixin'
 
 class Handler extends FormattableHandlerMixin(SomeBaseClass) {
   /**
@@ -334,9 +333,7 @@ This is a base handler class that implements the `handleBatch` and `handleBatchS
 Base handler class (extending the [`AbstractBatchHandler`](#abstractbatchhandler)) which adds a `level` and a `bubble` option and implements the `isHandling` method based on the configured level:
 
 ```js
-const {
-  AbstractLevelBubbleHandler
-} = require('@livy/util/lib/handlers/abstract-level-bubble-handler')
+import { AbstractLevelBubbleHandler } from '@livy/util/handlers/abstract-level-bubble-handler'
 
 class Handler extends AbstractLevelBubbleHandler {
   handle(record) {
@@ -359,9 +356,7 @@ See also:
 Base handler class extending the [`AbstractLevelBubbleHandler`](#abstractlevelbubblehandler) with the [`FormattableHandlerMixin`](#formattablehandlermixin) and [`ProcessableHandlerMixin`](#processablehandlermixin). It completely abstracts the nitty gritty details of writing a handler with formatter and processor support away from you so you only have to implement a `write` method:
 
 ```js
-const {
-  AbstractFormattingProcessingHandler
-} = require('@livy/util/lib/handlers/abstract-formatting-processing-handler')
+import { AbstractFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
 
 class FileHandler extends AbstractFormattingProcessingHandler {
   async write(record, formattedRecord) {
@@ -373,9 +368,7 @@ class FileHandler extends AbstractFormattingProcessingHandler {
 There's also `AbstractSyncFormattingProcessingHandler` to implement a synchronous handler by implementing `writeSync`:
 
 ```js
-const {
-  AbstractSyncFormattingProcessingHandler
-} = require('@livy/util/lib/handlers/abstract-formatting-processing-handler')
+import { AbstractSyncFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
 
 class SyncFileHandler extends AbstractSyncFormattingProcessingHandler {
   writeSync(record, formattedRecord) {

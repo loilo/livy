@@ -1,9 +1,13 @@
-import chalk from 'chalk'
+import { describe, beforeEach, afterEach, it, expect } from 'vitest'
+import chalk, { supportsColor } from 'chalk'
+
 import { AnsiLineFormatter } from '../src/ansi-line-formatter'
+
+const { record } = livyTestGlobals
 
 describe('@livy/ansi-line-formatter', () => {
   beforeEach(() => {
-    chalk.supportsColor = true
+    supportsColor.hasBasic = true
   })
 
   afterEach(() => {
@@ -11,18 +15,18 @@ describe('@livy/ansi-line-formatter', () => {
   })
 
   it('should correctly derive color support from chalk', () => {
-    chalk.supportsColor = true
-    expect(new AnsiLineFormatter().shouldDecorate()).toBeTrue()
-    chalk.supportsColor = false
-    expect(new AnsiLineFormatter().shouldDecorate()).toBeFalse()
+    supportsColor.hasBasic = true
+    expect(new AnsiLineFormatter().shouldDecorate()).toBe(true)
+    supportsColor.hasBasic = false
+    expect(new AnsiLineFormatter().shouldDecorate()).toBe(false)
   })
 
   it('should respect the "decorated" option', () => {
-    chalk.supportsColor = true
+    supportsColor.hasBasic = true
     expect(new AnsiLineFormatter({ decorated: false }).shouldDecorate()).toBe(
       false
     )
-    chalk.supportsColor = false
+    supportsColor.hasBasic = false
     expect(new AnsiLineFormatter({ decorated: true }).shouldDecorate()).toBe(
       true
     )

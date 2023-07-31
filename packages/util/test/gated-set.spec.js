@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest'
 import { GatedSet } from '../src/gated-set'
 
 describe('@livy/util/lib/gated-set', () => {
@@ -26,14 +27,14 @@ describe('@livy/util/lib/gated-set', () => {
   })
 
   it('should work with no initial items', () => {
-    const test = jest.fn()
+    const test = vi.fn()
     new GatedSet(test)
 
     expect(test).not.toHaveBeenCalled()
   })
 
   it('should validate initial valid items', () => {
-    const test = jest.fn()
+    const test = vi.fn()
     new GatedSet(test, ['a', 'b', 'c'])
 
     expect(test).toHaveBeenCalledTimes(3)
@@ -43,7 +44,7 @@ describe('@livy/util/lib/gated-set', () => {
   })
 
   it('should validate item on add', () => {
-    const test = jest.fn()
+    const test = vi.fn()
     const set = new GatedSet(test)
     set.add('a').add('b').add('c')
 

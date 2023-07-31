@@ -1,11 +1,11 @@
-import { ProcessableHandlerInterface } from '@livy/contracts/lib/processable-handler-interface'
+import type { ProcessableHandlerInterface } from '@livy/contracts'
 /**
  * Check whether a value implements the `ProcessableHandlerInterface`
  *
  * @param value The value to check
  */
 export function isProcessableHandlerInterface(
-  value: any
+  value: any,
 ): value is ProcessableHandlerInterface {
   return (
     typeof value === 'object' &&

@@ -1,8 +1,7 @@
-import { LoggerInterface } from '@livy/contracts/lib/logger-interface'
-import { ConsoleAdapterInterface } from './console-adapter-interface'
-import { fromEntries } from './helpers'
-import { Timer, TimerInterface } from './timer'
-import { AnyObject } from './types'
+import type { LoggerInterface } from '@livy/contracts'
+import { ConsoleAdapterInterface } from './console-adapter-interface.js'
+import { Timer, TimerInterface } from './timer.js'
+import { AnyObject } from './types.js'
 
 /**
  * @inheritdoc
@@ -25,14 +24,14 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    * @inheritdoc
    */
   public count(label?: string) {
-    if (typeof label === 'undefined') {
+    if (label === undefined) {
       label = 'default'
     }
 
     this.counters[label] = (this.counters[label] || 0) + 1
     this.logger.debug(`${this.indentationString}console.count`, {
       label,
-      count: this.counters[label]
+      count: this.counters[label],
     })
   }
 
@@ -40,7 +39,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    * @inheritdoc
    */
   public countReset(label?: string) {
-    if (typeof label === 'undefined') {
+    if (label === undefined) {
       label = 'default'
     }
 
@@ -52,7 +51,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public debug(message?: any, ...optionalParameters: any[]) {
     this.logger.debug(`${this.indentationString}console.debug`, {
-      parameters: [message, ...optionalParameters]
+      parameters: [message, ...optionalParameters],
     })
   }
 
@@ -68,7 +67,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public dirxml(...data: any[]) {
     this.logger.debug(`${this.indentationString}console.dirxml`, {
-      objects: data
+      objects: data,
     })
   }
 
@@ -77,7 +76,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public error(message?: any, ...optionalParameters: any[]) {
     this.logger.error(`${this.indentationString}console.error`, {
-      parameters: [message, ...optionalParameters]
+      parameters: [message, ...optionalParameters],
     })
   }
 
@@ -94,7 +93,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public groupCollapsed(label?: any) {
     this.logger.debug(`${this.indentationString}console.groupCollapsed`, {
-      label
+      label,
     })
     this.indentation++
   }
@@ -115,7 +114,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public info(message?: any, ...optionalParameters: any[]) {
     this.logger.info(`${this.indentationString}console.info`, {
-      parameters: [message, ...optionalParameters]
+      parameters: [message, ...optionalParameters],
     })
   }
 
@@ -124,7 +123,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public log(message?: any, ...optionalParameters: any[]) {
     this.logger.debug(`${this.indentationString}console.log`, {
-      parameters: [message, ...optionalParameters]
+      parameters: [message, ...optionalParameters],
     })
   }
 
@@ -133,16 +132,16 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public table(tabularData: any, properties?: string | string[]) {
     try {
-      if (Array.isArray(tabularData) && typeof properties !== 'undefined') {
+      if (Array.isArray(tabularData) && properties !== undefined) {
         const propertiesArray = Array.isArray(properties)
           ? properties
           : [properties]
 
         tabularData = tabularData.map(entry => {
-          return fromEntries(
+          return Object.fromEntries(
             Object.entries(entry).filter(([property]) =>
-              propertiesArray.includes(property)
-            )
+              propertiesArray.includes(property),
+            ),
           )
         })
       }
@@ -151,7 +150,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
     }
 
     this.logger.debug(`${this.indentationString}console.table`, {
-      data: tabularData
+      data: tabularData,
     })
   }
 
@@ -159,7 +158,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    * @inheritdoc
    */
   public time(label?: string) {
-    if (typeof label === 'undefined') {
+    if (label === undefined) {
       label = 'default'
     }
 
@@ -176,7 +175,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    * @inheritdoc
    */
   public timeEnd(label?: string) {
-    if (typeof label === 'undefined') {
+    if (label === undefined) {
       label = 'default'
     }
 
@@ -184,7 +183,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
 
     this.logger.debug(`${this.indentationString}console.timeEnd`, {
       label,
-      elapsed
+      elapsed,
     })
 
     delete this.timers[label]
@@ -194,7 +193,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    * @inheritdoc
    */
   public timeLog(label?: string, ...data: any[]) {
-    if (typeof label === 'undefined') {
+    if (label === undefined) {
       label = 'default'
     }
 
@@ -203,7 +202,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
     this.logger.debug(`${this.indentationString}console.timeLog`, {
       label,
       elapsed,
-      data
+      data,
     })
   }
 
@@ -212,8 +211,9 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public trace(...data: any[]) {
     this.logger.debug(`${this.indentationString}console.trace`, {
+      // eslint-disable-next-line unicorn/error-message
       trace: new Error().stack,
-      data
+      data,
     })
   }
 
@@ -222,7 +222,7 @@ export class ConsoleAdapter implements ConsoleAdapterInterface {
    */
   public warn(message?: any, ...optionalParameters: any[]) {
     this.logger.warning(`${this.indentationString}console.warn`, {
-      parameters: [message, ...optionalParameters]
+      parameters: [message, ...optionalParameters],
     })
   }
 }

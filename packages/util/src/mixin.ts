@@ -1,4 +1,4 @@
-import { Class } from './types'
+import { Class } from './types.js'
 
 /**
  * From an object type T create the type that does not have any conflicts with T
@@ -32,9 +32,9 @@ export namespace Mixin {
   export interface Extender<
     T extends Class.Any,
     U extends Class.MakeConstructable<T>,
-    V extends any[]
+    V extends any[],
   > {
-    (Base: T, ...additionalArgs: V): U
+    (Base: T, ...additionalArguments: V): U
   }
 
   /**
@@ -42,7 +42,7 @@ export namespace Mixin {
    * (which must not be conflicting with T) and returns the intersection of T and U
    */
   export interface Wrapper<T extends Class.Constructable, V extends any[]> {
-    <U extends NoConflictClass<T>>(Base: U, ...additionalArgs: V): U & T
+    <U extends NoConflictClass<T>>(Base: U, ...additionalArguments: V): U & T
   }
 }
 
@@ -78,7 +78,7 @@ export namespace Mixin {
 export function Mixin<
   T extends Class.Constructable,
   U extends Class.MakeConstructable<T>,
-  V extends any[]
+  V extends any[],
 >(extender: Mixin.Extender<T, U, V>): Mixin.Wrapper<U, V> {
   return <X extends NoConflictClass<U>>(
     Origin: X = class {} as X,

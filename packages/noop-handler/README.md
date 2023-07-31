@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler handles anything, but does nothing, 
 ## Basic Example
 
 ```js
-const { NoopHandler } = require('@livy/noop-handler')
+import { NoopHandler } from '@livy/noop-handler'
 
 const handler = new NoopHandler()
 ```

@@ -1,5 +1,8 @@
-import { ArrayHandler } from '../src/array-handler'
+import { describe, expect, it, vi } from 'vitest'
 import { DateTime } from 'luxon'
+import { ArrayHandler } from '../src/array-handler'
+
+const { record } = livyTestGlobals
 
 describe('@livy/array-handler', () => {
   it('should append log entries of the correct shape to the handler', () => {
@@ -30,7 +33,7 @@ describe('@livy/array-handler', () => {
 
   it('should efficiently batch handle records without calling "handleSync"', () => {
     const handler = new ArrayHandler()
-    handler.handleSync = jest.fn()
+    handler.handleSync = vi.fn()
 
     handler.handleBatchSync([
       record('debug', 'Test ArrayHandler'),
@@ -46,8 +49,8 @@ describe('@livy/array-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
 
     expect(handler.records).toHaveLength(0)
   })
@@ -58,7 +61,7 @@ describe('@livy/array-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

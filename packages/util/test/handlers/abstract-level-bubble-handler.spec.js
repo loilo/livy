@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { AbstractLevelBubbleHandler } from '../../src/handlers/abstract-level-bubble-handler'
 
 class Handler extends AbstractLevelBubbleHandler {}
@@ -7,7 +8,7 @@ describe('@livy/util/lib/handlers/abstract-level-bubble-handler', () => {
     const handler = new Handler()
 
     expect(handler.level).toBe('debug')
-    expect(handler.bubble).toBeTrue()
+    expect(handler.bubble).toBe(true)
   })
 
   it('should respect the "bubble" option', async () => {
@@ -15,7 +16,7 @@ describe('@livy/util/lib/handlers/abstract-level-bubble-handler', () => {
       bubble: false
     })
 
-    expect(handler.bubble).toBeFalse()
+    expect(handler.bubble).toBe(false)
   })
 
   it('should respect the "level" option', async () => {

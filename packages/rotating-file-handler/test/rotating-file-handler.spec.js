@@ -1,11 +1,13 @@
-jest.mock('fs')
-jest.mock('os')
+import * as fs from 'node:fs'
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import { DateTime } from 'luxon'
+import { RotatingFileHandler } from '../src/rotating-file-handler'
 
-const { DateTime } = await import('luxon')
+const { record, TEST_CONSTANTS, date, MockFormatter } = livyTestGlobals
 
 // Fixate timezone for file names to the test constant
-jest.mock('../src/max-age-strategy', () => {
-  const { MaxAgeStrategy } = jest.requireActual('../src/max-age-strategy')
+vi.mock('../src/max-age-strategy', async importOriginal => {
+  const { MaxAgeStrategy } = await importOriginal()
 
   return {
     MaxAgeStrategy: class extends MaxAgeStrategy {
@@ -15,9 +17,6 @@ jest.mock('../src/max-age-strategy', () => {
     }
   }
 })
-
-const { RotatingFileHandler } = await import('../src/rotating-file-handler')
-const fs = await import('fs')
 
 /**
  * Write a number of records to a handler at a fixated date
@@ -34,7 +33,7 @@ async function writeRecords(handler, mode, isoDate, levels) {
   })
   const records = levels.map(level => createRecord({ level }))
 
-  luxon.fixate(isoDate)
+  DateTime.mock.fixate(isoDate)
   for (const record of records) {
     if (mode === 'sync') {
       handler.handleSync(record)
@@ -42,7 +41,7 @@ async function writeRecords(handler, mode, isoDate, levels) {
       await handler.handle(record)
     }
   }
-  luxon.release()
+  DateTime.mock.release()
 }
 
 describe('@livy/rotating-file-handler', () => {
@@ -87,7 +86,7 @@ describe('@livy/rotating-file-handler', () => {
     handler.close()
 
     const files = fs.toJSON()
-    expect(files).toBeObject()
+    expect(typeof files).toBe('object')
     expect(Object.keys(files)).toHaveLength(0)
   })
 
@@ -285,8 +284,8 @@ describe('@livy/rotating-file-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     handler.handleSync(createRecord({ level: 'info' }))
     handler.handleSync(createRecord({ level: 'notice' }))
     expect(fs.toJSON()).toMatchSnapshot()
@@ -298,7 +297,7 @@ describe('@livy/rotating-file-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

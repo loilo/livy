@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler writes log records to a file.
 ## Basic Example
 
 ```js
-const { FileHandler } = require('@livy/file-handler')
+import { FileHandler } from '@livy/file-handler'
 
 const handler = new FileHandler('logs.txt')
 ```

@@ -13,8 +13,8 @@ This [Livy](../../README.md#readme) handler wraps another handler and filters re
 ## Basic Example
 
 ```js
-const { LevelFilterHandler } = require('@livy/level-filter-handler')
-const { FileHandler } = require('@livy/file-handler')
+import { LevelFilterHandler } from '@livy/level-filter-handler'
+import { FileHandler } from '@livy/file-handler'
 
 const handler = new LevelFilterHandler(
   new FileHandler('semi-serious-logs.txt'),

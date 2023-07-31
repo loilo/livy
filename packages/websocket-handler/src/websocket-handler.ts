@@ -1,21 +1,23 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type {
+  ClosableHandlerInterface,
+  FormatterInterface,
+  LogRecord,
+} from '@livy/contracts'
 import { JsonFormatter } from '@livy/json-formatter'
 import {
   AbstractLevelBubbleHandler,
-  AbstractLevelBubbleHandlerOptions
-} from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { FormattableHandlerMixin } from '@livy/util/lib/handlers/formattable-handler-mixin'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import eio from 'engine.io-client'
+  AbstractLevelBubbleHandlerOptions,
+} from '@livy/util/handlers/abstract-level-bubble-handler'
+import { FormattableHandlerMixin } from '@livy/util/handlers/formattable-handler-mixin'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { Socket, SocketOptions } from 'engine.io-client'
 
 export interface WebSocketHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
   /**
    * engine.io client connection options
    */
-  connection: eio.SocketOptions
+  connection: Partial<SocketOptions>
 
   /**
    * The formatter to use
@@ -28,13 +30,13 @@ export interface WebSocketHandlerOptions
  */
 export class WebSocketHandler
   extends FormattableHandlerMixin(
-    ProcessableHandlerMixin(AbstractLevelBubbleHandler)
+    ProcessableHandlerMixin(AbstractLevelBubbleHandler),
   )
   implements ClosableHandlerInterface
 {
-  protected connection: Promise<eio.Socket> | undefined
+  protected connection: Promise<Socket> | undefined
   protected url: string
-  protected connectionOptions: eio.SocketOptions
+  protected connectionOptions: Partial<SocketOptions>
 
   public constructor(
     url: string,
@@ -42,7 +44,7 @@ export class WebSocketHandler
       connection = {},
       formatter,
       ...options
-    }: Partial<WebSocketHandlerOptions> = {}
+    }: Partial<WebSocketHandlerOptions> = {},
   ) {
     super(options)
 
@@ -66,10 +68,10 @@ export class WebSocketHandler
       return this.connection
     }
 
-    this.connection = new Promise<eio.Socket>((resolve, reject) => {
-      const socket = eio(this.url, {
+    this.connection = new Promise<Socket>((resolve, reject) => {
+      const socket = new Socket(this.url, {
         ...this.connectionOptions,
-        transports: ['websocket']
+        transports: ['websocket'],
       })
       socket.on('open', () => {
         resolve(socket)
@@ -77,7 +79,7 @@ export class WebSocketHandler
       socket.on('close', () => {
         this.connection = undefined
       })
-      socket.on('error', (error: Error) => {
+      socket.on('error', error => {
         reject(error)
       })
     })

@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler stores all log records it receives i
 ## Basic Example
 
 ```js
-const { ArrayHandler } = require('@livy/array-handler')
+import { ArrayHandler } from '@livy/array-handler'
 
 const handler = new ArrayHandler()
 

@@ -1,9 +1,12 @@
-import got from 'got'
+import { describe, expect, it, afterEach } from 'vitest'
+import got, { __resetGot } from 'got'
 import { HttpHandler } from '../src/http-handler'
+
+const { record } = livyTestGlobals
 
 describe('@livy/http-handler', () => {
   afterEach(() => {
-    got.__reset()
+    __resetGot()
   })
 
   it('should send log records to the configured URL', async () => {
@@ -68,7 +71,7 @@ describe('@livy/http-handler', () => {
           })
       )
       .mockImplementationOnce(async () => {
-        expect(finishedFirst).toBeFalse()
+        expect(finishedFirst).toBe(false)
       })
 
     await handler.handleBatch([record('info'), record('notice')])
@@ -94,7 +97,7 @@ describe('@livy/http-handler', () => {
           })
       )
       .mockImplementationOnce(async () => {
-        expect(finishedFirst).toBeTrue()
+        expect(finishedFirst).toBe(true)
       })
 
     await handler.handleBatch([record('info'), record('notice')])
@@ -126,8 +129,8 @@ describe('@livy/http-handler', () => {
       }
     )
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'info'))
     await handler.handle(record('notice', 'notice'))
 
@@ -141,7 +144,7 @@ describe('@livy/http-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('warning'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('warning'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('warning'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('warning'))).toBe(true)
   })
 })

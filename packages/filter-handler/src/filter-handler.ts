@@ -1,17 +1,17 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import {
+import type {
+  ClosableHandlerInterface,
   HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LogLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
-import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-handler'
-import { isClosableHandlerInterface } from '@livy/util/lib/handlers/is-closable-handler-interface'
-import { isSyncHandlerInterface } from '@livy/util/lib/handlers/is-sync-handler-interface'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import { getObviousTypeName } from '@livy/util/lib/helpers'
-import { isResettableInterface } from '@livy/util/lib/is-resettable-interface'
+  LogLevel,
+  LogRecord,
+  ResettableInterface,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { AbstractBatchHandler } from '@livy/util/handlers/abstract-batch-handler'
+import { isClosableHandlerInterface } from '@livy/util/handlers/is-closable-handler-interface'
+import { isSyncHandlerInterface } from '@livy/util/handlers/is-sync-handler-interface'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { getObviousTypeName } from '@livy/util/helpers'
+import { isResettableInterface } from '@livy/util/is-resettable-interface'
 
 export interface FilterHandlerOptions {
   /**
@@ -47,13 +47,13 @@ export class FilterHandler
   public constructor(
     handler: HandlerInterface,
     test: FilterTest,
-    { bubble = true }: Partial<FilterHandlerOptions> = {}
+    { bubble = true }: Partial<FilterHandlerOptions> = {},
   ) {
     super()
 
     if (typeof test !== 'function') {
       throw new TypeError(
-        `Filter test must be a function, got ${getObviousTypeName(test)}`
+        `Filter test must be a function, got ${getObviousTypeName(test)}`,
       )
     }
 

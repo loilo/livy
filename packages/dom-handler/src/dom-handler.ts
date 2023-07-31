@@ -1,12 +1,14 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
+import type {
+  ClosableHandlerInterface,
+  FormatterInterface,
+  LogRecord,
+  ResettableInterface,
+} from '@livy/contracts'
 import { HtmlPrettyFormatter } from '@livy/html-pretty-formatter'
-import { AbstractSyncFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { isPromiseLike } from '@livy/util/lib/helpers'
-import { Promisable } from '@livy/util/lib/types'
+import { AbstractSyncFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
+import { isPromiseLike } from '@livy/util/helpers'
+import { Promisable } from '@livy/util/types'
 
 export type AutoScroll = 'edge' | 'force' | 'none'
 
@@ -53,7 +55,7 @@ export class DomHandler
       autoScroll = 'edge',
       formatter,
       ...options
-    }: Partial<DomHandlerOptions> = {}
+    }: Partial<DomHandlerOptions> = {},
   ) {
     super(options)
 
@@ -71,7 +73,7 @@ export class DomHandler
 
           if (queriedContainerElement === null) {
             throw new Error(
-              `Could not find DomHandler target element at selector "${container}"`
+              `Could not find DomHandler target element at selector "${container}"`,
             )
           }
 
@@ -109,7 +111,7 @@ export class DomHandler
         document.addEventListener('DOMContentLoaded', this.readyHandler)
       })
     } else {
-      // istanbul ignore next: This ist just a fallback that should usually not occur in practice
+      /* c8 ignore next: This ist just a fallback that should usually not occur in practice */
       return Promise.resolve()
     }
   }
@@ -123,7 +125,7 @@ export class DomHandler
   private doWrite(formatted: string, container: Element) {
     let isAtEdge = false
 
-    // istanbul ignore next: Scrolling cannot be tested with the JSDOM mock
+    /* c8 ignore start: Scrolling cannot be tested with the JSDOM mock */
     if (this.autoScroll === 'force') {
       isAtEdge = true
     } else if (this.autoScroll === 'edge') {
@@ -132,18 +134,20 @@ export class DomHandler
         : container.scrollTop ===
           container.scrollHeight - container.clientHeight
     }
+    /* c8 ignore stop */
 
     container.insertAdjacentHTML(
       this.reversed ? 'afterbegin' : 'beforeend',
-      formatted
+      formatted,
     )
 
-    // istanbul ignore next: Scrolling cannot be tested with the JSDOM mock
+    /* c8 ignore start: Scrolling cannot be tested with the JSDOM mock */
     if (isAtEdge) {
       container.scrollTop = this.reversed
         ? 0
         : container.scrollHeight - container.clientHeight
     }
+    /* c8 ignore stop */
   }
 
   /**

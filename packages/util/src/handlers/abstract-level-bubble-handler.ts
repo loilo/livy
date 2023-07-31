@@ -1,7 +1,6 @@
-import { LogLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractBatchHandler } from './abstract-batch-handler'
-import { RespectLevelMixin } from './respect-level-mixin'
+import type { LogLevel, LogRecord } from '@livy/contracts'
+import { AbstractBatchHandler } from './abstract-batch-handler.js'
+import { RespectLevelMixin } from './respect-level-mixin.js'
 
 export interface AbstractLevelBubbleHandlerOptions {
   /**
@@ -19,7 +18,7 @@ export interface AbstractLevelBubbleHandlerOptions {
  * Base Handler class providing basic a `bubble` option and basic `level` support
  */
 export abstract class AbstractLevelBubbleHandler extends RespectLevelMixin(
-  AbstractBatchHandler
+  AbstractBatchHandler,
 ) {
   /**
    * Whether this handler allows bubbling of records
@@ -32,7 +31,7 @@ export abstract class AbstractLevelBubbleHandler extends RespectLevelMixin(
    */
   public constructor({
     level = 'debug',
-    bubble = true
+    bubble = true,
   }: Partial<AbstractLevelBubbleHandlerOptions> = {}) {
     super()
 

@@ -11,8 +11,8 @@ This [Livy](../../README.md#readme) processor adds a unique identifier to a log 
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { UidProcessor } = require('@livy/uid-processor')
+import { createLogger } from '@livy/logger'
+import { UidProcessor } from '@livy/uid-processor'
 
 const logger = createLogger('app-logger', {
   processors: [new UidProcessor()]

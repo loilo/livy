@@ -5,8 +5,8 @@ This [Livy](../../README.md#readme) formatter formats log records with highlight
 ## Basic Example
 
 ```js
-const { FileHandler } = require('@livy/file-handler')
-const { ConsoleFormatter } = require('@livy/console-formatter')
+import { FileHandler } from '@livy/file-handler'
+import { ConsoleFormatter } from '@livy/console-formatter'
 
 const handler = new FileHandler('logs.txt', {
   formatter: new ConsoleFormatter()

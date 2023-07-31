@@ -1,8 +1,8 @@
-import { replaceTokens, sanitizeRegex } from '@livy/util/lib/helpers'
-import { existsSync } from 'fs'
+import { existsSync } from 'node:fs'
+import { replaceTokens, sanitizeRegex } from '@livy/util/helpers'
 import { DateTime } from 'luxon'
-import { BaseStrategy } from './base-strategy'
-import { RotationStrategyInterface } from './rotation-strategy'
+import { BaseStrategy } from './base-strategy.js'
+import { RotationStrategyInterface } from './rotation-strategy.js'
 
 export interface MaxAgeStrategyOptions {
   /**
@@ -34,11 +34,11 @@ export class MaxAgeStrategy
   constructor(
     directory: string,
     filenameTemplate: string,
-    threshold: DurationUnit
+    threshold: DurationUnit,
   ) {
     if (!filenameTemplate.includes('%date%')) {
       throw new Error(
-        `Invalid filename template "${filenameTemplate}", must contain the %date% token.`
+        `Invalid filename template "${filenameTemplate}", must contain the %date% token.`,
       )
     }
 
@@ -54,8 +54,8 @@ export class MaxAgeStrategy
   protected getFilenameRegex() {
     return new RegExp(
       `^${replaceTokens(sanitizeRegex(this.filenameTemplate), {
-        date: '.+?'
-      })}$`
+        date: '.+?',
+      })}$`,
     )
   }
 
@@ -70,7 +70,7 @@ export class MaxAgeStrategy
       hour: (datetime: DateTime) => datetime.toFormat('yyyy-MM-dd_HH'),
       day: (datetime: DateTime) => datetime.toFormat('yyyy-MM-dd'),
       month: (datetime: DateTime) => datetime.toFormat('yyyy-MM'),
-      year: (datetime: DateTime) => datetime.toFormat('yyyy')
+      year: (datetime: DateTime) => datetime.toFormat('yyyy'),
     }[unit]
   }
 
@@ -81,7 +81,7 @@ export class MaxAgeStrategy
     const date = this.getStartOfDurationUnit()
 
     return replaceTokens(this.filenameTemplate, {
-      date: this.dateFormatter(date)
+      date: this.dateFormatter(date),
     })
   }
 

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { isResettableInterface } from '../src/is-resettable-interface'
 
 describe('@livy/util/lib/is-resettable-interface', () => {

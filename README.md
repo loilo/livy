@@ -16,27 +16,24 @@ Livy aims to be the one logger used throughout your Node.js application. Therefo
 
 Want to see an example?
 
-> Impatient? Try Livy out [on repl.it](https://repl.it/@loilo/livy-example).
-
-<!-- prettier-ignore -->
 ```js
-const { createLogger } = require('@livy/logger')
-const { SlackWebhookHandler } = require('@livy/slack-webhook-handler')
-const { RotatingFileHandler } = require('@livy/rotating-file-handler')
+import { createLogger } from '@livy/logger'
+import { SlackWebhookHandler } from '@livy/slack-webhook-handler'
+import { RotatingFileHandler } from '@livy/rotating-file-handler'
 
 const logger = createLogger('my-app-logger', {
   handlers: [
     // Write daily rotating, automatically deleted log files
     new RotatingFileHandler('/var/log/livy-%date%.log', {
       level: 'info',
-      maxFiles: 30
+      maxFiles: 30,
     }),
 
     // Get instant notifications under critical conditions
     new SlackWebhookHandler('https://some-slack-webhook.url', {
-      level: 'critical'
-    })
-  ]
+      level: 'critical',
+    }),
+  ],
 })
 
 logger.debug("I'm going nowhere. :(")
@@ -83,11 +80,11 @@ You start by installing the [`@livy/logger`](packages/logger/README.md#readme) p
 So now think about how your logging should go. Want to write errors to a log file? Install the [`@livy/file-handler`](packages/file-handler/README.md#readme) and set up your logger:
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { FileHandler } = require('@livy/file-handler')
+import { createLogger } from '@livy/logger'
+import { FileHandler } from '@livy/file-handler'
 
 const logger = createLogger('my-app-logger', {
-  handlers: [new FileHandler('error.log', { level: 'error' })]
+  handlers: [new FileHandler('error.log', { level: 'error' })],
 })
 ```
 
@@ -149,11 +146,11 @@ It's the job of formatters to turn [log records](#log-records) into strings of a
 Formatters are used by most handlers and can be injected through their options:
 
 ```js
-const { JsonFormatter } = require('@livy/json-formatter')
+import { JsonFormatter } from '@livy/json-formatter'
 
 // Make the file handler write newline-delimited JSON files
 const fileHandler = new FileHandler('/var/log/livy.log', {
-  formatter: new JsonFormatter()
+  formatter: new JsonFormatter(),
 })
 
 // You may also set the formatter afterwards:
@@ -182,7 +179,8 @@ The log record is an internal concept that you'll mostly only need to understand
 Explained by example: When having this logger...
 
 ```js
-const logger = require('@livy/logger').createLogger('my-app-logger')
+import { createLogger } from '@livy/logger'
+const logger = createLogger('my-app-logger')
 ```
 
 ...then calling a log method like this...
@@ -212,18 +210,18 @@ However, for some components it's useful knowing the concept of log records to u
 Take the very basic [`LineFormatter`](packages/line-formatter/README.md#readme): It allows you to specify an `include` option which is nothing but an object telling the formatter which properties of the log record to include in the output:
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { ConsoleHandler } = require('@livy/console-handler')
-const { LineFormatter } = require('@livy/line-formatter')
+import { createLogger } from '@livy/logger'
+import { ConsoleHandler } from '@livy/console-handler'
+import { LineFormatter } from '@livy/line-formatter'
 
 const logger = createLogger('my-app-logger', {
   handlers: [
     new ConsoleHandler({
       formatter: new LineFormatter({
-        include: { datetime: false, context: false }
-      })
-    })
-  ]
+        include: { datetime: false, context: false },
+      }),
+    }),
+  ],
 })
 
 logger.debug('Hello World!')
@@ -239,7 +237,7 @@ Because handlers usually don't interact with each other, bubbling prevention is 
 Since handlers operate as a stack (as explained in the [handlers](#handlers) section), the concept of bubbling allows for easy temporary overriding of a logger's behavior. You may, for example, make a `logger` ignore all its configured handlers and only log to the terminal by doing this:
 
 ```js
-const { ConsoleHandler } = require('@livy/console-handler')
+import { ConsoleHandler } from '@livy/console-handler'
 
 logger.handlers.add(new ConsoleHandler({ bubble: false }))
 ```
@@ -257,11 +255,11 @@ Mixed mode therefore certainly is a suboptimal way to run Livy and you may want 
 You can create a sync mode logger by setting the factory's `mode` option to `"sync"`:
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { SlackWebhookHandler } = require('@livy/slack-webhook-handler')
+import { createLogger } from '@livy/logger'
+import { SlackWebhookHandler } from '@livy/slack-webhook-handler'
 
 const logger = createLogger('my-app-logger', {
-  mode: 'sync'
+  mode: 'sync',
 })
 
 // This will throw an error:
@@ -277,10 +275,10 @@ Therefore, sync mode is recommended if you have no need for exclusively asynchro
 You can create a fully async mode logger by setting the factory's `mode` option to `"async"`:
 
 ```js
-const { createLogger } = require('@livy/logger')
+import { createLogger } from '@livy/logger'
 
 const logger = createLogger('my-app-logger', {
-  mode: 'async'
+  mode: 'async',
 })
 ```
 
@@ -401,7 +399,6 @@ When contributing code, please consider the following things:
 ## To Do
 
 - Find a good alternative for [Luxon](https://moment.github.io/luxon/) to support timezone-related record timestamps. Luxon is great, but it's pretty heavyweight for a core dependency just doing date handling in a library that is potentially run in the browser.
-- Native Node.js ES module support is not ready yet. While there are compiled `.mjs` files, this will only work once all dependencies (and first and foremost Luxon as the only core dependency) support them. There's also some minor tweaking to do to get OS-specific EOL characters to function correctly which might require support for [top-level await](https://github.com/tc39/proposal-top-level-await#readme) in Node.js.
 
 ## Credit
 
