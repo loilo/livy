@@ -34,7 +34,8 @@ export namespace Mixin {
     U extends Class.MakeConstructable<T>,
     V extends any[],
   > {
-    (Base: T, ...additionalArguments: V): U
+    // eslint-disable-next-line unicorn/prevent-abbreviations
+    (Base: T, ...additionalArgs: V): U
   }
 
   /**
@@ -42,7 +43,8 @@ export namespace Mixin {
    * (which must not be conflicting with T) and returns the intersection of T and U
    */
   export interface Wrapper<T extends Class.Constructable, V extends any[]> {
-    <U extends NoConflictClass<T>>(Base: U, ...additionalArguments: V): U & T
+    // eslint-disable-next-line unicorn/prevent-abbreviations
+    <U extends NoConflictClass<T>>(Base: U, ...additionalArgs: V): U & T
   }
 }
 

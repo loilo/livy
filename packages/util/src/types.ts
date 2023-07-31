@@ -20,7 +20,8 @@ export namespace Class {
    * - U represents the arguments passed to the class constructor
    */
   export type Constructable<
-    T extends object = object,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    T extends {} = {},
     U extends any[] = any[],
   > = new (...args: U) => T
 
@@ -29,18 +30,20 @@ export namespace Class {
    * - T represents objects created by the class
    */
   // eslint-disable-next-line @typescript-eslint/ban-types
-  export type Abstract<T extends object = object> = Function & { prototype: T }
+  export type Abstract<T extends {} = {}> = Function & { prototype: T }
 
   /**
    * Any class, may be constructable or abstract
    * - T represents objects created by the class
    */
-  export type Any<T extends object = object> = Abstract<T> | Constructable<T>
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  export type Any<T extends {} = {}> = Abstract<T> | Constructable<T>
 
   /**
    * Get the arguments list of a class constructor as a tuple
    */
-  export type ConstructorArguments<T> = T extends Constructable<any, infer U>
+  // eslint-disable-next-line unicorn/prevent-abbreviations
+  export type ConstructorArgs<T> = T extends Constructable<any, infer U>
     ? U
     : never
 
