@@ -60,7 +60,7 @@ The following options are available:
 
 **Type:** [`LogLevel`](../contracts/README.md#loglevel)
 
-**Default:** `'debug'`
+**Default:** `'emergency'`
 
 **Description:** The maximum activation level for the wrapped handler
 
