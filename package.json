@@ -9,6 +9,7 @@
     "lint:source": "lerna run lint:source",
     "lint:readme": "lerna run lint:readme",
     "test:source": "lerna run test",
+    "pretest": "run-s build",
     "test": "run-s lint:source lint:readme test:source",
     "build": "lerna run build",
     "prepack": "lerna exec --parallel -- resolve-markdown-links",
