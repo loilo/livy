@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler acts as a black hole. Any record it 
 ## Basic Example
 
 ```js
-const { NullHandler } = require('@livy/null-handler')
+import { NullHandler } from '@livy/null-handler'
 
 const handler = new NullHandler('error')
 ```

@@ -19,25 +19,30 @@ export namespace Class {
    * - T represents objects created by the class
    * - U represents the arguments passed to the class constructor
    */
-  export type Constructable<T extends {} = {}, U extends any[] = any[]> = new (
-    ...args: U
-  ) => T
+  export type Constructable<
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    T extends {} = {},
+    U extends any[] = any[],
+  > = new (...args: U) => T
 
   /**
    * An abstract (non-constructable) class
    * - T represents objects created by the class
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   export type Abstract<T extends {} = {}> = Function & { prototype: T }
 
   /**
    * Any class, may be constructable or abstract
    * - T represents objects created by the class
    */
+  // eslint-disable-next-line @typescript-eslint/ban-types
   export type Any<T extends {} = {}> = Abstract<T> | Constructable<T>
 
   /**
    * Get the arguments list of a class constructor as a tuple
    */
+  // eslint-disable-next-line unicorn/prevent-abbreviations
   export type ConstructorArgs<T> = T extends Constructable<any, infer U>
     ? U
     : never
@@ -106,7 +111,7 @@ type Except<ObjectType, KeysType extends keyof ObjectType> = Pick<
  */
 export type RequireAtLeastOne<
   ObjectType,
-  KeysType extends keyof ObjectType = keyof ObjectType
+  KeysType extends keyof ObjectType = keyof ObjectType,
 > = {
   // For each Key in KeysType make a mapped type
   [Key in KeysType]: Required<Pick<ObjectType, Key>> // …by picking that Key's type and making it required
@@ -119,7 +124,7 @@ export type RequireAtLeastOne<
  */
 export type SetRequired<
   BaseType,
-  Keys extends keyof BaseType = keyof BaseType
+  Keys extends keyof BaseType = keyof BaseType,
 > =
   // Pick just the keys that are not required from the base type.
   Pick<BaseType, Exclude<keyof BaseType, Keys>> &

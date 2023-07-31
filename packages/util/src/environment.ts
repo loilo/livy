@@ -2,9 +2,9 @@
  * Check whether the current runtime is Node.js
  */
 export const isNodeJs =
-  typeof process !== 'undefined' &&
-  typeof process.release === 'object' &&
-  process.release.name === 'node'
+  globalThis.process !== undefined &&
+  typeof globalThis.process.release === 'object' &&
+  globalThis.process.release.name === 'node'
 
 /**
  * Check whether the current runtime is a browser (or JSDOM)
@@ -18,4 +18,4 @@ export const isBrowser =
 /**
  * The appropriate line ending character(s) to use
  */
-export const EOL = isNodeJs ? (require('os').EOL as string) : '\n'
+export const EOL = isNodeJs ? (await import('node:os')).EOL : '\n'

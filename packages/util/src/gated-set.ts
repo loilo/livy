@@ -1,5 +1,5 @@
-import { getObviousTypeName } from './helpers'
-import { ValidatableSet } from './validatable-set'
+import { getObviousTypeName } from './helpers.js'
+import { ValidatableSet } from './validatable-set.js'
 
 type GatedSetValidator<T> = (item: unknown) => asserts item is T
 
@@ -10,8 +10,8 @@ export class GatedSet<T> extends ValidatableSet<T> {
     if (typeof validator !== 'function') {
       throw new TypeError(
         `The validator must be a function, ${getObviousTypeName(
-          validator
-        )} given`
+          validator,
+        )} given`,
       )
     }
 

@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler writes log records to a [Node.js str
 ## Basic Example
 
 ```js
-const { StreamHandler } = require('@livy/stream-handler')
+import { StreamHandler } from '@livy/stream-handler'
 
 const handler = new StreamHandler('wss://example.com/logs')
 ```

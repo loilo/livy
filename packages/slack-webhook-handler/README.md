@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler sends log records to [Slack](https:/
 ## Basic Example
 
 ```js
-const { SlackWebHookHandler } = require('@livy/slack-webhook-handler')
+import { SlackWebHookHandler } from '@livy/slack-webhook-handler'
 
 const handler = new SlackWebHookHandler('https://example.com/logs')
 ```

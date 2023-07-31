@@ -1,4 +1,7 @@
-const { HtmlOnelineFormatter } = require('../src/html-oneline-formatter')
+import { describe, expect, it } from 'vitest'
+import { HtmlOnelineFormatter } from '../src/html-oneline-formatter'
+
+const { record } = livyTestGlobals
 
 describe('@livy/html-oneline-formatter', () => {
   it('should include all parts except channel by default', () => {

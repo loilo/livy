@@ -1,6 +1,9 @@
-const { AbstractLogger } = require('../src/abstract-logger')
-const { AsyncLogger } = require('../src/async-logger')
-const { DateTime } = require('luxon')
+import { afterEach, describe, expect, it } from 'vitest'
+import { DateTime } from 'luxon'
+import { AbstractLogger } from '../src/abstract-logger'
+import { AsyncLogger } from '../src/async-logger'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/logger/lib/async-logger', () => {
   afterEach(() => {
@@ -134,7 +137,9 @@ describe('@livy/logger/lib/async-logger', () => {
   })
 
   it('should close appropriate handlers on logger close', () => {
-    const nonClosableHandler = new MockHandler({ closable: false })
+    const nonClosableHandler = new MockHandler({
+      closable: false
+    })
     const closableHandler = new MockHandler({ closable: true })
 
     const logger = new AsyncLogger('logs', {

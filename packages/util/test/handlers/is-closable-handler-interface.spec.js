@@ -1,6 +1,5 @@
-const {
-  isClosableHandlerInterface
-} = require('../../src/handlers/is-closable-handler-interface')
+import { describe, expect, it } from 'vitest'
+import { isClosableHandlerInterface } from '../../src/handlers/is-closable-handler-interface'
 
 describe('@livy/util/lib/handlers/is-closable-handler-interface', () => {
   it('should recognize closable handlers', () => {

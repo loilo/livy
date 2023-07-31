@@ -1,5 +1,6 @@
 {
   "name": "@livy/contracts",
+  "type": "module",
   "version": "1.1.2",
   "description": "Conceptual types and structures for the Livy logger",
   "keywords": [
@@ -16,7 +17,10 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/contracts#readme",
   "license": "MIT",
-  "main": "lib/index.js",
+  "exports": {
+    "types": "./lib/index.d.ts",
+    "default": "./lib/index.js"
+  },
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -29,14 +33,22 @@
   },
   "repository": "https://github.com/loilo/livy/tree/master/packages/contracts",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "del lib && tsc --declaration",
+    "lint:readme": "remark --quiet --no-stdout -u validate-links README.md",
+    "lint:source": "eslint \"src/**/*.ts\"",
+    "test": "echo 'No contracts tests to run'"
   },
   "bugs": {
     "url": "https://github.com/loilo/livy/issues"
   },
+  "dependencies": {
+    "@types/luxon": "^3.2.0",
+    "@types/node": "^18.11.18"
+  },
   "devDependencies": {
-    "@types/luxon": "^1.25.0",
-    "@types/node": "^14.11.2",
-    "typescript": "^4.0.3"
-  }
+    "typescript": "^5.1.0",
+    "@livy/bin": "file:../../bin",
+    "@livy/test-utils": "file:../../test-utils"
+  },
+  "gitHead": "bd96a3e4d1e5870873b0e0b9e538486aea6343a2"
 }

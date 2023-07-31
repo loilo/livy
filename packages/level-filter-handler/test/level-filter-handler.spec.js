@@ -1,4 +1,7 @@
-const { LevelFilterHandler } = require('../src/level-filter-handler')
+import { describe, expect, it, vi } from 'vitest'
+import { LevelFilterHandler } from '../src/level-filter-handler'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/level-filter-handler', () => {
   it('should pass all records with no min/max level configured', () => {
@@ -161,7 +164,7 @@ describe('@livy/level-filter-handler', () => {
   it('should reset processors on reset', () => {
     const processor = {
       process: x => x,
-      reset: jest.fn()
+      reset: vi.fn()
     }
 
     const handler = new LevelFilterHandler(new MockHandler())
@@ -187,8 +190,8 @@ describe('@livy/level-filter-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 
   it('should respect the "bubble" option (async)', async () => {
@@ -197,7 +200,7 @@ describe('@livy/level-filter-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
   })
 })

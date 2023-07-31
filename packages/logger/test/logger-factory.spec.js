@@ -1,7 +1,10 @@
-const { SyncLogger } = require('../src/sync-logger')
-const { AsyncLogger } = require('../src/async-logger')
-const { MixedLogger } = require('../src/mixed-logger')
-const { createLogger } = require('../src/logger-factory')
+import { describe, expect, it } from 'vitest'
+import { AsyncLogger } from '../src/async-logger'
+import { createLogger } from '../src/logger-factory'
+import { MixedLogger } from '../src/mixed-logger'
+import { SyncLogger } from '../src/sync-logger'
+
+const { MockHandler } = livyTestGlobals
 
 describe('@livy/logger/lib/logger-factory', () => {
   it('should create a (mixed) logger with just a name', () => {

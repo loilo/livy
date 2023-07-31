@@ -5,8 +5,8 @@ This [Livy](../../README.md#readme) formatter formats log records as single line
 ## Basic Example
 
 ```js
-const { FileHandler } = require('@livy/file-handler')
-const { LineFormatter } = require('@livy/line-formatter')
+import { FileHandler } from '@livy/file-handler'
+import { LineFormatter } from '@livy/line-formatter'
 
 const handler = new FileHandler('logs.txt', {
   formatter: new LineFormatter()

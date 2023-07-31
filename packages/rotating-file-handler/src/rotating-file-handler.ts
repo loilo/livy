@@ -1,18 +1,20 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import { isAbsolute, join, parse } from 'node:path'
+import type {
+  ClosableHandlerInterface,
+  FormatterInterface,
+  LogRecord,
+} from '@livy/contracts'
 import { FileHandler } from '@livy/file-handler'
-import { AbstractSyncFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { FormattableHandlerMixin } from '@livy/util/lib/handlers/formattable-handler-mixin'
-import { isAbsolute, join, parse } from 'path'
+import { AbstractSyncFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
+import { FormattableHandlerMixin } from '@livy/util/handlers/formattable-handler-mixin'
 import {
   DurationUnit,
   MaxAgeStrategy,
-  MaxAgeStrategyOptions
-} from './max-age-strategy'
-import { MaxSizeStrategy, MaxSizeStrategyOptions } from './max-size-strategy'
-import { RotationStrategyInterface } from './rotation-strategy'
+  MaxAgeStrategyOptions,
+} from './max-age-strategy.js'
+import { MaxSizeStrategy, MaxSizeStrategyOptions } from './max-size-strategy.js'
+import { RotationStrategyInterface } from './rotation-strategy.js'
 
 interface BaseRotatingFileHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
@@ -46,12 +48,12 @@ export class RotatingFileHandler
   public constructor(
     pathTemplate: string,
     {
-      maxFiles = Infinity,
+      maxFiles = Number.POSITIVE_INFINITY,
       strategy = 'max-age',
       threshold = 'day',
       formatter,
       ...options
-    }: Partial<RotatingFileHandlerOptions> = {}
+    }: Partial<RotatingFileHandlerOptions> = {},
   ) {
     super(options)
 
@@ -69,7 +71,7 @@ export class RotatingFileHandler
         this.rotationStrategyHandler = new MaxAgeStrategy(
           pathData.dir,
           pathData.base,
-          threshold as DurationUnit
+          threshold as DurationUnit,
         )
         break
 
@@ -77,7 +79,7 @@ export class RotatingFileHandler
         this.rotationStrategyHandler = new MaxSizeStrategy(
           pathData.dir,
           pathData.base,
-          threshold
+          threshold,
         )
         break
 
@@ -93,13 +95,13 @@ export class RotatingFileHandler
    * Update the file handler to use the current filename
    */
   private updateFileHandler() {
-    if (typeof this.fileHandler !== 'undefined') {
+    if (this.fileHandler !== undefined) {
       this.fileHandler.close()
     }
 
     this.fileHandler = new FileHandler(
       join(this.directory, this.rotationStrategyHandler.getCurrentFilename()),
-      { level: this.level, formatter: this.formatter }
+      { level: this.level, formatter: this.formatter },
     )
   }
 

@@ -1,13 +1,23 @@
-const got = require('got')
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import got, { __resetGot } from 'got'
 
-const { SlackWebhookHandler } = require('../src/slack-webhook-handler')
-const { SlackRecord } = require('../src/slack-record')
+import { SlackWebhookHandler } from '../src/slack-webhook-handler'
+import { SlackRecord } from '../src/slack-record'
+
+vi.mock(
+  'got',
+  livyTestGlobals.getMockedModule(
+    import('@livy/test-utils/mocks/modules/got.js'),
+  ),
+)
+
+const { record, TEST_CONSTANTS, MockFormatter } = livyTestGlobals
 
 const timestamp = Date.parse(TEST_CONSTANTS.DATE_ISO)
 
 describe('@livy/slack-webhook-handler', () => {
   afterEach(() => {
-    got.__reset()
+    __resetGot()
   })
 
   it('should send notifications with correct data and respect default level', async () => {
@@ -18,14 +28,14 @@ describe('@livy/slack-webhook-handler', () => {
       handler.handle(record('error', 'Test SlackWebhookHandler')),
 
       // This should be delivered
-      handler.handle(record('critical', 'Test SlackWebhookHandler'))
+      handler.handle(record('critical', 'Test SlackWebhookHandler')),
     ])
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         attachments: [
@@ -37,15 +47,15 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Level',
                 value: 'critical',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'Message'
-          }
-        ]
-      })
+            title: 'Message',
+          },
+        ],
+      }),
     })
   })
 
@@ -53,7 +63,7 @@ describe('@livy/slack-webhook-handler', () => {
     const handler = new SlackWebhookHandler('https://example.com', {
       username: 'User',
       channel: 'Channel',
-      iconEmoji: 'flashlight'
+      iconEmoji: 'flashlight',
     })
 
     await handler.handle(record('critical', 'Test SlackWebhookHandler'))
@@ -62,7 +72,7 @@ describe('@livy/slack-webhook-handler', () => {
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         username: 'User',
@@ -76,33 +86,33 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Level',
                 value: 'critical',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'Message'
-          }
+            title: 'Message',
+          },
         ],
-        icon_emoji: ':flashlight:'
-      })
+        icon_emoji: ':flashlight:',
+      }),
     })
   })
 
   it('should accept a URL as an emoji', async () => {
     const handler = new SlackWebhookHandler('https://example.com', {
-      iconEmoji: 'https://example.com/emoji.png'
+      iconEmoji: 'https://example.com/emoji.png',
     })
 
     expect(handler.slackRecord.getSlackData(record('info'))).toMatchObject({
-      icon_url: 'https://example.com/emoji.png'
+      icon_url: 'https://example.com/emoji.png',
     })
   })
 
   it('should reflect log level in colors', async () => {
     const webhookUrl = 'https://example.com'
     const handler = new SlackWebhookHandler(webhookUrl, {
-      level: 'debug'
+      level: 'debug',
     })
 
     await handler.handle(record('debug', 'Test SlackWebhookHandler'))
@@ -119,15 +129,15 @@ describe('@livy/slack-webhook-handler', () => {
       1,
       webhookUrl,
       expect.objectContaining({
-        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_DEFAULT}"`)
-      })
+        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_DEFAULT}"`),
+      }),
     )
 
     const goodParams = [
       webhookUrl,
       expect.objectContaining({
-        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_GOOD}"`)
-      })
+        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_GOOD}"`),
+      }),
     ]
     expect(got).toHaveBeenNthCalledWith(2, ...goodParams)
     expect(got).toHaveBeenNthCalledWith(3, ...goodParams)
@@ -136,15 +146,15 @@ describe('@livy/slack-webhook-handler', () => {
       4,
       webhookUrl,
       expect.objectContaining({
-        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_WARNING}"`)
-      })
+        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_WARNING}"`),
+      }),
     )
 
     const dangerParams = [
       webhookUrl,
       expect.objectContaining({
-        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_DANGER}"`)
-      })
+        body: expect.stringContaining(`"color":"${SlackRecord.COLOR_DANGER}"`),
+      }),
     ]
     expect(got).toHaveBeenNthCalledWith(5, ...dangerParams)
     expect(got).toHaveBeenNthCalledWith(6, ...dangerParams)
@@ -159,7 +169,7 @@ describe('@livy/slack-webhook-handler', () => {
 
   it('should provide access to the slack record', () => {
     expect(
-      new SlackWebhookHandler('https://example.com').slackRecord
+      new SlackWebhookHandler('https://example.com').slackRecord,
     ).toBeInstanceOf(SlackRecord)
   })
 
@@ -167,7 +177,7 @@ describe('@livy/slack-webhook-handler', () => {
     const handler = new SlackWebhookHandler('https://example.com')
 
     expect(handler.defaultFormatter).toEqual(
-      handler.slackRecord.defaultFormatter
+      handler.slackRecord.defaultFormatter,
     )
   })
 
@@ -181,27 +191,27 @@ describe('@livy/slack-webhook-handler', () => {
 
     expect(formatter.format).toHaveBeenCalledTimes(1)
     expect(formatter.format).toHaveBeenLastCalledWith(
-      record('critical', 'Test SlackWebhookHandler')
+      record('critical', 'Test SlackWebhookHandler'),
     )
   })
 
   it('should respect the "includeContextAndExtra" option', async () => {
     const handler = new SlackWebhookHandler('https://example.com', {
-      includeContextAndExtra: true
+      includeContextAndExtra: true,
     })
 
     await handler.handle(
       record('critical', 'Test SlackWebhookHandler', {
         context: { context: 1 },
-        extra: { extra: 2 }
-      })
+        extra: { extra: 2 },
+      }),
     )
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         attachments: [
@@ -213,45 +223,45 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Level',
                 value: 'critical',
-                short: false
+                short: false,
               },
               {
                 title: 'Context',
                 value: '1',
-                short: false
+                short: false,
               },
               {
                 title: 'Extra',
                 value: '2',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'Message'
-          }
-        ]
-      })
+            title: 'Message',
+          },
+        ],
+      }),
     })
   })
 
   it('should respect the "useShortAttachment" option', async () => {
     const handler = new SlackWebhookHandler('https://example.com', {
       includeContextAndExtra: true,
-      useShortAttachment: true
+      useShortAttachment: true,
     })
 
     await handler.handle(
       record('critical', 'Test SlackWebhookHandler', {
-        context: { context: 1 }
-      })
+        context: { context: 1 },
+      }),
     )
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         attachments: [
@@ -263,22 +273,22 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Context',
                 value: '```' + JSON.stringify({ context: 1 }, null, 2) + '```',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'critical'
-          }
-        ]
-      })
+            title: 'critical',
+          },
+        ],
+      }),
     })
   })
 
   it('should respect the "formatter" option', async () => {
     const formatter = new MockFormatter()
     const nonBubblingHandler = new SlackWebhookHandler('https://example.com', {
-      formatter
+      formatter,
     })
 
     expect(nonBubblingHandler.formatter).toBe(formatter)
@@ -286,24 +296,24 @@ describe('@livy/slack-webhook-handler', () => {
 
   it('should respect the "useAttachment" option', async () => {
     const handler = new SlackWebhookHandler('https://example.com', {
-      useAttachment: false
+      useAttachment: false,
     })
 
     await handler.handle(
       record('critical', 'Test SlackWebhookHandler', {
-        context: { context: 1 }
-      })
+        context: { context: 1 },
+      }),
     )
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        text: `${TEST_CONSTANTS.DATE_HUMAN} CRITICAL Test SlackWebhookHandler`
-      })
+        text: `${TEST_CONSTANTS.DATE_HUMAN} CRITICAL Test SlackWebhookHandler`,
+      }),
     })
   })
 
@@ -312,22 +322,22 @@ describe('@livy/slack-webhook-handler', () => {
       includeContextAndExtra: true,
 
       // Should tolerate non-existent fields
-      excludedFields: ['context.foo.bar', 'nonexistent']
+      excludedFields: ['context.foo.bar', 'nonexistent'],
     })
 
     await handler.handle(
       record('critical', 'Test SlackWebhookHandler', {
         context: {
-          foo: { bar: 1, baz: 2 }
-        }
-      })
+          foo: { bar: 1, baz: 2 },
+        },
+      }),
     )
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         attachments: [
@@ -339,30 +349,30 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Level',
                 value: 'critical',
-                short: false
+                short: false,
               },
               {
                 title: 'Foo',
                 value: '```' + JSON.stringify({ baz: 2 }, null, 2) + '```',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'Message'
-          }
-        ]
-      })
+            title: 'Message',
+          },
+        ],
+      }),
     })
   })
 
   it('should respect the "level" option', async () => {
     const handler = new SlackWebhookHandler('https://example.com', {
-      level: 'notice'
+      level: 'notice',
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'Test SlackWebhookHandler'))
     await handler.handle(record('notice', 'Test SlackWebhookHandler'))
 
@@ -370,7 +380,7 @@ describe('@livy/slack-webhook-handler', () => {
     expect(got).toHaveBeenLastCalledWith('https://example.com', {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         attachments: [
@@ -382,25 +392,25 @@ describe('@livy/slack-webhook-handler', () => {
               {
                 title: 'Level',
                 value: 'notice',
-                short: false
-              }
+                short: false,
+              },
             ],
             mrkdwn_in: ['fields'],
             ts: Math.floor(timestamp / 1000),
-            title: 'Message'
-          }
-        ]
-      })
+            title: 'Message',
+          },
+        ],
+      }),
     })
   })
 
   it('should respect the "bubble" option', async () => {
     const bubblingHandler = new SlackWebhookHandler('https://example.com')
     const nonBubblingHandler = new SlackWebhookHandler('https://example.com', {
-      bubble: false
+      bubble: false,
     })
 
-    expect(await bubblingHandler.handle(record('critical'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('critical'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('critical'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('critical'))).toBe(true)
   })
 })

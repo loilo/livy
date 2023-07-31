@@ -1,6 +1,5 @@
-const {
-  FormattableHandlerMixin
-} = require('../../src/handlers/formattable-handler-mixin')
+import { describe, expect, it } from 'vitest'
+import { FormattableHandlerMixin } from '../../src/handlers/formattable-handler-mixin'
 
 class Handler extends FormattableHandlerMixin(class {}) {}
 
@@ -45,7 +44,9 @@ describe('@livy/util/lib/handlers/formattable-handler-mixin', () => {
     const handler = new Handler()
 
     const defaultFormatter = handler.defaultFormatter
-    handler.defaultFormatter = {}
+    expect(() => {
+      handler.defaultFormatter = {}
+    }).toThrow()
 
     expect(handler.defaultFormatter).toEqual(defaultFormatter)
     expect(handler.formatter).toEqual(defaultFormatter)

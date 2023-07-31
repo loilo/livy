@@ -1,16 +1,19 @@
-const { RestrainHandler } = require('../src/restrain-handler')
+import { describe, expect, it, vi } from 'vitest'
+import { RestrainHandler } from '../src/restrain-handler'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/restrain-handler', () => {
   it('should always handle records', () => {
     const handler = new RestrainHandler(new MockHandler())
-    expect(handler.isHandling('debug')).toBeTrue()
-    expect(handler.isHandling('info')).toBeTrue()
-    expect(handler.isHandling('notice')).toBeTrue()
-    expect(handler.isHandling('warning')).toBeTrue()
-    expect(handler.isHandling('error')).toBeTrue()
-    expect(handler.isHandling('critical')).toBeTrue()
-    expect(handler.isHandling('alert')).toBeTrue()
-    expect(handler.isHandling('emergency')).toBeTrue()
+    expect(handler.isHandling('debug')).toBe(true)
+    expect(handler.isHandling('info')).toBe(true)
+    expect(handler.isHandling('notice')).toBe(true)
+    expect(handler.isHandling('warning')).toBe(true)
+    expect(handler.isHandling('error')).toBe(true)
+    expect(handler.isHandling('critical')).toBe(true)
+    expect(handler.isHandling('alert')).toBe(true)
+    expect(handler.isHandling('emergency')).toBe(true)
   })
 
   it('should use "warning" as the default activation level', () => {
@@ -78,7 +81,7 @@ describe('@livy/restrain-handler', () => {
   it('should reset processors on reset', () => {
     const processor = {
       process: x => x,
-      reset: jest.fn()
+      reset: vi.fn()
     }
 
     const handler = new RestrainHandler(new MockHandler())
@@ -240,7 +243,7 @@ describe('@livy/restrain-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

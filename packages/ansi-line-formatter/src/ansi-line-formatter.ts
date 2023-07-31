@@ -1,10 +1,11 @@
-import { LogLevel } from '@livy/contracts/lib/log-level'
+import type { LogLevel } from '@livy/contracts'
 import { LineFormatter, LineFormatterOptions } from '@livy/line-formatter'
-import { isEmpty } from '@livy/util/lib/helpers'
-import chalk from 'chalk'
+import { isEmpty } from '@livy/util/helpers'
+import chalk, { supportsColor } from 'chalk'
 import { DateTime } from 'luxon'
 
-const emphasize = require('emphasize')
+import { emphasize } from 'emphasize'
+import chalkTemplate from 'chalk-template'
 
 export interface AnsiLineFormatterOptions extends LineFormatterOptions {
   /**
@@ -88,12 +89,12 @@ export class AnsiLineFormatter extends LineFormatter {
           color = 'blue.dim'
           break
 
-        // istanbul ignore next: This should never happen, but is included for type safety
+        /* c8 ignore next 2: This should never happen, but is included for type safety */
         default:
           return formatted
       }
 
-      return chalk`{${color} ${formatted}}`
+      return chalkTemplate`{${color} ${formatted}}`
     }
   }
 
@@ -118,8 +119,12 @@ export class AnsiLineFormatter extends LineFormatter {
    * Check whether the formatter should use ANSI codes to decorate log records
    */
   public shouldDecorate() {
-    return !!(typeof this.decorated !== 'undefined'
-      ? this.decorated
-      : chalk.supportsColor)
+    return Boolean(
+      this.decorated !== undefined
+        ? this.decorated
+        : supportsColor
+        ? supportsColor.hasBasic
+        : false,
+    )
   }
 }

@@ -1,9 +1,8 @@
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
+import type { FormatterInterface, LogRecord } from '@livy/contracts'
+import { AbstractFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
 import got from 'got'
-import { SlackRecord } from './slack-record'
+import { SlackRecord } from './slack-record.js'
 
 export interface SlackWebHookHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
@@ -82,8 +81,8 @@ export class SlackWebhookHandler extends AbstractFormattingProcessingHandler {
       level = 'critical',
       useAttachment = true,
       username,
-      useShortAttachment = false
-    }: Partial<SlackWebHookHandlerOptions> = {}
+      useShortAttachment = false,
+    }: Partial<SlackWebHookHandlerOptions> = {},
   ) {
     super({ level, bubble })
 
@@ -98,7 +97,7 @@ export class SlackWebhookHandler extends AbstractFormattingProcessingHandler {
       useShortAttachment,
       includeContextAndExtra,
       excludedFields,
-      formatter: this.explicitFormatter
+      formatter: this.explicitFormatter,
     })
   }
 
@@ -126,9 +125,9 @@ export class SlackWebhookHandler extends AbstractFormattingProcessingHandler {
     await got(this._webhookUrl, {
       method: 'post',
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
       },
-      body: postString
+      body: postString,
     })
   }
 

@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler writes log records to a browser cons
 ## Basic Example
 
 ```js
-const { BrowserConsoleHandler } = require('@livy/browser-console-handler')
+import { BrowserConsoleHandler } from '@livy/browser-console-handler'
 
 const handler = new BrowserConsoleHandler()
 ```

@@ -1,4 +1,4 @@
-// istanbul ignore file: Themes are a source of truth, not subject to testing
+/* c8 ignore start: Themes are a source of truth, not subject to testing */
 
 /**
  * Theme for HtmlOnelineFormatter
@@ -20,5 +20,5 @@ export const ThemeLight = {
   data_key: '#11658F',
   data_value_string: '#ce9c00',
   data_value_number: '#ff5c55',
-  data_value_literal: '#2fae57'
+  data_value_literal: '#2fae57',
 } as const

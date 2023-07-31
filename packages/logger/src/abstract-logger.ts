@@ -1,20 +1,21 @@
-import {
+import type {
   HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LogLevel, logLevels, SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ProcessorInterfaceOrFunction } from '@livy/contracts/lib/processor-interface'
-import * as environment from '@livy/util/lib/environment'
-import { isClosableHandlerInterface } from '@livy/util/lib/handlers/is-closable-handler-interface'
-import { getObviousTypeName, isPrimitive } from '@livy/util/lib/helpers'
-import { isResettableInterface } from '@livy/util/lib/is-resettable-interface'
-import { AnyObject } from '@livy/util/lib/types'
-import { ValidatableSet } from '@livy/util/lib/validatable-set'
+  LogLevel,
+  LogRecord,
+  ProcessorInterfaceOrFunction,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { logLevels, SeverityMap } from '@livy/contracts'
+import * as environment from '@livy/util/environment'
+import { isClosableHandlerInterface } from '@livy/util/handlers/is-closable-handler-interface'
+import { getObviousTypeName, isPrimitive } from '@livy/util/helpers'
+import { isResettableInterface } from '@livy/util/is-resettable-interface'
+import { AnyObject } from '@livy/util/types'
+import { ValidatableSet } from '@livy/util/validatable-set'
 import * as luxon from 'luxon'
 
 export interface LoggerOptions<
-  HandlerType extends HandlerInterface | SyncHandlerInterface
+  HandlerType extends HandlerInterface | SyncHandlerInterface,
 > {
   /**
    * Whether to automatically run the logger's `close` method when the Node.js process exits / the browser page closes
@@ -42,7 +43,7 @@ export interface LoggerOptions<
  */
 export abstract class AbstractLogger<
   HandlerType extends HandlerInterface | SyncHandlerInterface,
-  HandlerResultType
+  HandlerResultType,
 > {
   /**
    * A list of currently unclosed loggers which should be closed on exit
@@ -53,10 +54,11 @@ export abstract class AbstractLogger<
    * The handler attached to the program exit event
    */
   private static exitHandler() {
-    // istanbul ignore next: Unloading is hard to test
+    /* c8 ignore start: Unloading is hard to test */
     for (const logger of AbstractLogger.openLoggers) {
       logger.close()
     }
+    /* c8 ignore stop */
   }
 
   /**
@@ -64,7 +66,7 @@ export abstract class AbstractLogger<
    * This is mostly useful for unit testing
    */
   public static clearExitHandlers() {
-    // istanbul ignore next: Unloading is hard to test
+    /* c8 ignore start: Unloading is hard to test */
     if (AbstractLogger.openLoggers.length > 0) {
       AbstractLogger.openLoggers.splice(0)
 
@@ -74,6 +76,7 @@ export abstract class AbstractLogger<
         self.removeEventListener('unload', AbstractLogger.exitHandler)
       }
     }
+    /* c8 ignore stop */
   }
 
   /**
@@ -97,8 +100,10 @@ export abstract class AbstractLogger<
       autoClose = true,
       handlers = [],
       processors = [],
-      timezone = luxon.Settings.defaultZoneName
-    }: Partial<LoggerOptions<HandlerType>> = {}
+      timezone = typeof luxon.Settings.defaultZone === 'string'
+        ? luxon.Settings.defaultZone
+        : luxon.Settings.defaultZone.name,
+    }: Partial<LoggerOptions<HandlerType>> = {},
   ) {
     this._handlers = new ValidatableSet(handlers)
     this._processors = new Set(processors)
@@ -122,7 +127,7 @@ export abstract class AbstractLogger<
    * @param name The new instance's logger name
    */
   public abstract withName(
-    name: string
+    name: string,
   ): AbstractLogger<HandlerType, HandlerResultType>
 
   /**
@@ -163,12 +168,13 @@ export abstract class AbstractLogger<
    */
   private closeOnExit() {
     if (AbstractLogger.openLoggers.length === 0) {
-      // istanbul ignore else: Simulating browser unloading is too hard to test
+      /* c8 ignore start: Simulating browser unloading is too hard to test */
       if (environment.isNodeJs) {
         process.on('exit', AbstractLogger.exitHandler)
       } else if (environment.isBrowser) {
         self.addEventListener('unload', AbstractLogger.exitHandler)
       }
+      /* c8 ignore stop */
     }
 
     AbstractLogger.openLoggers.push(this)
@@ -219,7 +225,7 @@ export abstract class AbstractLogger<
    */
   protected abstract runHandlers(
     record: LogRecord,
-    offset?: number
+    offset?: number,
   ): HandlerResultType
 
   /**
@@ -228,13 +234,13 @@ export abstract class AbstractLogger<
   public log(level: LogLevel, message: string, context: AnyObject = {}) {
     if (!logLevels.includes(level)) {
       throw new Error(
-        `Invalid log level "${level}", use one of: ${logLevels.join(', ')}`
+        `Invalid log level "${level}", use one of: ${logLevels.join(', ')}`,
       )
     }
 
     if (!isPrimitive(message)) {
       throw new Error(
-        `Log message must be a primitive, ${getObviousTypeName(message)} given`
+        `Log message must be a primitive, ${getObviousTypeName(message)} given`,
       )
     }
 
@@ -245,7 +251,7 @@ export abstract class AbstractLogger<
       context,
       extra: {},
       datetime: luxon.DateTime.local().setZone(this._timezone),
-      channel: this._name
+      channel: this._name,
     }
 
     // Apply global processors

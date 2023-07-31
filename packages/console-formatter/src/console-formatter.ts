@@ -1,9 +1,10 @@
 import { AnsiLineFormatter } from '@livy/ansi-line-formatter'
-import { EOL } from '@livy/util/lib/environment'
-import { isEmpty } from '@livy/util/lib/helpers'
+import { EOL } from '@livy/util/environment'
+import { isEmpty } from '@livy/util/helpers'
 import chalk from 'chalk'
-import { safeDump } from 'js-yaml'
-const emphasize = require('emphasize')
+import { dump } from 'js-yaml'
+import { emphasize } from 'emphasize'
+import chalkTemplate from 'chalk-template'
 
 /**
  * Formats log records with highlighting for terminals in a human-readable way
@@ -20,7 +21,7 @@ export class ConsoleFormatter extends AnsiLineFormatter {
       return ''
     }
 
-    return chalk`${EOL}  {dim Context:}${EOL}${formattedContext}`
+    return chalkTemplate`${EOL}  {dim Context:}${EOL}${formattedContext}`
   }
 
   /**
@@ -34,7 +35,7 @@ export class ConsoleFormatter extends AnsiLineFormatter {
       return ''
     }
 
-    return chalk`${EOL}  {dim Extra:}${EOL}${formattedExtra}`
+    return chalkTemplate`${EOL}  {dim Extra:}${EOL}${formattedExtra}`
   }
 
   /**
@@ -49,7 +50,7 @@ export class ConsoleFormatter extends AnsiLineFormatter {
     container: any,
     value: any,
     replacement: string,
-    cache = new Map()
+    cache = new Map(),
   ): any {
     if (container === value) {
       return replacement
@@ -61,7 +62,7 @@ export class ConsoleFormatter extends AnsiLineFormatter {
 
     if (Array.isArray(container)) {
       const result = container.map(entry =>
-        this.cloneAndReplace(entry, value, replacement, cache)
+        this.cloneAndReplace(entry, value, replacement, cache),
       )
       cache.set(container, result)
       return result
@@ -85,7 +86,7 @@ export class ConsoleFormatter extends AnsiLineFormatter {
    */
   protected formatData(object: any, ignoreEmpty: boolean) {
     if (isEmpty(object)) {
-      // istanbul ignore next: This is not used throughout the library, but can be useful when extending this formatter
+      /* c8 ignore next: This is not used throughout the library, but can be useful when extending this formatter */
       return super.formatData(object, ignoreEmpty)
     } else {
       // We need to replace `undefined` and `null` values because they are
@@ -100,8 +101,8 @@ export class ConsoleFormatter extends AnsiLineFormatter {
       // prevents proper replacement in the end)
       const generateRandomString = () =>
         'x' +
-        Math.random().toString(36).substring(2, 15) +
-        Math.random().toString(36).substring(2, 15)
+        Math.random().toString(36).slice(2, 15) +
+        Math.random().toString(36).slice(2, 15)
 
       const undefinedReplacement = generateRandomString()
       const nullReplacement = generateRandomString()
@@ -112,18 +113,18 @@ export class ConsoleFormatter extends AnsiLineFormatter {
       sanitizedObject = this.cloneAndReplace(
         sanitizedObject,
         undefined,
-        undefinedReplacement
+        undefinedReplacement,
       )
       sanitizedObject = this.cloneAndReplace(
         sanitizedObject,
         null,
-        nullReplacement
+        nullReplacement,
       )
 
-      let serializedYaml = safeDump(sanitizedObject, {
+      let serializedYaml = dump(sanitizedObject, {
         skipInvalid: true,
         indent: 2,
-        flowLevel: 2
+        flowLevel: 2,
       })
 
       // Empty object string may result from skipped invalid data like JS functions
@@ -137,8 +138,11 @@ export class ConsoleFormatter extends AnsiLineFormatter {
 
       // Replace the generated random strings with a dimmed "undefined"/"null"
       serializedYaml = serializedYaml
-        .replace(new RegExp(undefinedReplacement, 'g'), chalk.gray('undefined'))
-        .replace(new RegExp(nullReplacement, 'g'), chalk.gray('null'))
+        .replaceAll(
+          new RegExp(undefinedReplacement, 'g'),
+          chalk.gray('undefined'),
+        )
+        .replaceAll(new RegExp(nullReplacement, 'g'), chalk.gray('null'))
 
       return this.indent(serializedYaml)
     }
@@ -152,6 +156,6 @@ export class ConsoleFormatter extends AnsiLineFormatter {
    * @return string
    */
   protected indent(text: string, pad = '  ') {
-    return text.replace(/^/gm, pad)
+    return text.replaceAll(/^/gm, pad)
   }
 }

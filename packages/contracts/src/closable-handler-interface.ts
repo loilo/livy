@@ -1,4 +1,4 @@
-import { HandlerInterface } from './handler-interface'
+import { HandlerInterface } from './handler-interface.js'
 
 /**
  * Indicates that the handler may want to perform cleanup tasks

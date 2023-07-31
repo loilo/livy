@@ -1,5 +1,5 @@
-import { SyncHandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { AbstractBatchHandler } from '@livy/util/lib/handlers/abstract-batch-handler'
+import type { SyncHandlerInterface } from '@livy/contracts'
+import { AbstractBatchHandler } from '@livy/util/handlers/abstract-batch-handler'
 
 /**
  * No-op

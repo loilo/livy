@@ -11,8 +11,8 @@ This [Livy](../../README.md#readme) processor injects the running machine's host
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { HostnameProcessor } = require('@livy/hostname-processor')
+import { createLogger } from '@livy/logger'
+import { HostnameProcessor } from '@livy/hostname-processor'
 
 const logger = createLogger('app-logger', {
   processors: [HostnameProcessor]

@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler writes log records to the terminal.
 ## Basic Example
 
 ```js
-const { ConsoleHandler } = require('@livy/console-handler')
+import { ConsoleHandler } from '@livy/console-handler'
 
 const handler = new ConsoleHandler()
 ```

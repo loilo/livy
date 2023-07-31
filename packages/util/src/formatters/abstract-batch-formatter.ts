@@ -1,6 +1,5 @@
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { EOL } from '../environment'
+import type { FormatterInterface, LogRecord } from '@livy/contracts'
+import { EOL } from '../environment.js'
 
 /**
  * Implements the `formatBatch` part of `FormatterInterface`

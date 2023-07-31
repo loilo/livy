@@ -1,5 +1,6 @@
 {
   "name": "@livy/logger",
+  "type": "module",
   "version": "1.0.6",
   "description": "A Monolog-inspired logging library for Node.js",
   "keywords": [
@@ -14,9 +15,11 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/logger#readme",
   "license": "MIT",
-  "main": "lib/logger-factory.js",
+  "exports": {
+    "types": "./lib/logger-factory.d.ts",
+    "default": "./lib/logger-factory.js"
+  },
   "sideEffects": false,
-  "module": "lib/logger-factory.mjs",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -29,7 +32,10 @@
   },
   "repository": "https://github.com/loilo/livy/tree/master/packages/logger",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "del lib && tsc --declaration",
+    "lint:readme": "remark --quiet --no-stdout -u validate-links README.md",
+    "lint:source": "eslint \"src/**/*.ts\"",
+    "test": "vitest run --coverage"
   },
   "bugs": {
     "url": "https://github.com/loilo/livy/issues"
@@ -37,11 +43,14 @@
   "dependencies": {
     "@livy/contracts": "^1.1.2",
     "@livy/util": "^1.0.6",
-    "luxon": "^1.25.0"
+    "@types/luxon": "^3.2.0",
+    "@types/node": "^18.11.18",
+    "luxon": "^3.2.0"
   },
   "devDependencies": {
-    "@types/luxon": "^1.25.0",
-    "@types/node": "^14.11.2",
-    "typescript": "^4.0.3"
-  }
+    "typescript": "^5.1.0",
+    "@livy/bin": "file:../../bin",
+    "@livy/test-utils": "file:../../test-utils"
+  },
+  "gitHead": "bd96a3e4d1e5870873b0e0b9e538486aea6343a2"
 }

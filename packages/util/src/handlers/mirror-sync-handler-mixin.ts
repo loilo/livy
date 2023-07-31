@@ -1,7 +1,6 @@
-import { SyncHandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { Mixin } from '../mixin'
-import { isSyncHandlerInterface } from './is-sync-handler-interface'
+import type { LogRecord, SyncHandlerInterface } from '@livy/contracts'
+import { Mixin } from '../mixin.js'
+import { isSyncHandlerInterface } from './is-sync-handler-interface.js'
 
 /**
  * Mixin which implements the `SyncHandlerInterface` by making the
@@ -22,7 +21,7 @@ export const MirrorSyncHandlerMixin = Mixin(BaseClass => {
      */
     public handle(record: LogRecord) {
       return Promise.resolve(
-        (this as unknown as SyncHandlerInterface).handleSync(record)
+        (this as unknown as SyncHandlerInterface).handleSync(record),
       )
     }
 
@@ -31,7 +30,7 @@ export const MirrorSyncHandlerMixin = Mixin(BaseClass => {
      */
     public handleBatch(records: LogRecord[]) {
       return Promise.resolve(
-        (this as unknown as SyncHandlerInterface).handleBatchSync(records)
+        (this as unknown as SyncHandlerInterface).handleBatchSync(records),
       )
     }
   }

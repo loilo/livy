@@ -1,9 +1,8 @@
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { EOL } from '@livy/util/lib/environment'
-import { AbstractFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import * as stream from 'stream'
+import type { FormatterInterface, LogRecord } from '@livy/contracts'
+import { EOL } from '@livy/util/environment'
+import { AbstractFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
+import * as stream from 'node:stream'
 
 export interface StreamHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
@@ -21,7 +20,7 @@ export class StreamHandler extends AbstractFormattingProcessingHandler {
 
   public constructor(
     stream: stream.Writable,
-    { formatter, ...options }: Partial<StreamHandlerOptions> = {}
+    { formatter, ...options }: Partial<StreamHandlerOptions> = {},
   ) {
     super(options)
 
@@ -35,7 +34,7 @@ export class StreamHandler extends AbstractFormattingProcessingHandler {
   protected write(_record: LogRecord, formatted: string) {
     return new Promise<void>((resolve, reject) => {
       this.stream.write(`${formatted}${EOL}`, error =>
-        error ? reject(error) : resolve()
+        error ? reject(error) : resolve(),
       )
     })
   }

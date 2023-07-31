@@ -1,4 +1,7 @@
-const helpers = require('../src/helpers')
+import { afterEach, describe, expect, test } from 'vitest'
+import * as helpers from '../src/helpers'
+
+const { date } = livyTestGlobals
 
 describe('@livy/util/lib/helpers', () => {
   afterEach(() => {
@@ -38,18 +41,18 @@ describe('@livy/util/lib/helpers', () => {
   })
 
   test('isEmpty', () => {
-    expect(helpers.isEmpty(undefined)).toBeTrue()
-    expect(helpers.isEmpty(null)).toBeTrue()
-    expect(helpers.isEmpty('')).toBeTrue()
-    expect(helpers.isEmpty([])).toBeTrue()
-    expect(helpers.isEmpty({})).toBeTrue()
+    expect(helpers.isEmpty(undefined)).toBe(true)
+    expect(helpers.isEmpty(null)).toBe(true)
+    expect(helpers.isEmpty('')).toBe(true)
+    expect(helpers.isEmpty([])).toBe(true)
+    expect(helpers.isEmpty({})).toBe(true)
 
-    expect(helpers.isEmpty({ foo: null })).toBeFalse()
-    expect(helpers.isEmpty([null])).toBeFalse()
-    expect(helpers.isEmpty('   ')).toBeFalse()
-    expect(helpers.isEmpty(new (class {})())).toBeFalse()
-    expect(helpers.isEmpty(0)).toBeFalse()
-    expect(helpers.isEmpty(false)).toBeFalse()
+    expect(helpers.isEmpty({ foo: null })).toBe(false)
+    expect(helpers.isEmpty([null])).toBe(false)
+    expect(helpers.isEmpty('   ')).toBe(false)
+    expect(helpers.isEmpty(new (class {})())).toBe(false)
+    expect(helpers.isEmpty(0)).toBe(false)
+    expect(helpers.isEmpty(false)).toBe(false)
   })
 
   test('capitalizeFirstLetter', () => {
@@ -60,20 +63,20 @@ describe('@livy/util/lib/helpers', () => {
   })
 
   test('isPrimitive', () => {
-    expect(helpers.isPrimitive(null)).toBeTrue()
-    expect(helpers.isPrimitive(undefined)).toBeTrue()
-    expect(helpers.isPrimitive('foo')).toBeTrue()
-    expect(helpers.isPrimitive(5)).toBeTrue()
-    expect(helpers.isPrimitive(true)).toBeTrue()
-    expect(helpers.isPrimitive(Symbol('bar'))).toBeTrue()
+    expect(helpers.isPrimitive(null)).toBe(true)
+    expect(helpers.isPrimitive(undefined)).toBe(true)
+    expect(helpers.isPrimitive('foo')).toBe(true)
+    expect(helpers.isPrimitive(5)).toBe(true)
+    expect(helpers.isPrimitive(true)).toBe(true)
+    expect(helpers.isPrimitive(Symbol('bar'))).toBe(true)
 
     if (typeof BigInt === 'function') {
-      expect(helpers.isPrimitive(BigInt('5'))).toBeTrue()
+      expect(helpers.isPrimitive(BigInt('5'))).toBe(true)
     }
 
-    expect(helpers.isPrimitive(function() {})).toBeFalse()
-    expect(helpers.isPrimitive({})).toBeFalse()
-    expect(helpers.isPrimitive([])).toBeFalse()
+    expect(helpers.isPrimitive(function () {})).toBe(false)
+    expect(helpers.isPrimitive({})).toBe(false)
+    expect(helpers.isPrimitive([])).toBe(false)
   })
 
   test('getObviousTypeName', () => {
@@ -93,18 +96,18 @@ describe('@livy/util/lib/helpers', () => {
       helpers.isPromiseLike({
         then() {}
       })
-    ).toBeTrue()
+    ).toBe(true)
 
     const array = []
     array.then = () => {}
-    expect(helpers.isPromiseLike(array)).toBeTrue()
+    expect(helpers.isPromiseLike(array)).toBe(true)
 
     function f() {}
     f.then = () => {}
-    expect(helpers.isPromiseLike(f)).toBeTrue()
+    expect(helpers.isPromiseLike(f)).toBe(true)
 
-    expect(helpers.isPromiseLike({})).toBeFalse()
-    expect(helpers.isPromiseLike(() => {})).toBeFalse()
+    expect(helpers.isPromiseLike({})).toBe(false)
+    expect(helpers.isPromiseLike(() => {})).toBe(false)
   })
 
   test('isPromise', () => {
@@ -113,37 +116,20 @@ describe('@livy/util/lib/helpers', () => {
         then() {},
         catch() {}
       })
-    ).toBeTrue()
+    ).toBe(true)
 
     const array = []
     array.then = () => {}
     array.catch = () => {}
-    expect(helpers.isPromise(array)).toBeTrue()
+    expect(helpers.isPromise(array)).toBe(true)
 
     function f() {}
     f.then = () => {}
     f.catch = () => {}
-    expect(helpers.isPromise(f)).toBeTrue()
+    expect(helpers.isPromise(f)).toBe(true)
 
-    expect(helpers.isPromise({ then() {} })).toBeFalse()
-    expect(helpers.isPromise({ catch() {} })).toBeFalse()
-    expect(helpers.isPromise(() => {})).toBeFalse()
-  })
-
-  test('fromEntries', () => {
-    expect(helpers.fromEntries([])).toEqual({})
-    expect(
-      helpers.fromEntries([
-        ['a', 1],
-        ['b', 2]
-      ])
-    ).toEqual({ a: 1, b: 2 })
-    expect(
-      helpers.fromEntries([
-        ['a', 1],
-        ['b', 2],
-        ['a', 3]
-      ])
-    ).toEqual({ a: 3, b: 2 })
+    expect(helpers.isPromise({ then() {} })).toBe(false)
+    expect(helpers.isPromise({ catch() {} })).toBe(false)
+    expect(helpers.isPromise(() => {})).toBe(false)
   })
 })

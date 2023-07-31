@@ -1,5 +1,7 @@
-jest.mock('os')
-const { HostnameProcessor } = require('../src/hostname-processor')
+import { describe, expect, it } from 'vitest'
+import { HostnameProcessor } from '../src/hostname-processor'
+
+const { record } = livyTestGlobals
 
 describe('@livy/hostname-processor', () => {
   it('should add hostname to records', () => {

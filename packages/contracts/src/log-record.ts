@@ -1,5 +1,5 @@
-import { DateTime } from 'luxon'
-import { LogLevel, SeverityLevel } from './log-level'
+import type { DateTime } from 'luxon'
+import { LogLevel, SeverityLevel } from './log-level.js'
 
 export interface LogRecordContext {
   [key: string]: any

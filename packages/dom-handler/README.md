@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler writes log records to the browser's 
 ## Basic Example
 
 ```js
-const { DomHandler } = require('@livy/dom-handler')
+import { DomHandler } from '@livy/dom-handler'
 
 const handler = new DomHandler('#logs')
 ```

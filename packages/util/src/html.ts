@@ -1,4 +1,4 @@
-import { escapeHtmlEntities } from './helpers'
+import { escapeHtmlEntities } from './helpers.js'
 
 const HTMLRawMarker = Symbol('HTML raw marker')
 
@@ -19,7 +19,7 @@ function HTMLMask(value: string) {
     [HTMLRawMarker]: true as const,
     toString() {
       return value
-    }
+    },
   }
 }
 
@@ -50,13 +50,14 @@ export function HTML(...args: any[]): HTMLChunk {
       strings.slice(1).reduce((carry, string, index) => {
         const data = keys[index]
 
+        // eslint-disable-next-line unicorn/prefer-spread
         return carry.concat(
           typeof data === 'object' && data !== null && HTMLRawMarker in data
             ? String(data)
             : escapeHtmlEntities(String(data)),
-          string
+          string,
         )
-      }, strings[0])
+      }, strings[0]),
     )
   }
 }

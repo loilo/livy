@@ -1,5 +1,6 @@
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { Mixin } from '../mixin'
+import type { LogLevel } from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
+import { Mixin } from '../mixin.js'
 
 /**
  * Implements a level-respecting `isHandling` method

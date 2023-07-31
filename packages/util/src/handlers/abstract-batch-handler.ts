@@ -1,7 +1,5 @@
-import { HandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { isSyncHandlerInterface } from './is-sync-handler-interface'
+import type { HandlerInterface, LogLevel, LogRecord } from '@livy/contracts'
+import { isSyncHandlerInterface } from './is-sync-handler-interface.js'
 
 /**
  * Base Handler class providing `handleBatch` and `handleBatchSync`
@@ -28,7 +26,7 @@ export abstract class AbstractBatchHandler implements HandlerInterface {
   public handleBatchSync(records: LogRecord[]): void {
     if (!isSyncHandlerInterface(this)) {
       throw new Error(
-        'Cannot invoke handleBatchSync() on an asynchronous handler'
+        'Cannot invoke handleBatchSync() on an asynchronous handler',
       )
     }
 

@@ -3,16 +3,17 @@
  *
  * @returns {string}
  */
-function getRoot() {
+async function getRoot() {
   let root
   if (typeof root === 'undefined') {
-    const { dirname } = require('path')
-    const findUp = require('find-up')
+    const { fileURLToPath } = await import('node:url')
+    const { dirname } = await import('path')
+    const { findUpSync } = await import('find-up')
 
     root = dirname(
-      findUp.sync('package.json', {
-        cwd: dirname(__dirname)
-      })
+      findUpSync('package.json', {
+        cwd: dirname(dirname(fileURLToPath(import.meta.url))),
+      }),
     )
   }
   return root
@@ -20,13 +21,11 @@ function getRoot() {
 
 /**
  * Get current minimist argv data
- *
- * @returns {string}
  */
-function getArgv() {
+async function getArgv() {
   let argv
   if (typeof argv === 'undefined') {
-    argv = require('minimist')(process.argv.slice(2))
+    argv = (await import('minimist')).default(process.argv.slice(2))
   }
   return argv
 }
@@ -36,12 +35,12 @@ function getArgv() {
  *
  * @returns {string}
  */
-function getPackagesDir() {
+async function getPackagesDir() {
   let packagesDir
   if (typeof packagesDir === 'undefined') {
-    const { join } = require('path')
+    const { join } = await import('node:path')
 
-    packagesDir = join(getRoot(), 'packages')
+    packagesDir = join(await getRoot(), 'packages')
   }
   return packagesDir
 }
@@ -51,30 +50,35 @@ function getPackagesDir() {
  *
  * @returns {string}
  */
-function getPackageDir() {
-  let package
-  if (typeof package === 'undefined') {
-    const { resolve, relative } = require('path')
+async function getPackageDir() {
+  let packageName
+  if (typeof packageName === 'undefined') {
+    const { resolve, relative } = await import('node:path')
 
+    const packagesDir = await getPackagesDir()
+    const argv = await getArgv()
     const resolvedPackage = resolve(
-      getPackagesDir(),
-      getArgv().package || getArgv().p || process.cwd()
+      packagesDir,
+      argv.package || argv.p || process.cwd(),
     )
 
-    if (/^\.\.\/?/.test(relative(getPackagesDir(), resolvedPackage))) {
+    if (/^\.\.\/?/.test(relative(packagesDir, resolvedPackage))) {
       throw new Error(
-        `Package "${resolvedPackage}" is not inside "packages" folder (${getPackagesDir()})`
+        `Package "${resolvedPackage}" is not inside "packages" folder (${packagesDir})`,
       )
     }
 
-    package = resolvedPackage
+    packageName = resolvedPackage
   }
-  return package
+  return packageName
 }
 
-Object.defineProperties(exports, {
-  argv: { get: getArgv },
-  root: { get: getRoot },
-  packagesDir: { get: getPackagesDir },
-  packageDir: { get: getPackageDir }
-})
+const argv = await getArgv()
+
+const [packagesDir, packageDir, root] = await Promise.all([
+  getPackagesDir(),
+  getPackageDir(),
+  getRoot(),
+])
+
+export { argv, packagesDir, packageDir, root }

@@ -1,4 +1,7 @@
-const { TagsProcessor } = require('../src/tags-processor')
+import { describe, expect, it } from 'vitest'
+import { TagsProcessor } from '../src/tags-processor'
+
+const { record } = livyTestGlobals
 
 describe('@livy/tags-processor', () => {
   it('should add tags to records (empty list default)', () => {

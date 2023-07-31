@@ -1,14 +1,14 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { EOL } from '@livy/util/lib/environment'
-import { AbstractBatchFormatter } from '@livy/util/lib/formatters/abstract-batch-formatter'
-import { IncludedRecordProperties } from '@livy/util/lib/formatters/included-record-properties'
+import type { LogRecord } from '@livy/contracts'
+import { EOL } from '@livy/util/environment'
+import { AbstractBatchFormatter } from '@livy/util/formatters/abstract-batch-formatter'
+import { IncludedRecordProperties } from '@livy/util/formatters/included-record-properties'
 
-/* eslint-disable no-redeclare */
+/* eslint-disable @typescript-eslint/no-redeclare */
 const BATCH_MODE_NEWLINES = Symbol('BATCH_MODE_NEWLINES')
 type BATCH_MODE_NEWLINES = typeof BATCH_MODE_NEWLINES
 const BATCH_MODE_JSON = Symbol('BATCH_MODE_JSON')
 type BATCH_MODE_JSON = typeof BATCH_MODE_JSON
-/* eslint-enable no-redeclare */
+/* eslint-enable @typescript-eslint/no-redeclare */
 
 type BatchMode = BATCH_MODE_NEWLINES | BATCH_MODE_JSON
 
@@ -51,7 +51,7 @@ export class JsonFormatter extends AbstractBatchFormatter {
 
   public constructor({
     include = {},
-    batchMode = BATCH_MODE_NEWLINES
+    batchMode = BATCH_MODE_NEWLINES,
   }: Partial<JsonFormatterOptions> = {}) {
     super()
 
@@ -63,7 +63,7 @@ export class JsonFormatter extends AbstractBatchFormatter {
       message: true,
       context: true,
       extra: true,
-      ...include
+      ...include,
     }
     this.batchMode = batchMode
   }

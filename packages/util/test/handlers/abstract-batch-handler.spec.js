@@ -1,6 +1,7 @@
-const {
-  AbstractBatchHandler
-} = require('../../src/handlers/abstract-batch-handler')
+import { describe, expect, it, vi } from 'vitest'
+import { AbstractBatchHandler } from '../../src/handlers/abstract-batch-handler'
+
+const { record } = livyTestGlobals
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -11,7 +12,7 @@ describe('@livy/util/lib/handlers/abstract-batch-handler', () => {
         super()
         let first = true
 
-        this.handle = jest.fn(() => {
+        this.handle = vi.fn(() => {
           if (first) {
             first = false
             return delay(50)
@@ -37,7 +38,7 @@ describe('@livy/util/lib/handlers/abstract-batch-handler', () => {
     class Handler extends AbstractBatchHandler {
       constructor() {
         super()
-        this.handleSync = jest.fn()
+        this.handleSync = vi.fn()
       }
     }
 
@@ -54,7 +55,7 @@ describe('@livy/util/lib/handlers/abstract-batch-handler', () => {
     class Handler extends AbstractBatchHandler {
       constructor() {
         super()
-        this.handle = jest.fn()
+        this.handle = vi.fn()
       }
     }
 

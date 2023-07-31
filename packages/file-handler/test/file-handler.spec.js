@@ -1,9 +1,17 @@
-jest.mock('fs')
-jest.mock('os')
+import {
+  describe,
+  expect,
+  it,
+  beforeAll,
+  beforeEach,
+  afterAll,
+  afterEach,
+  vi
+} from 'vitest'
+import * as fs from 'node:fs'
+import { FileHandler } from '../src/file-handler'
 
-const { FileHandler } = require('../src/file-handler')
-
-const fs = require('fs')
+const { record } = livyTestGlobals
 
 describe('@livy/file-handler', () => {
   afterEach(() => {
@@ -41,8 +49,7 @@ describe('@livy/file-handler', () => {
   })
 
   it('should fail when trying to write to a non-existing parent folder', () => {
-    expect.toThrowWithMessage(
-      () => new FileHandler('/foo/logfile.txt'),
+    expect(() => new FileHandler('/foo/logfile.txt')).toThrow(
       /^Provided log path directory "\/foo" does not exist: /
     )
   })
@@ -63,7 +70,7 @@ describe('@livy/file-handler', () => {
     })
 
     beforeEach(() => {
-      fs.closeSync = jest.fn()
+      fs.closeSync = vi.fn()
     })
 
     afterAll(() => {
@@ -99,7 +106,7 @@ describe('@livy/file-handler', () => {
     })
 
     beforeEach(() => {
-      fs.write = jest.fn((_target, _content, callback) =>
+      fs.write = vi.fn((_target, _content, callback) =>
         callback(new Error(`Mock write error`))
       )
     })
@@ -239,8 +246,8 @@ describe('@livy/file-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
 
     handler.handleSync(record('info'))
     handler.handleSync(record('notice'))
@@ -254,7 +261,7 @@ describe('@livy/file-handler', () => {
       bubble: false
     })
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 })

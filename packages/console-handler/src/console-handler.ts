@@ -1,10 +1,9 @@
 import { ConsoleFormatter } from '@livy/console-formatter'
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import * as environment from '@livy/util/lib/environment'
-import { AbstractSyncFormattingProcessingHandler } from '@livy/util/lib/handlers/abstract-formatting-processing-handler'
-import { AbstractLevelBubbleHandlerOptions } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
+import type { FormatterInterface, LogRecord } from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
+import * as environment from '@livy/util/environment'
+import { AbstractSyncFormattingProcessingHandler } from '@livy/util/handlers/abstract-formatting-processing-handler'
+import { AbstractLevelBubbleHandlerOptions } from '@livy/util/handlers/abstract-level-bubble-handler'
 
 export interface ConsoleHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
@@ -32,8 +31,8 @@ export class ConsoleHandler extends AbstractSyncFormattingProcessingHandler {
   }: Partial<ConsoleHandlerOptions> = {}) {
     super(options)
 
-    // istanbul ignore next: Environment is hard to test
-    if (typeof console === 'undefined') {
+    /* c8 ignore start: Environment is hard to test for coverage */
+    if (console === undefined) {
       if (environment.isNodeJs) {
         console = global.console
       } else if (environment.isBrowser) {
@@ -48,6 +47,7 @@ export class ConsoleHandler extends AbstractSyncFormattingProcessingHandler {
         throw new Error('Could not find a global console object')
       }
     }
+    /* c8 ignore stop */
 
     this.console = console
     this.explicitFormatter = formatter

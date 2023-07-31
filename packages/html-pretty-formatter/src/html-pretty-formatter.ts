@@ -1,15 +1,19 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractBatchFormatter } from '@livy/util/lib/formatters/abstract-batch-formatter'
-import { isEmpty, omit } from '@livy/util/lib/helpers'
-import { HTML } from '@livy/util/lib/html'
-import { AnyObject } from '@livy/util/lib/types'
-import { safeDump } from 'js-yaml'
-import lowlight from 'lowlight/lib/core'
+import type { LogRecord } from '@livy/contracts'
+import { AbstractBatchFormatter } from '@livy/util/formatters/abstract-batch-formatter'
+import { isEmpty, omit } from '@livy/util/helpers'
+import { HTML } from '@livy/util/html'
+import { dump } from 'js-yaml'
+import { lowlight } from 'lowlight'
 
-const stringifyHtml = require('hast-util-to-html')
-const map = require('unist-util-map')
+import { toHtml as stringifyHtml } from 'hast-util-to-html'
+import { u } from 'unist-builder'
+import { map } from 'unist-util-map'
+import { Span, Text } from 'lowlight/lib/core.js'
 
-lowlight.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'))
+lowlight.registerLanguage(
+  'yaml',
+  (await import('highlight.js/lib/languages/yaml.js')).default,
+)
 
 /**
  * Formats log records as extensive HTML
@@ -32,7 +36,7 @@ export class HtmlPrettyFormatter extends AbstractBatchFormatter {
       gray: '#9195a2',
       green: '#2fae57',
       red: '#ff5c55',
-      yellow: '#ce9c00'
+      yellow: '#ce9c00',
     }
 
     const levelColor = (function getLevelColor() {
@@ -122,7 +126,7 @@ export class HtmlPrettyFormatter extends AbstractBatchFormatter {
    * @param data The data to serialize
    */
   protected serializeData(data: any) {
-    const result = safeDump(data)
+    const result = dump(data)
 
     return typeof result !== 'string' ? 'undefined' : result
   }
@@ -137,47 +141,54 @@ export class HtmlPrettyFormatter extends AbstractBatchFormatter {
     if (ignoreEmpty && isEmpty(data)) {
       return ''
     } else {
-      const stringified = this.serializeData(data)
-      const tree = lowlight.highlight('yaml', stringified).value
-
-      const highlightedContextTree = map(
-        { type: 'root', children: tree },
-        (node: AnyObject) => {
-          if (
-            node &&
-            node.type === 'element' &&
-            typeof node.properties === 'object' &&
-            Array.isArray(node.properties.className)
-          ) {
-            const colors = {
-              attr: '#11658F',
-              string: '#ce9c00',
-              number: '#ff5c55',
-              literal: '#2fae57'
-            }
-
-            return {
-              ...node,
-              properties: {
-                ...omit(node.properties, 'className'),
-                style: node.properties.className
-                  .filter((className: string) => className.startsWith('hljs-'))
-                  .map((className: string) => {
-                    const token = className.slice(5)
-
-                    if (token in colors) {
-                      return `color: ${colors[token as keyof typeof colors]}`
-                    }
-                  })
-                  .filter(Boolean)
-                  .join('; ')
-              }
-            }
-          } else {
-            return node
-          }
+      type StyleSpan = Omit<Span, 'properties'> & {
+        properties: Omit<Span['properties'], 'className'> & {
+          style: string
         }
-      )
+      }
+
+      const stringified = this.serializeData(data)
+      const tree = lowlight.highlight('yaml', stringified).children as (
+        | Text
+        | Span
+        | StyleSpan
+      )[]
+
+      const highlightedContextTree = map(u('root', tree), node => {
+        if (
+          node &&
+          node.type === 'element' &&
+          typeof node.properties === 'object' &&
+          'className' in node.properties
+        ) {
+          const colors = {
+            attr: '#11658F',
+            string: '#ce9c00',
+            number: '#ff5c55',
+            literal: '#2fae57',
+          }
+
+          return {
+            ...node,
+            properties: {
+              ...omit(node.properties, 'className'),
+              style: node.properties.className
+                .filter((className: string) => className.startsWith('hljs-'))
+                .map((className: string) => {
+                  const token = className.slice(5)
+
+                  if (token in colors) {
+                    return `color: ${colors[token as keyof typeof colors]}`
+                  }
+                })
+                .filter(Boolean)
+                .join('; '),
+            },
+          }
+        } else {
+          return node
+        }
+      })
 
       const formattedData = stringifyHtml(highlightedContextTree).toString()
 

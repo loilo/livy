@@ -1,5 +1,14 @@
-const io = require('socket.io-client')
-const { SocketIoHandler } = require('../src/socket.io-handler')
+import { describe, expect, it, afterEach, vi } from 'vitest'
+
+const { record, tick } = livyTestGlobals
+
+vi.mock(
+  'socket.io-client',
+  livyTestGlobals.getMockedModule(import('./mocks/socket.io-client.js'))
+)
+
+import { io } from 'socket.io-client'
+import { SocketIoHandler } from '../src/socket.io-handler'
 
 describe('@livy/socket.io-handler', () => {
   afterEach(() => {
@@ -104,7 +113,9 @@ describe('@livy/socket.io-handler', () => {
       })
     )
     await handler.handle(
-      record('info', 'Test SocketIoHandler', { extra: { extra: true } })
+      record('info', 'Test SocketIoHandler', {
+        extra: { extra: true }
+      })
     )
 
     expect(io.__mock__.emit).toHaveBeenCalledTimes(2)
@@ -179,8 +190,8 @@ describe('@livy/socket.io-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
 
     await handler.handle(record('info'))
     await handler.handle(record('notice'))
@@ -195,7 +206,7 @@ describe('@livy/socket.io-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
   })
 })

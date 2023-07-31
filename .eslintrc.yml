@@ -1,11 +1,12 @@
 parser: '@typescript-eslint/parser'
 plugins:
   - '@typescript-eslint'
+  - local-rules
   - unicorn
 extends:
   - plugin:@typescript-eslint/recommended
   - eslint:recommended
-  - prettier/@typescript-eslint
+  - prettier
   - plugin:prettier/recommended
   - plugin:unicorn/recommended
 env:
@@ -19,6 +20,9 @@ globals:
   SocketIOClient: readonly
   Console: readonly
 rules:
+  prettier/prettier:
+    - error
+    - endOfLine: auto
   '@typescript-eslint/ban-ts-ignore': off
   '@typescript-eslint/explicit-function-return-type': off
   '@typescript-eslint/no-explicit-any': off
@@ -32,14 +36,30 @@ rules:
   '@typescript-eslint/ban-ts-comment': off
   no-dupe-class-members: off
   no-unused-vars: off
+  no-redeclare: off
+  '@typescript-eslint/no-redeclare': error
   unicorn/filename-case:
     - error
     - cases:
         kebabCase: true
-  unicorn/prefer-string-slice: off
   unicorn/prevent-abbreviations:
     - error
-    - whitelist:
+    - allowList:
         args: true
+        i: true
+        j: true
   unicorn/import-style: off
   unicorn/no-null: off
+  unicorn/no-negated-condition: off
+  unicorn/no-array-reduce: off
+  unicorn/better-regex: off
+  unicorn/prefer-ternary: off
+  unicorn/no-array-callback-reference: off
+  unicorn/no-await-expression-member: off
+  unicorn/no-useless-switch-case: off
+  unicorn/prefer-at: off
+  unicorn/switch-case-braces:
+    - error
+    - avoid
+  unicorn/no-nested-ternary: off
+  local-rules/no-unknown-import: error

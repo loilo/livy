@@ -1,11 +1,14 @@
-const { FilterHandler } = require('../src/filter-handler')
+import { describe, expect, it, vi } from 'vitest'
+import { FilterHandler } from '../src/filter-handler'
+
+const { record, MockHandler } = livyTestGlobals
 
 describe('@livy/filter-handler', () => {
   it('should always return "true" for "isHandling"', () => {
     const wrappedHandler = new MockHandler()
     const handler = new FilterHandler(wrappedHandler, () => false)
 
-    expect(handler.isHandling('debug')).toBeTrue()
+    expect(handler.isHandling('debug')).toBe(true)
   })
 
   it('should block records not passing the test', () => {
@@ -38,7 +41,7 @@ describe('@livy/filter-handler', () => {
 
   it('should pass a log record to the test', () => {
     const wrappedHandler = new MockHandler()
-    const testCallback = jest.fn()
+    const testCallback = vi.fn()
     const handler = new FilterHandler(wrappedHandler, testCallback)
 
     const debugRecord = record('debug', 'Test FilterHandler')
@@ -108,7 +111,7 @@ describe('@livy/filter-handler', () => {
   it('should reset processors on reset', () => {
     const processor = {
       process: x => x,
-      reset: jest.fn()
+      reset: vi.fn()
     }
 
     const handler = new FilterHandler(new MockHandler(), () => true)
@@ -157,8 +160,8 @@ describe('@livy/filter-handler', () => {
       }
     )
 
-    expect(bubblingHandler.handleSync(record('debug'))).toBeFalse()
-    expect(nonBubblingHandler.handleSync(record('debug'))).toBeTrue()
+    expect(bubblingHandler.handleSync(record('debug'))).toBe(false)
+    expect(nonBubblingHandler.handleSync(record('debug'))).toBe(true)
   })
 
   it('should respect the "bubble" option (async)', async () => {
@@ -171,7 +174,7 @@ describe('@livy/filter-handler', () => {
       }
     )
 
-    expect(await bubblingHandler.handle(record('debug'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('debug'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('debug'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('debug'))).toBe(true)
   })
 })

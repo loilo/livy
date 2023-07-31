@@ -1,5 +1,5 @@
-// istanbul ignore file: Themes are a source of truth, not subject to testing
-import { ThemeDark } from './theme-dark'
+/* c8 ignore start: Themes are a source of truth, not subject to testing */
+import { ThemeDark } from './theme-dark.js'
 
 /**
  * Theme for HtmlOnelineFormatter with transparent background
@@ -8,5 +8,5 @@ import { ThemeDark } from './theme-dark'
  */
 export const ThemeDarkTransparent = {
   ...ThemeDark,
-  background: 'transparent'
+  background: 'transparent',
 } as const

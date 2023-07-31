@@ -1,11 +1,11 @@
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
+import type { ResettableInterface } from '@livy/contracts'
 /**
  * Check whether a value implements the ResettableInterface
  *
  * @param value The value to check
  */
 export function isResettableInterface(
-  value: unknown
+  value: unknown,
 ): value is ResettableInterface {
   return (
     typeof value === 'object' &&

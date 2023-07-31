@@ -1,11 +1,14 @@
-const { AbstractLogger } = require('../src/abstract-logger')
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { AbstractLogger } from '../src/abstract-logger'
+
+const { createMockProcessor, MockHandler, date } = livyTestGlobals
 
 class Logger extends AbstractLogger {
   constructor(options = {}) {
     super('logs', options)
 
-    this.withName = jest.fn(() => new Logger())
-    this.runHandlers = jest.fn(() =>
+    this.withName = vi.fn(() => new Logger())
+    this.runHandlers = vi.fn(() =>
       options.mode === 'async' ? Promise.resolve() : undefined
     )
   }
@@ -19,19 +22,21 @@ describe('@livy/logger/lib/abstract-logger', () => {
 
   it('should correctly tell whether it has handlers for a record', () => {
     const logger = new Logger()
-    const nonHandlingHandler = new MockHandler({ handle: false })
+    const nonHandlingHandler = new MockHandler({
+      handle: false
+    })
     const handlingHandler = new MockHandler({ handle: true })
 
     // No handlers -> false
-    expect(logger.isHandling('info')).toBeFalse()
+    expect(logger.isHandling('info')).toBe(false)
 
     // Only non-handling handlers -> false
     logger.handlers.add(nonHandlingHandler)
-    expect(logger.isHandling('info')).toBeFalse()
+    expect(logger.isHandling('info')).toBe(false)
 
     // Any number of handling handlers -> true
     logger.handlers.add(handlingHandler)
-    expect(logger.isHandling('info')).toBeTrue()
+    expect(logger.isHandling('info')).toBe(true)
   })
 
   it('should be able to access handlers as a Set', () => {
@@ -68,7 +73,9 @@ describe('@livy/logger/lib/abstract-logger', () => {
   })
 
   it('should reset handlers and processors on reset', () => {
-    const processor1 = createMockProcessor({ resettable: false })
+    const processor1 = createMockProcessor({
+      resettable: false
+    })
     const processor2 = createMockProcessor({ resettable: true })
     const processor3 = createMockProcessor({ resettable: true })
 
@@ -90,8 +97,12 @@ describe('@livy/logger/lib/abstract-logger', () => {
   })
 
   it('should reset appropriate handlers on logger reset', () => {
-    const nonResettableHandler = new MockHandler({ resettable: false })
-    const resettableHandler = new MockHandler({ resettable: true })
+    const nonResettableHandler = new MockHandler({
+      resettable: false
+    })
+    const resettableHandler = new MockHandler({
+      resettable: true
+    })
 
     const logger = new Logger({
       handlers: [nonResettableHandler, resettableHandler]

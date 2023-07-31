@@ -1,5 +1,4 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ProcessorInterface } from '@livy/contracts/lib/processor-interface'
+import type { LogRecord, ProcessorInterface } from '@livy/contracts'
 
 /**
  * Adds tags to record.extra

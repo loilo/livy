@@ -1,13 +1,21 @@
-require('../../../test/__matchers__/string-containing-times')
+import { describe, expect, it, afterEach, vi } from 'vitest'
+import '@livy/test-utils/matchers/string-containing-times.js'
 
-const nodemailer = require('nodemailer')
-const { MailHandler } = require('../src/mail-handler')
+import * as nodemailer from 'nodemailer'
+import { MailHandler } from '../src/mail-handler'
+
+const { record, MockFormatter } = livyTestGlobals
 
 const handlerOptions = {
   subject: 'Subject',
   to: 'to@example.com',
   from: 'from@example.com'
 }
+
+vi.mock(
+  'nodemailer',
+  livyTestGlobals.getMockedModule(import('./mocks/nodemailer.js'))
+)
 
 describe('@livy/mail-handler', () => {
   afterEach(() => {
@@ -17,8 +25,8 @@ describe('@livy/mail-handler', () => {
   it('should create a Nodemailer instance with default options on handler creation', () => {
     new MailHandler(handlerOptions)
 
-    expect(nodemailer.__mock__.createTransport).toHaveBeenCalledTimes(1)
-    expect(nodemailer.__mock__.createTransport).toHaveBeenCalledWith(
+    expect(nodemailer.createTransport).toHaveBeenCalledTimes(1)
+    expect(nodemailer.createTransport).toHaveBeenCalledWith(
       expect.objectContaining({
         sendmail: true
       })
@@ -64,7 +72,7 @@ describe('@livy/mail-handler', () => {
       handler.handle(record('emergency', 'Test MailHandler'))
     ])
 
-    expect(nodemailer.__mock__.sendMail).toHaveBeenCalledTimes(5)
+    expect(nodemailer.sendMail).toHaveBeenCalledTimes(5)
   })
 
   it('should call sendMail(), respecting the default level (batch handling)', async () => {
@@ -84,8 +92,8 @@ describe('@livy/mail-handler', () => {
       record('emergency', 'Test MailHandler')
     ])
 
-    expect(nodemailer.__mock__.sendMail).toHaveBeenCalledTimes(1)
-    expect(nodemailer.__mock__.sendMail).toHaveBeenLastCalledWith(
+    expect(nodemailer.sendMail).toHaveBeenCalledTimes(1)
+    expect(nodemailer.sendMail).toHaveBeenLastCalledWith(
       expect.objectContaining({
         from: 'from@example.com',
         to: 'to@example.com',
@@ -155,7 +163,7 @@ describe('@livy/mail-handler', () => {
 
   it('should resort to regular handling when batch handling with one record', async () => {
     const handler = new MailHandler(handlerOptions)
-    handler.handle = jest.fn(() => Promise.resolve())
+    handler.handle = vi.fn(() => Promise.resolve())
 
     await handler.handleBatch([record('warning', 'Test MailHandler')])
 
@@ -165,17 +173,15 @@ describe('@livy/mail-handler', () => {
   it('should not do anything when batch handling with no records', async () => {
     const handler = new MailHandler(handlerOptions)
     await handler.handleBatch([])
-    expect(nodemailer.__mock__.sendMail).not.toHaveBeenCalled()
+    expect(nodemailer.sendMail).not.toHaveBeenCalled()
   })
 
   it('should fail if mailer reports error', async () => {
-    nodemailer.__mock__.sendMail.mockImplementationOnce(
-      (mailOptions, callback) => {
-        setImmediate(() => {
-          callback(new Error('Mock error'))
-        })
-      }
-    )
+    nodemailer.sendMail.mockImplementationOnce((mailOptions, callback) => {
+      setImmediate(() => {
+        callback(new Error('Mock error'))
+      })
+    })
 
     const handler = new MailHandler(handlerOptions)
 
@@ -194,8 +200,8 @@ describe('@livy/mail-handler', () => {
 
     await handler.handle(record('warning', 'Test MailHandler'))
 
-    expect(nodemailer.__mock__.sendMail).toHaveBeenCalledTimes(1)
-    expect(nodemailer.__mock__.sendMail).toHaveBeenLastCalledWith(
+    expect(nodemailer.sendMail).toHaveBeenCalledTimes(1)
+    expect(nodemailer.sendMail).toHaveBeenLastCalledWith(
       expect.objectContaining({
         from: 'from@example.com',
         to: 'to@example.com',
@@ -216,8 +222,8 @@ describe('@livy/mail-handler', () => {
       }
     })
 
-    expect(nodemailer.__mock__.createTransport).toHaveBeenCalledTimes(1)
-    expect(nodemailer.__mock__.createTransport).toHaveBeenCalledWith(
+    expect(nodemailer.createTransport).toHaveBeenCalledTimes(1)
+    expect(nodemailer.createTransport).toHaveBeenCalledWith(
       expect.objectContaining({
         sendmail: false,
         foo: 'bar'
@@ -231,13 +237,13 @@ describe('@livy/mail-handler', () => {
       level: 'notice'
     })
 
-    expect(handler.isHandling('info')).toBeFalse()
-    expect(handler.isHandling('notice')).toBeTrue()
+    expect(handler.isHandling('info')).toBe(false)
+    expect(handler.isHandling('notice')).toBe(true)
     await handler.handle(record('info', 'info'))
     await handler.handle(record('notice', 'notice'))
 
-    expect(nodemailer.__mock__.sendMail).toHaveBeenCalledTimes(1)
-    expect(nodemailer.__mock__.sendMail).toHaveBeenLastCalledWith(
+    expect(nodemailer.sendMail).toHaveBeenCalledTimes(1)
+    expect(nodemailer.sendMail).toHaveBeenLastCalledWith(
       expect.objectContaining({
         from: 'from@example.com',
         to: 'to@example.com',
@@ -258,7 +264,7 @@ describe('@livy/mail-handler', () => {
       bubble: false
     })
 
-    expect(await bubblingHandler.handle(record('warning'))).toBeFalse()
-    expect(await nonBubblingHandler.handle(record('warning'))).toBeTrue()
+    expect(await bubblingHandler.handle(record('warning'))).toBe(false)
+    expect(await nonBubblingHandler.handle(record('warning'))).toBe(true)
   })
 })

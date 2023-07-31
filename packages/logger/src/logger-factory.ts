@@ -1,11 +1,8 @@
-import {
-  HandlerInterface,
-  SyncHandlerInterface
-} from '@livy/contracts/lib/handler-interface'
-import { LoggerOptions } from './abstract-logger'
-import { AsyncLogger } from './async-logger'
-import { MixedLogger } from './mixed-logger'
-import { SyncLogger } from './sync-logger'
+import type { HandlerInterface, SyncHandlerInterface } from '@livy/contracts'
+import { LoggerOptions } from './abstract-logger.js'
+import { AsyncLogger } from './async-logger.js'
+import { MixedLogger } from './mixed-logger.js'
+import { SyncLogger } from './sync-logger.js'
 
 type AsyncLoggerFactoryOptions = LoggerOptions<HandlerInterface> & {
   mode: 'async'
@@ -30,13 +27,13 @@ export type LoggerFactoryOptions =
  */
 export function createLogger(
   name: string,
-  { mode = 'mixed', ...options }: Partial<LoggerFactoryOptions> = {}
+  { mode = 'mixed', ...options }: Partial<LoggerFactoryOptions> = {},
 ) {
   switch (mode) {
     case 'sync':
       return new SyncLogger(
         name,
-        options as LoggerOptions<SyncHandlerInterface>
+        options as LoggerOptions<SyncHandlerInterface>,
       )
 
     case 'async':
@@ -47,7 +44,7 @@ export function createLogger(
 
     default:
       throw new Error(
-        `Invalid logging mode "${mode}". Use one of "sync", "async" or "mixed".`
+        `Invalid logging mode "${mode}". Use one of "sync", "async" or "mixed".`,
       )
   }
 }

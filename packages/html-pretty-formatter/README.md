@@ -5,8 +5,8 @@ This [Livy](../../README.md#readme) formatter formats log records as extensive H
 ## Basic Example
 
 ```js
-const { FileHandler } = require('@livy/file-handler')
-const { HtmlPrettyFormatter } = require('@livy/html-pretty-formatter')
+import { FileHandler } from '@livy/file-handler'
+import { HtmlPrettyFormatter } from '@livy/html-pretty-formatter'
 
 const handler = new FileHandler('logs.html', {
   formatter: new HtmlPrettyFormatter()

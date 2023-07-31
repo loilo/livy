@@ -1,18 +1,14 @@
 {
   "private": true,
   "name": "@livy/bin",
+  "type": "module",
   "description": "Build and test related commands to be used in Livy",
   "version": "0.0.0",
   "bin": {
-    "run-root": "./run-root",
-    "rename-js-to-mjs": "./rename-js-to-mjs",
-    "fix-extensionless-imports": "./fix-extensionless-imports",
-    "check-dependencies": "./check-dependencies",
-    "resolve-markdown-links": "./resolve-markdown-links",
-    "restore-markdown-links": "./restore-markdown-links"
+    "resolve-markdown-links": "./resolve-markdown-links.js",
+    "restore-markdown-links": "./restore-markdown-links.js"
   },
   "dependencies": {
-    "find-up": "^4.1.0",
-    "yufka": "^1.0.2"
+    "find-up": "^6.3.0"
   }
 }

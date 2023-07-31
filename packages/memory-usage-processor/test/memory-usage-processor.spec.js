@@ -1,12 +1,14 @@
+import { describe, expect, it, beforeEach, afterAll, vi } from 'vitest'
+import { MemoryUsageProcessor } from '../src/memory-usage-processor'
+
+const { record } = livyTestGlobals
+
 let memoryUsage
-const mockMemoryUsage = jest
+const mockMemoryUsage = vi
   .spyOn(process, 'memoryUsage')
   .mockImplementation(() => ({
     heapTotal: memoryUsage
   }))
-
-jest.mock('os')
-const { MemoryUsageProcessor } = require('../src/memory-usage-processor')
 
 describe('@livy/memory-usage-processor', () => {
   beforeEach(() => {
@@ -21,13 +23,17 @@ describe('@livy/memory-usage-processor', () => {
     const defaultProcessor = new MemoryUsageProcessor()
 
     expect(defaultProcessor.process(record('info'))).toEqual(
-      record('info', '', { extra: { memory_usage: '200 Bytes' } })
+      record('info', '', {
+        extra: { memory_usage: '200 Bytes' }
+      })
     )
 
     const explicitProcessor = new MemoryUsageProcessor(true)
 
     expect(explicitProcessor.process(record('info'))).toEqual(
-      record('info', '', { extra: { memory_usage: '200 Bytes' } })
+      record('info', '', {
+        extra: { memory_usage: '200 Bytes' }
+      })
     )
   })
 
@@ -43,7 +49,9 @@ describe('@livy/memory-usage-processor', () => {
     // Breakpoint is 1024, so 1023 should still be bytes
     memoryUsage = 1023
     expect(processor.process(record('info'))).toEqual(
-      record('info', '', { extra: { memory_usage: '1023 Bytes' } })
+      record('info', '', {
+        extra: { memory_usage: '1023 Bytes' }
+      })
     )
 
     // 1024 Bytes = 1 KB

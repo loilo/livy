@@ -1,8 +1,7 @@
-jest.mock('os')
+import { describe, expect, it } from 'vitest'
+import { AbstractBatchFormatter } from '../../src/formatters/abstract-batch-formatter'
 
-const {
-  AbstractBatchFormatter
-} = require('../../src/formatters/abstract-batch-formatter')
+const { record } = livyTestGlobals
 
 describe('@livy/util/lib/formatters/abstract-batch-formatter', () => {
   it('correctly implements "formatBatch" with default newline delimiter', () => {

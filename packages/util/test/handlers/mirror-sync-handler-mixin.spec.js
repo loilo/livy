@@ -1,11 +1,12 @@
-const {
-  MirrorSyncHandlerMixin
-} = require('../../src/handlers/mirror-sync-handler-mixin')
+import { describe, expect, it, vi } from 'vitest'
+import { MirrorSyncHandlerMixin } from '../../src/handlers/mirror-sync-handler-mixin'
+
+const { record } = livyTestGlobals
 
 describe('@livy/util/lib/handlers/mirror-sync-handler-mixin', () => {
   it('should correctly mix in async handle/handleBatch methods', async () => {
-    const mockHandleSync = jest.fn()
-    const mockHandleBatchSync = jest.fn()
+    const mockHandleSync = vi.fn()
+    const mockHandleBatchSync = vi.fn()
 
     class Handler extends MirrorSyncHandlerMixin(class {}) {
       handleSync(record) {

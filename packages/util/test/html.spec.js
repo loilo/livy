@@ -1,4 +1,5 @@
-const { HTML } = require('../src/html')
+import { describe, expect, test } from 'vitest'
+import { HTML } from '../src/html'
 
 describe('@livy/util/lib/html', () => {
   test('HTML', () => {

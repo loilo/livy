@@ -1,10 +1,14 @@
-const { Mixin } = require('../src/mixin')
+import { describe, expect, it } from 'vitest'
+import { Mixin } from '../src/mixin'
 
 describe('@livy/util/lib/mixin', () => {
   it('should correctly mix in classes', () => {
-    const mixin = Mixin(Base => class extends Base {
-      mixin() {}
-    })
+    const mixin = Mixin(
+      Base =>
+        class extends Base {
+          mixin() {}
+        }
+    )
 
     class Parent {
       parent() {}
@@ -14,13 +18,13 @@ describe('@livy/util/lib/mixin', () => {
       child() {}
     }
 
-    const child = new Child
+    const child = new Child()
 
     expect(child).toBeInstanceOf(Child)
     expect(child).toBeInstanceOf(Parent)
 
-    expect(child.parent).toBeFunction()
-    expect(child.child).toBeFunction()
-    expect(child.mixin).toBeFunction()
+    expect(typeof child.parent).toBe('function')
+    expect(typeof child.child).toBe('function')
+    expect(typeof child.mixin).toBe('function')
   })
 })

@@ -1,6 +1,5 @@
-const {
-  isFormattableHandlerInterface
-} = require('../../src/handlers/is-formattable-handler-interface')
+import { describe, expect, it } from 'vitest'
+import { isFormattableHandlerInterface } from '../../src/handlers/is-formattable-handler-interface'
 
 describe('@livy/util/lib/handlers/is-formattable-handler-interface', () => {
   it('should recognize formattable handlers', () => {

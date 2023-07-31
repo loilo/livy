@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler sends log records to a [Socket.IO](h
 ## Basic Example
 
 ```js
-const { SocketIoHandler } = require('@livy/socket.io-handler')
+import { SocketIoHandler } from '@livy/socket.io-handler'
 
 const handler = new SocketIoHandler('wss://example.com/logs')
 ```

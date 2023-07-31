@@ -1,9 +1,11 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ProcessableHandlerInterface } from '@livy/contracts/lib/processable-handler-interface'
-import { ProcessorInterfaceOrFunction } from '@livy/contracts/lib/processor-interface'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
-import { isResettableInterface } from '../is-resettable-interface'
-import { Mixin } from '../mixin'
+import type {
+  LogRecord,
+  ProcessableHandlerInterface,
+  ProcessorInterfaceOrFunction,
+  ResettableInterface,
+} from '@livy/contracts'
+import { isResettableInterface } from '../is-resettable-interface.js'
+import { Mixin } from '../mixin.js'
 
 /**
  * Adds basic processor-handling functionality

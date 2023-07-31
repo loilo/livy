@@ -1,5 +1,5 @@
-import { LogLevel } from './log-level'
-import { LogRecord } from './log-record'
+import { LogLevel } from './log-level.js'
+import { LogRecord } from './log-record.js'
 
 /**
  * Describes the structure of a purely asynchronous handler

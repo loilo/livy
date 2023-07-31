@@ -1,16 +1,18 @@
-import { SyncHandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { ResettableInterface } from '@livy/contracts/lib/resettable-interface'
-import { AbstractLevelBubbleHandler } from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { MirrorSyncHandlerMixin } from '@livy/util/lib/handlers/mirror-sync-handler-mixin'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
+import type {
+  LogRecord,
+  ResettableInterface,
+  SyncHandlerInterface,
+} from '@livy/contracts'
+import { AbstractLevelBubbleHandler } from '@livy/util/handlers/abstract-level-bubble-handler'
+import { MirrorSyncHandlerMixin } from '@livy/util/handlers/mirror-sync-handler-mixin'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
 
 /**
  * Stores log records in an array; great for debugging
  */
 export class ArrayHandler
   extends MirrorSyncHandlerMixin(
-    ProcessableHandlerMixin(AbstractLevelBubbleHandler)
+    ProcessableHandlerMixin(AbstractLevelBubbleHandler),
   )
   implements SyncHandlerInterface, ResettableInterface
 {

@@ -1,10 +1,9 @@
-import { FormatterInterface } from '@livy/contracts/lib/formatter-interface'
-import { LogLevel, SeverityMap } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { FormatterInterface, LogLevel, LogRecord } from '@livy/contracts'
+import { SeverityMap } from '@livy/contracts'
 import { LineFormatter } from '@livy/line-formatter'
-import { FormattableHandlerMixin } from '@livy/util/lib/handlers/formattable-handler-mixin'
-import { capitalizeFirstLetter, isEmpty } from '@livy/util/lib/helpers'
-import { AnyObject } from '@livy/util/lib/types'
+import { FormattableHandlerMixin } from '@livy/util/handlers/formattable-handler-mixin'
+import { capitalizeFirstLetter, isEmpty } from '@livy/util/helpers'
+import { AnyObject } from '@livy/util/types'
 
 const COLOR_DANGER = 'danger'
 const COLOR_WARNING = 'warning'
@@ -83,13 +82,13 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
     useShortAttachment = false,
     includeContextAndExtra = false,
     excludedFields = [],
-    formatter
+    formatter,
   }: Partial<SlackRecordOptions> = {}) {
     super()
 
     this.channel = channel
     this.username = username
-    this.userIcon = (userIcon || '').replace(/^:*(.*[^:]+)?:*$/g, '$1')
+    this.userIcon = (userIcon || '').replaceAll(/^:*(.*[^:]+)?:*$/g, '$1')
     this.useAttachment = useAttachment
     this.useShortAttachment = useShortAttachment
     this.includeContextAndExtra = includeContextAndExtra
@@ -128,7 +127,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
         color: this.getAttachmentColor(clearedRecord.level),
         fields: [],
         mrkdwn_in: ['fields'],
-        ts: clearedRecord.datetime.toSeconds()
+        ts: clearedRecord.datetime.toSeconds(),
       }
 
       if (this.useShortAttachment) {
@@ -136,7 +135,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
       } else {
         attachment.title = 'Message'
         attachment.fields.push(
-          this.generateAttachmentField('Level', clearedRecord.level)
+          this.generateAttachmentField('Level', clearedRecord.level),
         )
       }
 
@@ -148,12 +147,12 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
 
           if (this.useShortAttachment) {
             attachment.fields.push(
-              this.generateAttachmentField(key, clearedRecord[key])
+              this.generateAttachmentField(key, clearedRecord[key]),
             )
           } else {
             // Add all extra fields as individual fields in attachment
             attachment.fields.push(
-              ...this.generateAttachmentFields(clearedRecord[key])
+              ...this.generateAttachmentFields(clearedRecord[key]),
             )
           }
         }
@@ -218,8 +217,8 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
     return new LineFormatter({
       include: {
         context: this.includeContextAndExtra,
-        extra: this.includeContextAndExtra
-      }
+        extra: this.includeContextAndExtra,
+      },
     })
   }
 
@@ -231,7 +230,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
    */
   private generateAttachmentField(
     title: string,
-    value: string | number | AnyObject | any[]
+    value: string | number | AnyObject | any[],
   ): AttachmentField {
     const stringifiedValue =
       typeof value === 'string' || typeof value === 'number'
@@ -241,7 +240,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
     return {
       title: capitalizeFirstLetter(title),
       value: stringifiedValue,
-      short: false
+      short: false,
     }
   }
 
@@ -252,7 +251,7 @@ export class SlackRecord extends FormattableHandlerMixin(class {}) {
    */
   private generateAttachmentFields(data: Partial<LogRecord>) {
     return Object.entries(data).map(([key, value]) =>
-      this.generateAttachmentField(key, value!)
+      this.generateAttachmentField(key, value!),
     )
   }
 

@@ -1,6 +1,5 @@
-const {
-  isProcessableHandlerInterface
-} = require('../../src/handlers/is-processable-handler-interface')
+import { describe, expect, it } from 'vitest'
+import { isProcessableHandlerInterface } from '../../src/handlers/is-processable-handler-interface'
 
 describe('@livy/util/lib/handlers/is-processable-handler-interface', () => {
   it('should recognize processable handlers', () => {

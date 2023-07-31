@@ -1,4 +1,7 @@
-const { ConsoleAdapter } = require('../src/console-adapter')
+import { describe, expect, it, beforeEach } from 'vitest'
+import { ConsoleAdapter } from '../src/console-adapter'
+
+const { MockLogger } = livyTestGlobals
 
 let logger, console
 

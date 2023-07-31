@@ -13,7 +13,7 @@ This [Livy](../../README.md#readme) handler dispenses log records via email usin
 ## Basic Example
 
 ```js
-const { MailHandler } = require('@livy/mail-handler')
+import { MailHandler } from '@livy/mail-handler'
 
 const handler = new MailHandler({
   subject: 'Hello world!',

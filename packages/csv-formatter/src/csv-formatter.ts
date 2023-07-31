@@ -1,6 +1,6 @@
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AbstractBatchFormatter } from '@livy/util/lib/formatters/abstract-batch-formatter'
-import { sanitizeRegex } from '@livy/util/lib/helpers'
+import type { LogRecord } from '@livy/contracts'
+import { AbstractBatchFormatter } from '@livy/util/formatters/abstract-batch-formatter'
+import { sanitizeRegex } from '@livy/util/helpers'
 
 export type FieldGenerator = (record: LogRecord) => string[]
 
@@ -37,15 +37,15 @@ export class CsvFormatter extends AbstractBatchFormatter {
 
   public constructor({
     generateFields = record => [
-      record.datetime.toISO(),
+      record.datetime.toISO() ?? '',
       record.level,
       record.message,
       JSON.stringify(record.context),
-      JSON.stringify(record.extra)
+      JSON.stringify(record.extra),
     ],
     delimiter = ',',
     enclosure = '"',
-    eol = '\r\n'
+    eol = '\r\n',
   }: Partial<CsvFormatterOptions> = {}) {
     super()
 
@@ -69,9 +69,9 @@ export class CsvFormatter extends AbstractBatchFormatter {
           if (hasDelimiter || hasEnclosure || hasLineBreak) {
             return (
               this.enclosure +
-              field.replace(
+              field.replaceAll(
                 new RegExp(sanitizeRegex(this.enclosure), 'g'),
-                match => `${this.enclosure}${match}${this.enclosure}`
+                match => `${this.enclosure}${match}${this.enclosure}`,
               ) +
               this.enclosure
             )
@@ -79,7 +79,7 @@ export class CsvFormatter extends AbstractBatchFormatter {
             return field
           }
         })
-        .join(this.delimiter)
+        .join(this.delimiter),
     )
   }
 }

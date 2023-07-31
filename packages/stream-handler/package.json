@@ -1,5 +1,6 @@
 {
   "name": "@livy/stream-handler",
+  "type": "module",
   "version": "1.0.4",
   "description": "Writes Livy log records to a Node.js stream",
   "keywords": [
@@ -16,9 +17,11 @@
   "author": "loilo <florian.reuschel@gmx.de>",
   "homepage": "https://github.com/loilo/livy/tree/master/packages/stream-handler#readme",
   "license": "MIT",
-  "main": "lib/stream-handler.js",
+  "exports": {
+    "types": "./lib/stream-handler.d.ts",
+    "default": "./lib/stream-handler.js"
+  },
   "sideEffects": false,
-  "module": "lib/stream-handler.mjs",
   "directories": {
     "lib": "lib",
     "test": "test"
@@ -31,7 +34,10 @@
   },
   "repository": "https://github.com/loilo/livy/tree/master/packages/stream-handler",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "del lib && tsc --declaration",
+    "lint:readme": "remark --quiet --no-stdout -u validate-links README.md",
+    "lint:source": "eslint \"src/**/*.ts\"",
+    "test": "vitest run --coverage"
   },
   "bugs": {
     "url": "https://github.com/loilo/livy/issues"
@@ -39,10 +45,13 @@
   "dependencies": {
     "@livy/contracts": "^1.1.2",
     "@livy/line-formatter": "^1.0.4",
-    "@livy/util": "^1.0.6"
+    "@livy/util": "^1.0.6",
+    "@types/node": "^18.11.18"
   },
   "devDependencies": {
-    "@types/node": "^14.11.2",
-    "typescript": "^4.0.3"
-  }
+    "typescript": "^5.1.0",
+    "@livy/bin": "file:../../bin",
+    "@livy/test-utils": "file:../../test-utils"
+  },
+  "gitHead": "bd96a3e4d1e5870873b0e0b9e538486aea6343a2"
 }

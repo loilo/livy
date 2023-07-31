@@ -1,24 +1,24 @@
-import { existsSync, readdirSync, statSync, unlinkSync } from 'fs'
-import { join } from 'path'
-import { MaxAgeStrategyOptions } from './max-age-strategy'
-import { MaxSizeStrategyOptions } from './max-size-strategy'
-import { RotationStrategyInterface } from './rotation-strategy'
+import { existsSync, readdirSync, statSync, unlinkSync } from 'node:fs'
+import { join } from 'node:path'
+import { MaxAgeStrategyOptions } from './max-age-strategy.js'
+import { MaxSizeStrategyOptions } from './max-size-strategy.js'
+import { RotationStrategyInterface } from './rotation-strategy.js'
 
 /**
  * Common functionality for all `RotatingFileHandler` strategies
  */
 export abstract class BaseStrategy<
-  T extends MaxAgeStrategyOptions | MaxSizeStrategyOptions
+  T extends MaxAgeStrategyOptions | MaxSizeStrategyOptions,
 > implements RotationStrategyInterface
 {
   constructor(
     protected directory: string,
     protected filenameTemplate: string,
-    protected threshold: T['threshold']
+    protected threshold: T['threshold'],
   ) {
     if (!existsSync(directory)) {
       throw new Error(
-        `Directory for rotating log files "${directory}" does not exist`
+        `Directory for rotating log files "${directory}" does not exist`,
       )
     }
   }
@@ -60,7 +60,7 @@ export abstract class BaseStrategy<
 
     return readdirSync(this.directory)
       .filter(
-        file => regex.test(file) && statSync(join(this.directory, file)).isFile
+        file => regex.test(file) && statSync(join(this.directory, file)).isFile,
       )
       .sort(this.compareFilenames.bind(this))
   }

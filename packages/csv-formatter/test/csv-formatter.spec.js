@@ -1,4 +1,7 @@
-const { CsvFormatter } = require('../src/csv-formatter')
+import { describe, expect, it, vi } from 'vitest'
+import { CsvFormatter } from '../src/csv-formatter'
+
+const { record, TEST_CONSTANTS } = livyTestGlobals
 
 describe('@livy/csv-formatter', () => {
   it('should genarete a correct default row', () => {
@@ -45,7 +48,9 @@ describe('@livy/csv-formatter', () => {
 
     expect(
       csvFormatter.format(
-        record('info', 'Test_CsvFormatter', { context: { foo: 1 } })
+        record('info', 'Test_CsvFormatter', {
+          context: { foo: 1 }
+        })
       )
     ).toBe(
       `${TEST_CONSTANTS.DATE_ISO_MS},info,_Test___CsvFormatter_,{"foo":1},{}`
@@ -66,7 +71,7 @@ describe('@livy/csv-formatter', () => {
   })
 
   it('should respect the "generateFields" option', () => {
-    const generateFields = jest.fn(() => ['?'])
+    const generateFields = vi.fn(() => ['?'])
 
     const csvFormatter = new CsvFormatter({
       generateFields

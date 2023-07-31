@@ -1,18 +1,17 @@
-import { ClosableHandlerInterface } from '@livy/contracts/lib/closable-handler-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { ClosableHandlerInterface, LogRecord } from '@livy/contracts'
 import {
   AbstractLevelBubbleHandler,
-  AbstractLevelBubbleHandlerOptions
-} from '@livy/util/lib/handlers/abstract-level-bubble-handler'
-import { ProcessableHandlerMixin } from '@livy/util/lib/handlers/processable-handler-mixin'
-import io from 'socket.io-client'
+  AbstractLevelBubbleHandlerOptions,
+} from '@livy/util/handlers/abstract-level-bubble-handler'
+import { ProcessableHandlerMixin } from '@livy/util/handlers/processable-handler-mixin'
+import { Socket, SocketOptions, io } from 'socket.io-client'
 
 export interface SocketIoHandlerOptions
   extends AbstractLevelBubbleHandlerOptions {
   /**
    * Socket.IO client connection options
    */
-  connection: SocketIOClient.ConnectOpts
+  connection: Partial<SocketOptions>
 }
 
 /**
@@ -24,13 +23,13 @@ export class SocketIoHandler
   extends ProcessableHandlerMixin(AbstractLevelBubbleHandler)
   implements ClosableHandlerInterface
 {
-  protected connection: Promise<SocketIOClient.Socket> | undefined
+  protected connection: Promise<Socket> | undefined
   protected url: string
-  protected connectionOptions: SocketIOClient.ConnectOpts
+  protected connectionOptions: Partial<SocketOptions>
 
   public constructor(
     url: string,
-    { connection = {}, ...options }: Partial<SocketIoHandlerOptions> = {}
+    { connection = {}, ...options }: Partial<SocketIoHandlerOptions> = {},
   ) {
     super(options)
     this.url = url
@@ -52,7 +51,7 @@ export class SocketIoHandler
       return this.connection
     }
 
-    this.connection = new Promise<SocketIOClient.Socket>((resolve, reject) => {
+    this.connection = new Promise<Socket>((resolve, reject) => {
       const socket = io(this.url, this.connectionOptions)
       socket.on('connect', () => {
         resolve(socket)
@@ -61,9 +60,6 @@ export class SocketIoHandler
         this.connection = undefined
       })
       socket.on('connect_error', (error: Error) => {
-        reject(error)
-      })
-      socket.on('connect_timeout', (error: Error) => {
         reject(error)
       })
     })

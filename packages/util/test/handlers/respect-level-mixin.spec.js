@@ -1,4 +1,5 @@
-const { RespectLevelMixin } = require('../../src/handlers/respect-level-mixin')
+import { describe, expect, it } from 'vitest'
+import { RespectLevelMixin } from '../../src/handlers/respect-level-mixin'
 
 describe('@livy/util/lib/handlers/respect-level-mixin', () => {
   it('should inject a "level" property and an "isHandling" method', () => {

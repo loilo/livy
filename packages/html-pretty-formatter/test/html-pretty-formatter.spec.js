@@ -1,4 +1,7 @@
-const { HtmlPrettyFormatter } = require('../src/html-pretty-formatter')
+import { describe, expect, it } from 'vitest'
+import { HtmlPrettyFormatter } from '../src/html-pretty-formatter'
+
+const { record } = livyTestGlobals
 
 describe('@livy/html-pretty-formatter', () => {
   it('should format records correctly', () => {

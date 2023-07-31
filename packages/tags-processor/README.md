@@ -11,8 +11,8 @@ This [Livy](../../README.md#readme) processor adds predefined tags to a log reco
 ## Basic Example
 
 ```js
-const { createLogger } = require('@livy/logger')
-const { TagsProcessor } = require('@livy/tag-processor')
+import { createLogger } from '@livy/logger'
+import { TagsProcessor } from '@livy/tag-processor'
 
 const logger = createLogger('app-logger', {
   processors: [

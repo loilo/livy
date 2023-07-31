@@ -1,7 +1,9 @@
-import { HandlerInterface } from '@livy/contracts/lib/handler-interface'
-import { LogRecord } from '@livy/contracts/lib/log-record'
-import { AsyncLoggerInterface } from '@livy/contracts/lib/logger-interface'
-import { AbstractLogger } from './abstract-logger'
+import type {
+  AsyncLoggerInterface,
+  HandlerInterface,
+  LogRecord,
+} from '@livy/contracts'
+import { AbstractLogger } from './abstract-logger.js'
 
 /**
  * An asynchrous logger implementation
@@ -17,7 +19,7 @@ export class AsyncLogger
     return new AsyncLogger(name, {
       handlers: this._handlers,
       processors: this._processors,
-      timezone: this._timezone
+      timezone: this._timezone,
     })
   }
 

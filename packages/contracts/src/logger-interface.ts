@@ -1,5 +1,5 @@
-import { LogLevel } from './log-level'
-import { LogRecordContext } from './log-record'
+import { LogLevel } from './log-level.js'
+import { LogRecordContext } from './log-record.js'
 
 /**
  * A PSR-3 compatible logger

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`@livy/dom-handler interaction with "loading" document.readyState should asynchronously write logs to a selector (with DOM not initially ready) 1`] = `
+exports[`@livy/dom-handler > interaction with "loading" document.readyState > should asynchronously write logs to a selector (with DOM not initially ready) 1`] = `
 "
     <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #9195a244; margin-bottom: 0.75em\\">
       <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
@@ -31,7 +31,7 @@ exports[`@livy/dom-handler interaction with "loading" document.readyState should
     </div>"
 `;
 
-exports[`@livy/dom-handler should respect the "level" option 1`] = `
+exports[`@livy/dom-handler > should respect the "level" option 1`] = `
 "
     <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1ed; margin-bottom: 0.75em\\">
       <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
@@ -62,7 +62,7 @@ exports[`@livy/dom-handler should respect the "level" option 1`] = `
     </div>"
 `;
 
-exports[`@livy/dom-handler should respect the "reversed" option 1`] = `
+exports[`@livy/dom-handler > should respect the "reversed" option 1`] = `
 "
     <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #08a1edaa; margin-bottom: 0.75em\\">
       <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
@@ -120,7 +120,7 @@ exports[`@livy/dom-handler should respect the "reversed" option 1`] = `
     </div>"
 `;
 
-exports[`@livy/dom-handler should write logs to a selector (with DOM ready) 1`] = `
+exports[`@livy/dom-handler > should write logs to a selector (with DOM ready) 1`] = `
 "
     <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #9195a244; margin-bottom: 0.75em\\">
       <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>
@@ -151,7 +151,7 @@ exports[`@livy/dom-handler should write logs to a selector (with DOM ready) 1`] 
     </div>"
 `;
 
-exports[`@livy/dom-handler should write logs to the referenced element 1`] = `
+exports[`@livy/dom-handler > should write logs to the referenced element 1`] = `
 "
     <div role=\\"listitem\\" style=\\"font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; color: #363844; background: #fafbfd; padding: 0.75em 1em; border-radius: 0.125em; box-shadow: 0 0 0 1px #9195a233, 0 2px #9195a244; margin-bottom: 0.75em\\">
       <time datetime=\\"2015-08-15T14:30:00+02:00\\" style=\\"font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace; color: #9195a2; display: block; font-size: 0.8em; margin-bottom: 0.75em\\">2015-08-15 14:30:00</time>

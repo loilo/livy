@@ -2,13 +2,12 @@
  * Note: The very basic line formatter is implemented in the @livy/util package to avoid circular dependencies
  */
 
-import { LogLevel, SeverityLevel } from '@livy/contracts/lib/log-level'
-import { LogRecord } from '@livy/contracts/lib/log-record'
+import type { LogLevel, LogRecord, SeverityLevel } from '@livy/contracts'
 import { DateTime } from 'luxon'
-import { isEmpty } from '../helpers'
-import { Stringified } from '../types'
-import { AbstractBatchFormatter } from './abstract-batch-formatter'
-import { IncludedRecordProperties } from './included-record-properties'
+import { isEmpty } from '../helpers.js'
+import { Stringified } from '../types.js'
+import { AbstractBatchFormatter } from './abstract-batch-formatter.js'
+import { IncludedRecordProperties } from './included-record-properties.js'
 
 /**
  * Formats log records as single lines
@@ -52,7 +51,7 @@ export class LineFormatter extends AbstractBatchFormatter {
   public constructor({
     include = {},
     ignoreEmptyContext = false,
-    ignoreEmptyExtra = true
+    ignoreEmptyExtra = true,
   }: Partial<LineFormatterOptions> = {}) {
     super()
 
@@ -66,7 +65,7 @@ export class LineFormatter extends AbstractBatchFormatter {
       message: true,
       context: true,
       extra: true,
-      ...include
+      ...include,
     }
   }
 
@@ -88,15 +87,15 @@ export class LineFormatter extends AbstractBatchFormatter {
         ? this.formatSeverityMap(record.severity)
         : '',
       message: this.include.message
-        ? this.formatMessage(record.message).replace(/\s*\n\s*/g, ' / ')
+        ? this.formatMessage(record.message).replaceAll(/\s*\n\s*/g, ' / ')
         : '',
       context: this.include.context
         ? this.formatContext(
             record.context,
-            this.ignoreEmptyContext && formattedExtra.length === 0
+            this.ignoreEmptyContext && formattedExtra.length === 0,
           )
         : '',
-      extra: this.include.extra ? formattedExtra : ''
+      extra: this.include.extra ? formattedExtra : '',
     })
   }
 
@@ -112,7 +111,7 @@ export class LineFormatter extends AbstractBatchFormatter {
     severity,
     message,
     context,
-    extra
+    extra,
   }: Stringified<LogRecord>) {
     return `${datetime}${channel}${level}${severity}${message}${context}${extra}`
   }

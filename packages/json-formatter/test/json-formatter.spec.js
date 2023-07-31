@@ -1,6 +1,7 @@
-jest.mock('os')
+import { describe, expect, it } from 'vitest'
+import { JsonFormatter } from '../src/json-formatter'
 
-const { JsonFormatter } = require('../src/json-formatter')
+const { record } = livyTestGlobals
 
 describe('@livy/json-formatter', () => {
   it('should include all parts by default', () => {
