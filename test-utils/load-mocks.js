@@ -3,22 +3,6 @@ import { vi } from 'vitest'
 // TODO: Modules have been mocked in very different ways with very different
 // conventions for naming etc. This should be unified someday.
 
-// ATTENTION! Moving mocks of external dependencies below mocks
-// of Node.js modules somehow breaks the tests.
-
-vi.mock(
-  'chalk',
-  livyTestGlobals.getMockedModule(import('./mocks/modules/chalk.js')),
-)
-vi.mock(
-  'got',
-  livyTestGlobals.getMockedModule(import('./mocks/modules/got.js')),
-)
-vi.mock(
-  'luxon',
-  livyTestGlobals.getMockedModule(import('./mocks/modules/luxon.js')),
-)
-
 vi.mock('fs', livyTestGlobals.getMockedModule(import('./mocks/modules/fs.js')))
 vi.mock(
   'node:fs',

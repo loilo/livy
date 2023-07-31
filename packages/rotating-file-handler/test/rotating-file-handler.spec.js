@@ -3,6 +3,13 @@ import { describe, expect, it, afterEach, vi } from 'vitest'
 import { DateTime } from 'luxon'
 import { RotatingFileHandler } from '../src/rotating-file-handler'
 
+vi.mock(
+  'luxon',
+  livyTestGlobals.getMockedModule(
+    import('@livy/test-utils/mocks/modules/luxon.js'),
+  ),
+)
+
 const { record, TEST_CONSTANTS, date, MockFormatter } = livyTestGlobals
 
 // Fixate timezone for file names to the test constant
@@ -14,7 +21,7 @@ vi.mock('../src/max-age-strategy', async importOriginal => {
       getStartOfDurationUnit() {
         return super.getStartOfDurationUnit().setZone(TEST_CONSTANTS.TIMEZONE)
       }
-    }
+    },
   }
 })
 
@@ -29,7 +36,7 @@ vi.mock('../src/max-age-strategy', async importOriginal => {
 async function writeRecords(handler, mode, isoDate, levels) {
   const createRecord = record.with({
     datetime: DateTime.fromISO(isoDate).setZone(TEST_CONSTANTS.TIMEZONE),
-    message: 'Test RotatingFileHandler'
+    message: 'Test RotatingFileHandler',
   })
   const records = levels.map(level => createRecord({ level }))
 
@@ -76,7 +83,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should rotate on handler close', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      maxFiles: 1
+      maxFiles: 1,
     })
 
     writeRecords(handler, 'sync', '2015-08-15T14:30:00+02:00', ['debug'])
@@ -92,7 +99,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should perform max-age rotation minutely', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      threshold: 'minute'
+      threshold: 'minute',
     })
 
     const handle = writeRecords.bind(null, handler, 'sync')
@@ -107,7 +114,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should perform max-age rotation hourly', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      threshold: 'hour'
+      threshold: 'hour',
     })
 
     const handle = writeRecords.bind(null, handler, 'sync')
@@ -122,7 +129,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should perform max-age rotation daily', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      threshold: 'day'
+      threshold: 'day',
     })
 
     const handle = writeRecords.bind(null, handler, 'sync')
@@ -137,7 +144,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should perform max-age rotation monthly', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      threshold: 'month'
+      threshold: 'month',
     })
 
     const handle = writeRecords.bind(null, handler, 'sync')
@@ -152,7 +159,7 @@ describe('@livy/rotating-file-handler', () => {
 
   it('should perform max-age rotation yearly', () => {
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      threshold: 'year'
+      threshold: 'year',
     })
 
     const handle = writeRecords.bind(null, handler, 'sync')
@@ -168,7 +175,7 @@ describe('@livy/rotating-file-handler', () => {
   it('should do max-size rotation', () => {
     const handler = new RotatingFileHandler('/logfile%appendix%.txt', {
       strategy: 'max-size',
-      threshold: '100 Bytes'
+      threshold: '100 Bytes',
     })
 
     handler.handleSync(record('debug', 'Test RotatingFileHandler'))
@@ -184,14 +191,14 @@ describe('@livy/rotating-file-handler', () => {
     expect(() => {
       new RotatingFileHandler('/invalid/logfile-%date%.txt')
     }).toThrowError(
-      new Error('Directory for rotating log files "/invalid" does not exist')
+      new Error('Directory for rotating log files "/invalid" does not exist'),
     )
   })
 
   it('should not accept an invalid rotation strategy', () => {
     expect(() => {
       new RotatingFileHandler('/logfile.txt', {
-        strategy: 'invalid'
+        strategy: 'invalid',
       })
     }).toThrowError(new Error('Invalid rotation strategy "invalid"'))
   })
@@ -199,24 +206,24 @@ describe('@livy/rotating-file-handler', () => {
   it('should require a %date% token in max-age rotation', () => {
     expect(() => {
       new RotatingFileHandler('/logfile.txt', {
-        strategy: 'max-age'
+        strategy: 'max-age',
       })
     }).toThrowError(
       new Error(
-        'Invalid filename template "logfile.txt", must contain the %date% token.'
-      )
+        'Invalid filename template "logfile.txt", must contain the %date% token.',
+      ),
     )
   })
 
   it('should require a %appendix% token in max-size rotation', () => {
     expect(() => {
       new RotatingFileHandler('/logfile.txt', {
-        strategy: 'max-size'
+        strategy: 'max-size',
       })
     }).toThrowError(
       new Error(
-        'Invalid filename template "logfile.txt", must contain the %appendix% token.'
-      )
+        'Invalid filename template "logfile.txt", must contain the %appendix% token.',
+      ),
     )
   })
 
@@ -225,12 +232,12 @@ describe('@livy/rotating-file-handler', () => {
 
     expect(() => {
       new RotatingFileHandler('/%date%/logfile.txt', {
-        strategy: 'max-age'
+        strategy: 'max-age',
       })
     }).toThrowError(
       new Error(
-        'Invalid filename template "logfile.txt", must contain the %date% token.'
-      )
+        'Invalid filename template "logfile.txt", must contain the %date% token.',
+      ),
     )
   })
 
@@ -239,12 +246,12 @@ describe('@livy/rotating-file-handler', () => {
 
     expect(() => {
       new RotatingFileHandler('/logfile.txt', {
-        strategy: 'max-size'
+        strategy: 'max-size',
       })
     }).toThrowError(
       new Error(
-        'Invalid filename template "logfile.txt", must contain the %appendix% token.'
-      )
+        'Invalid filename template "logfile.txt", must contain the %appendix% token.',
+      ),
     )
   })
 
@@ -253,15 +260,15 @@ describe('@livy/rotating-file-handler', () => {
       level: 'info',
       message: '',
       datetime: DateTime.fromISO(TEST_CONSTANTS.DATE_ISO).setZone(
-        TEST_CONSTANTS.TIMEZONE
-      )
+        TEST_CONSTANTS.TIMEZONE,
+      ),
     })
     date.fixate(TEST_CONSTANTS.DATE_ISO)
 
     const formatter = new MockFormatter()
 
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      formatter
+      formatter,
     })
 
     handler.handleSync(createRecord())
@@ -275,13 +282,13 @@ describe('@livy/rotating-file-handler', () => {
     const createRecord = record.with({
       message: '',
       datetime: DateTime.fromISO(TEST_CONSTANTS.DATE_ISO).setZone(
-        TEST_CONSTANTS.TIMEZONE
-      )
+        TEST_CONSTANTS.TIMEZONE,
+      ),
     })
     date.fixate(TEST_CONSTANTS.DATE_ISO)
 
     const handler = new RotatingFileHandler('/logfile-%date%.txt', {
-      level: 'notice'
+      level: 'notice',
     })
 
     expect(handler.isHandling('info')).toBe(false)
@@ -294,7 +301,7 @@ describe('@livy/rotating-file-handler', () => {
   it('should respect the "bubble" option', () => {
     const bubblingHandler = new RotatingFileHandler('/logfile-%date%.txt')
     const nonBubblingHandler = new RotatingFileHandler('/logfile-%date%.txt', {
-      bubble: false
+      bubble: false,
     })
 
     expect(bubblingHandler.handleSync(record('debug'))).toBe(false)

@@ -1,6 +1,13 @@
-import { describe, expect, it, afterEach } from 'vitest'
+import { describe, expect, it, afterEach, vi } from 'vitest'
 import got, { __resetGot } from 'got'
 import { HttpHandler } from '../src/http-handler'
+
+vi.mock(
+  'got',
+  livyTestGlobals.getMockedModule(
+    import('@livy/test-utils/mocks/modules/got.js'),
+  ),
+)
 
 const { record } = livyTestGlobals
 
@@ -19,7 +26,7 @@ describe('@livy/http-handler', () => {
 
   it('should accept a record-dependent callback as the URL', async () => {
     const handler = new HttpHandler(
-      record => `https://example.com/${record.level}`
+      record => `https://example.com/${record.level}`,
     )
     await handler.handle(record('info'))
 
@@ -30,28 +37,28 @@ describe('@livy/http-handler', () => {
   it('should respect the "requestOptions" option', async () => {
     const handler = new HttpHandler('https://example.com', {
       requestOptions: {
-        throwHttpErrors: false
-      }
+        throwHttpErrors: false,
+      },
     })
     await handler.handle(record('info'))
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenLastCalledWith('https://example.com', {
-      throwHttpErrors: false
+      throwHttpErrors: false,
     })
   })
 
   it('should accept a record-dependent callback as the "requestOptions" option', async () => {
     const handler = new HttpHandler('https://example.com', {
       requestOptions: record => ({
-        body: JSON.stringify(record)
-      })
+        body: JSON.stringify(record),
+      }),
     })
     await handler.handle(record('info'))
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenLastCalledWith('https://example.com', {
-      body: JSON.stringify(record('info'))
+      body: JSON.stringify(record('info')),
     })
   })
 
@@ -68,7 +75,7 @@ describe('@livy/http-handler', () => {
               finishedFirst = true
               resolve()
             }, 20)
-          })
+          }),
       )
       .mockImplementationOnce(async () => {
         expect(finishedFirst).toBe(false)
@@ -81,7 +88,7 @@ describe('@livy/http-handler', () => {
 
   it('should respect the "sequential" option', async () => {
     const handler = new HttpHandler('https://example.com', {
-      sequential: true
+      sequential: true,
     })
 
     let finishedFirst = false
@@ -94,7 +101,7 @@ describe('@livy/http-handler', () => {
               finishedFirst = true
               resolve()
             }, 20)
-          })
+          }),
       )
       .mockImplementationOnce(async () => {
         expect(finishedFirst).toBe(true)
@@ -109,15 +116,15 @@ describe('@livy/http-handler', () => {
     const handler = new HttpHandler('https://example.com', {
       allowBatchRequests: true,
       requestOptions: records => ({
-        body: JSON.stringify(records)
-      })
+        body: JSON.stringify(records),
+      }),
     })
 
     await handler.handleBatch([record('info'), record('notice')])
 
     expect(got).toHaveBeenCalledTimes(1)
     expect(got).toHaveBeenLastCalledWith('https://example.com', {
-      body: JSON.stringify([record('info'), record('notice')])
+      body: JSON.stringify([record('info'), record('notice')]),
     })
   })
 
@@ -125,8 +132,8 @@ describe('@livy/http-handler', () => {
     const handler = new HttpHandler(
       record => `https://example.com/${record.level}`,
       {
-        level: 'notice'
-      }
+        level: 'notice',
+      },
     )
 
     expect(handler.isHandling('info')).toBe(false)
@@ -141,7 +148,7 @@ describe('@livy/http-handler', () => {
   it('should respect the "bubble" option', async () => {
     const bubblingHandler = new HttpHandler('https://example.com')
     const nonBubblingHandler = new HttpHandler('https://example.com', {
-      bubble: false
+      bubble: false,
     })
 
     expect(await bubblingHandler.handle(record('warning'))).toBe(false)

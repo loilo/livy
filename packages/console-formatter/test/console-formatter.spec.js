@@ -1,5 +1,12 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { ConsoleFormatter } from '../src/console-formatter'
+
+vi.mock(
+  'chalk',
+  livyTestGlobals.getMockedModule(
+    import('@livy/test-utils/mocks/modules/chalk.js'),
+  ),
+)
 
 const { record } = livyTestGlobals
 
@@ -10,49 +17,49 @@ describe('@livy/console-formatter', () => {
     const createRecord = record.with({
       message: 'Test ConsoleFormatter',
       context: { foo: 1 },
-      extra: { bar: 2 }
+      extra: { bar: 2 },
     })
 
     expect(
-      consoleFormatter.format(createRecord({ level: 'debug' }))
+      consoleFormatter.format(createRecord({ level: 'debug' })),
     ).toMatchSnapshot()
     expect(
-      consoleFormatter.format(createRecord({ level: 'info' }))
+      consoleFormatter.format(createRecord({ level: 'info' })),
     ).toMatchSnapshot()
     expect(
-      consoleFormatter.format(createRecord({ level: 'notice' }))
+      consoleFormatter.format(createRecord({ level: 'notice' })),
     ).toMatchSnapshot()
     expect(
       consoleFormatter.format(
         createRecord({
-          level: 'warning'
-        })
-      )
+          level: 'warning',
+        }),
+      ),
     ).toMatchSnapshot()
     expect(
       consoleFormatter.format(
         createRecord({
           recordWithContextAndExtra: createRecord,
-          level: 'error'
-        })
-      )
+          level: 'error',
+        }),
+      ),
     ).toMatchSnapshot()
     expect(
       consoleFormatter.format(
         createRecord({
-          level: 'critical'
-        })
-      )
+          level: 'critical',
+        }),
+      ),
     ).toMatchSnapshot()
     expect(
-      consoleFormatter.format(createRecord({ level: 'alert' }))
+      consoleFormatter.format(createRecord({ level: 'alert' })),
     ).toMatchSnapshot()
     expect(
       consoleFormatter.format(
         createRecord({
-          level: 'emergency'
-        })
-      )
+          level: 'emergency',
+        }),
+      ),
     ).toMatchSnapshot()
   })
 
@@ -66,10 +73,10 @@ describe('@livy/console-formatter', () => {
             b: undefined,
             c: null,
             d: [null],
-            e: { f: undefined }
-          }
-        })
-      )
+            e: { f: undefined },
+          },
+        }),
+      ),
     ).toMatchSnapshot()
   })
 
@@ -78,25 +85,27 @@ describe('@livy/console-formatter', () => {
     expect(
       consoleFormatter.format(
         record('debug', 'Test ConsoleFormatter', {
-          context: { fn() {} }
-        })
-      )
+          context: { fn() {} },
+        }),
+      ),
     ).toMatchSnapshot()
   })
 
   it('should respect the provided color support', () => {
     const decoratedConsoleFormatter = new ConsoleFormatter({ decorated: true })
     expect(
-      decoratedConsoleFormatter.format(record('debug', 'Test ConsoleFormatter'))
+      decoratedConsoleFormatter.format(
+        record('debug', 'Test ConsoleFormatter'),
+      ),
     ).toMatchSnapshot()
 
     const undecoratedConsoleFormatter = new ConsoleFormatter({
-      decorated: true
+      decorated: true,
     })
     expect(
       undecoratedConsoleFormatter.format(
-        record('debug', 'Test ConsoleFormatter')
-      )
+        record('debug', 'Test ConsoleFormatter'),
+      ),
     ).toMatchSnapshot()
   })
 })
