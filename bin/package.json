@@ -9,10 +9,6 @@
     "restore-markdown-links": "./restore-markdown-links.js"
   },
   "dependencies": {
-    "@types/shelljs": "^0.8.11",
-    "chalk-template": "^1.1.0",
-    "find-up": "^6.3.0",
-    "shelljs": "^0.8.5",
-    "yufka": "^3.0.0"
+    "find-up": "^6.3.0"
   }
 }

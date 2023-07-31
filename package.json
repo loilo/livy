@@ -12,8 +12,7 @@
     "test": "run-s lint:source lint:readme test:source",
     "build": "lerna run build",
     "prepack": "lerna exec --parallel -- resolve-markdown-links",
-    "postpack": "lerna exec --parallel --no-bail -- restore-markdown-links",
-    "postinstall": "npm link ./bin ./test-utils"
+    "postpack": "lerna exec --parallel --no-bail -- restore-markdown-links"
   },
   "devDependencies": {
     "@livy/bin": "file:bin",
